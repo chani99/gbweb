@@ -16,7 +16,8 @@
     "angular": "^1.6.6",
     "angular-route": "^1.6.6",
     "bootstrap": "^3.3.7",
-    "http-server": "^0.10.0"
+    "http-server": "^0.10.0",
+    "nodejs-model": "^0.1.6"
   },
   "devDependencies": {
     "http-server": "^0.10.0"
