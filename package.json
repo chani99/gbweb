@@ -20,7 +20,6 @@
     "mysql": "^2.15.0",
     "nodejs-model": "^0.1.6",
     "sql": "^0.78.0"
-    
   },
   "devDependencies": {
     "http-server": "^0.10.0"
