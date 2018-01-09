@@ -6,9 +6,9 @@ var customerCtrl = require('../controllers/emtza_controller');
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static('../client'));
+app.use(express.static('../../client'));
 app.use(express.static('../node_modules'));
-app.use('/public', express.static('../client'));
+app.use('/public', express.static('../../client'));
 
 // app.get('/public', function (req, res) {
 //     console.log('i am public');
