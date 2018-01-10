@@ -1,7 +1,9 @@
 <div ng-controller="flipbook">
-<div class="embed-responsive embed-responsive-4by3">
+    {{source}}
+    <div class="embed-responsive embed-responsive-4by3">
 
-    <iframe class="embed-responsive-item" frameborder="0" scrolling="no" src="http://localhost:8081/public/pdf-flipbook-master/"></iframe>
+
+    <iframe class="embed-responsive-item" frameborder="0" scrolling="no" src="{{source}}"></iframe>
 </div>
 
 </div>

@@ -16,16 +16,25 @@
     });
 
     // flipbook controller
-    App.controller("flipbook", function($scope, UtilSrvc,  $routeParams, $location) {
+    App.controller("flipbook", function($scope, UtilSrvc,  $routeParams, $location, $sce) {
         let type =  $routeParams.n;
         let num = UtilSrvc.getValuesFromServer(type, "/book", onSuccsess, onError);
+  
 
         function onSuccsess(res) {
             console.log("sucsess: " + JSON.stringify(res.data.id));
+            let sourse = 'http://localhost:8081/public/pdf-flipbook-master/?num=' + res.data.id;
+            $scope.source = sourse;
+            console.log("sucsess: " + JSON.stringify(res.data.id));
+            console.log(sourse);
+
+
         }
         function onError(err) {
             console.log("error: "+ err);
         }
+
+        // source = $sce.trustAsHtml(source)
 
     });
     
