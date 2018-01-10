@@ -7,7 +7,7 @@ function executeQuery(query, callback) {
             host: 'localhost',
             user: 'root',
             password: '',
-            database: 'northwind'
+            database: 'gal_beitar'
         }
     );
 
