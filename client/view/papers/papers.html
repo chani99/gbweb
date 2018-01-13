@@ -1,21 +1,27 @@
-<h1>עיתונים אחרונים</h1>
-
-<div>
+<div ng-controller="papers">
     <div class="flex-container">
-        <div class="flex-item gray h-250 text-center">
-            <a href="#"><img src="last-paper/{{lainyan}}" alt="לעניין" class="shlager-black"></a>
+        <div class="fullscreen gray text-center shlager-black">
+            <h3>עיתונים אחרונים</h3>
         </div>
+    </div>
 
-        <div class="flex-item gray h-250 text-center">
-            <a href="#/book">Link Text Here</a>
-        </div>
+    <div>
+        <div class="flex-container">
+            <div class="flex-item gray h-350 text-center">
+                <a href="#/book?n=lainyan"><img src="public/papers/lainyan/{{lastLaintan}}/01.jpg" alt="לעניין" class="shlager-black paper_size"></a>
+            </div>
 
-        <div class="flex-item gray h-250 text-center">
-            <a href="#"><img src="" alt="אמצע השבוע" class="shlager-black"></a>
-        </div>
+            <div class="flex-item gray h-350 text-center">
+                <a href="#/book?n=meida"><img src="public/papers/meida/{{lastMaida}}/01.jpg" alt="מידע לכל" class="shlager-black paper_size"></a>
+            </div>
 
-        <div class="flex-item gray h-250 text-center">
-            <a href="#"><img src="" alt="שבוע טוב" class="shlager-black"></a>
+            <div class="flex-item gray h-350 text-center">
+                <a href="#/book?n=emtza"><img src="public/papers/emtza/{{lastEmtza}}/01.jpg" alt="אמצע השבוע" class="shlager-black paper_size"></a>
+            </div>
+
+            <div class="flex-item gray h-350 text-center">
+                <a href="#/book?n=shavua"><img src="public/papers/shavua/{{lastSt}}/01.jpg" alt="שבוע טוב" class="shlager-black paper_size"></a>
+            </div>
         </div>
     </div>
 </div>

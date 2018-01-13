@@ -4,12 +4,12 @@ var models = require('../models/models');
 
 function getlastpapaer(tablename, callback) {
 
-    dal.executeQuery('SELECT id FROM `'+ tablename +'` ORDER BY id DESC LIMIT 1', function(err, row) {
-    // dal.executeQuery('SELECT * FROM `'+ tablename +'`', function(err, rows) {
+    dal.executeQuery('SELECT id FROM `' + tablename + '` ORDER BY id DESC LIMIT 1', function(err, row) {
+        // dal.executeQuery('SELECT * FROM `'+ tablename +'`', function(err, rows) {
         if (err) {
             callback(err);
         }
-        callback(null, row[0]);     
+        callback(null, row[0]);
 
         // const customersObjectsArray = [];
         // rows.forEach(function (row) {

@@ -12,7 +12,7 @@ function executeQuery(query, callback) {
     );
 
     // 3.cconnect
-    con.connect(function (err) {
+    con.connect(function(err) {
         if (err) {
             console.log('Error connecting to DB:' + err);
             return;
@@ -22,14 +22,14 @@ function executeQuery(query, callback) {
 
     // 4. crud : insert
     // use backtick `` for free text
-    con.query(query, function (err, rows) {
+    con.query(query, function(err, rows) {
         if (err) {
             callback(err);
         } else {
             callback(null, rows)
-            /*rows.forEach(function (row) {
-                arr.push(row);
-            });*/
+                /*rows.forEach(function (row) {
+                    arr.push(row);
+                });*/
         }
     });
     con.end();
