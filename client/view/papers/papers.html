@@ -13,13 +13,11 @@
                 <br>
                 <label for="singleSelect" class="shlager-back"> עיתונים אחרונים לעניין:  </label>
                 <br>
-                <select name="singleSelect" id="singleSelect" ng-model="data.singleSelect" class="selectpicker">
+                <select name="singleSelect" id="singleSelect" ng-model="selectedPaper">
                       <option value="">---בחר גליון---</option>
-                      <option value="{{last1}}">{{last1}}</option>
-                      <option value="{{last2}}">{{last2}}</option>
-                      <option value="{{last3}}">{{last3}}</option>
+                      <option ng-repeat="paper in lastPaper" value="{{paper}}">{{paper}}</option>
                     </select>
-                <button class="btn btn-danger" ng-click="getSelectedPaper()">בחר</button>
+                <button class="btn btn-danger" ng-click="getSelectedPaper('lainyan')">בחר</button>
                 <br>
             </div>
 
