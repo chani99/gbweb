@@ -1,6 +1,6 @@
 <div ng-controller="papers">
-    <div class="flex-container">
-        <div class="fullscreen gray text-center shlager-black">
+    <div class="flex-container">l
+        <div class="fullscreen gray text-center shlager-back">
             <h3>עיתונים אחרונים</h3>
         </div>
     </div>
@@ -8,7 +8,19 @@
     <div>
         <div class="flex-container">
             <div class="flex-item gray h-350 text-center">
-                <a href="#/book?n=lainyan"><img src="public/papers/lainyan/{{lastLaintan}}/01.jpg" alt="לעניין" class="shlager-black paper_size"></a>
+                <span class="shlager-back"> :גליון אחרון לעניין מספר {{lastLaintan}}</span>
+                    <a href="#/book?k=lainyan&n={{lastLaintan}}"><img src="public/papers/lainyan/{{lastLaintan}}/01.jpg" alt="לעניין" class="shlager-black paper_size"></a>
+                    <br>
+                    <label for="singleSelect" class="shlager-back"> עיתונים אחרונים לעניין:  </label>
+                    <br>
+                    <select name="singleSelect" id="singleSelect" ng-model="data.singleSelect" class="selectpicker">
+                      <option value="">---בחר גליון---</option>
+                      <option value="{{last1}}">{{last1}}</option>
+                      <option value="{{last2}}">{{last2}}</option>
+                      <option value="{{last3}}">{{last3}}</option>
+                    </select>
+                    <button class="btn btn-danger" ng-click="getSelectedPaper()">בחר</button>
+                    <br>
             </div>
 
             <div class="flex-item gray h-350 text-center">

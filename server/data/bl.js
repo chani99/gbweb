@@ -4,22 +4,26 @@ var models = require('../models/models');
 
 function getlastpapaer(tablename, callback) {
 
-    dal.executeQuery('SELECT id FROM `' + tablename + '` ORDER BY id DESC LIMIT 1', function(err, row) {
-        // dal.executeQuery('SELECT * FROM `'+ tablename +'`', function(err, rows) {
-        if (err) {
-            callback(err);
-        }
-        callback(null, row[0]);
 
-        // const customersObjectsArray = [];
-        // rows.forEach(function (row) {
-        //     customersObjectsArray.push(new models.Customer(row));
-        // });
-        // callback(null, customersObjectsArray);
+//select last id from a all papers tables
+    dal.executeQuery(
+        `SELECT MAX(Id) FROM lainyan 
+            UNION
+            SELECT MAX(Id) FROM meida
+            UNION
+            SELECT MAX(Id) FROM shavua
+            UNION
+            SELECT MAX(Id) FROM emtza`,
+            function(err, row) {
+                    if (err) {
+                        callback(err);
+                    }
+                    callback(null, row);
+                    console.log(row);
+
     });
 }
 
-// module.exports.getCustomers = getCustomers;
 
 module.exports.papers = {
     getlastpapaer: getlastpapaer
