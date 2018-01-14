@@ -9,30 +9,30 @@
         <div class="flex-container">
             <div class="flex-item gray h-350 text-center">
                 <span class="shlager-back"> :גליון אחרון לעניין מספר {{lastLaintan}}</span>
-                    <a href="#/book?k=lainyan&n={{lastLaintan}}"><img src="public/papers/lainyan/{{lastLaintan}}/01.jpg" alt="לעניין" class="shlager-black paper_size"></a>
-                    <br>
-                    <label for="singleSelect" class="shlager-back"> עיתונים אחרונים לעניין:  </label>
-                    <br>
-                    <select name="singleSelect" id="singleSelect" ng-model="data.singleSelect" class="selectpicker">
+                <a href="#/book?k=lainyan&n={{lastLaintan}}"><img src="public/papers/lainyan/{{lastLaintan}}/01.jpg" alt="לעניין" class="shlager-black paper_size_small"></a>
+                <br>
+                <label for="singleSelect" class="shlager-back"> עיתונים אחרונים לעניין:  </label>
+                <br>
+                <select name="singleSelect" id="singleSelect" ng-model="data.singleSelect" class="selectpicker">
                       <option value="">---בחר גליון---</option>
                       <option value="{{last1}}">{{last1}}</option>
                       <option value="{{last2}}">{{last2}}</option>
                       <option value="{{last3}}">{{last3}}</option>
                     </select>
-                    <button class="btn btn-danger" ng-click="getSelectedPaper()">בחר</button>
-                    <br>
+                <button class="btn btn-danger" ng-click="getSelectedPaper()">בחר</button>
+                <br>
             </div>
 
             <div class="flex-item gray h-350 text-center">
-                <a href="#/book?n=meida"><img src="public/papers/meida/{{lastMaida}}/01.jpg" alt="מידע לכל" class="shlager-black paper_size"></a>
+                <a href="#/book?n=meida"><img src="public/papers/meida/{{lastMaida}}/01.jpg" alt="מידע לכל" class="shlager-black paper_size_small"></a>
             </div>
 
             <div class="flex-item gray h-350 text-center">
-                <a href="#/book?n=emtza"><img src="public/papers/emtza/{{lastEmtza}}/01.jpg" alt="אמצע השבוע" class="shlager-black paper_size"></a>
+                <a href="#/book?n=emtza"><img src="public/papers/emtza/{{lastEmtza}}/01.jpg" alt="אמצע השבוע" class="shlager-black paper_size_small"></a>
             </div>
 
             <div class="flex-item gray h-350 text-center">
-                <a href="#/book?n=shavua"><img src="public/papers/shavua/{{lastSt}}/01.jpg" alt="שבוע טוב" class="shlager-black paper_size"></a>
+                <a href="#/book?n=shavua"><img src="public/papers/shavua/{{lastSt}}/01.jpg" alt="שבוע טוב" class="shlager-black paper_size_small"></a>
             </div>
         </div>
     </div>

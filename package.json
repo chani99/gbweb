@@ -16,6 +16,7 @@
     "angular": "^1.6.8",
     "angular-route": "^1.6.8",
     "bootstrap": "^3.3.7",
+    "bootstrap-select": "^1.12.4",
     "express": "^4.16.2",
     "mysql": "^2.15.0",
     "nodejs-model": "^0.1.6",
