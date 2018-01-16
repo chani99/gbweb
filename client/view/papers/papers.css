@@ -2,3 +2,47 @@
   max-width: 70%;
   max-height: 70%;
 }
+.flex-grid {
+  display: flex;
+}
+.flex-grid .col {
+  flex: 1;
+}
+.flex-grid-half,
+.flex-grid-threeQ {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-grid-half .col {
+  width: 50%;
+}
+.flex-grid-threeQ .col {
+  width: 60%;
+}
+@media (max-width: 400px) {
+  .flex-grid,
+  .flex-grid-half {
+    display: block;
+  }
+  .flex-grid .col,
+  .flex-grid-half .col {
+    width: 100%;
+    margin: 0 0 10px 0;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+.flex-grid {
+  margin: 0 0 20px 0;
+}
+.col {
+  padding: 20px;
+  margin: 3%;
+}
+.white {
+  background-color: white;
+}
+.padding-main {
+  padding: 3%;
+}
