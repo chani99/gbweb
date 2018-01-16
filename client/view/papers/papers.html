@@ -1,28 +1,70 @@
 <div class="white padding-main" ng-controller="papers">
-    <div >
+    <div>
         <div class="fullscreen text-center shlager-back">
-            <h3>עיתונים אחרונים</h3>
+            <h3 class="Spoiler-black-title size-55">עיתונים אחרונים</h3>
         </div>
     </div>
 
     <div>
+        <!-- last lainyan -->
         <div class="flex-grid-half">
             <div class="col gray h-350 text-center">
-                <span class="shlager-back"> :גליון אחרון לעניין מספר {{lastLaintan}}</span>
-                <a href="#/book?k=lainyan&n={{lastLaintan}}"><img src="public/papers/lainyan/{{lastLaintan}}/01.jpg" alt="לעניין" class="shlager-black paper_size_small"></a>
-                <br>
-                <label for="singleSelect" class="shlager-back"> עיתונים אחרונים לעניין:  </label>
-                <br>
-                <select name="singleSelect" id="singleSelect" ng-model="selectedPaper">
-                      <option value="">---בחר גליון---</option>
-                      <option ng-repeat="paper in lastPaper" value="{{paper}}">{{paper}}</option>
-                </select>
-                <button class="btn btn-danger" ng-click="getSelectedPaper('lainyan')">בחר</button>
-                <br>
+                <div class="grid-main">
+                    <div class="header">
+                        <div class="Spoiler-black-title size-25"> גליון אחרון לעניין: </div>
+                    </div>
+
+                    <div class="magazine ">
+                        <a href="#/book?k=lainyan&n={{lastLaintan}}"><img src="public/papers/lainyan/{{lastLaintan}}/01.jpg" alt="לעניין"></a>
+                    </div>
+
+                    <div class="details shlager-black-left size-20">
+                        <div>
+                            גליון מספר:<br>
+                            <span class="size-30">{{lastLaintan}}</span><br>בתאריך:<br>{{lastLa.date}}
+                        </div>
+                    </div>
+
+                    <div class="foothead">
+                        <label for="singleSelect" class="Spoiler-black-title size-25"> עיתונים אחרונים לעניין:  </label>
+                        <select class="form-control" name="singleSelect" id="singleSelect" ng-model="selectedPaper" ng-change="getSelectedPaper('lainyan')">
+                                <option class="Spoiler-black-title size-20" value="">-בחר גליון-</option>
+                                <option class="shlager-black size-20" ng-repeat="paper in lastLa" value="{{paper}}">{{paper}}</option>
+                            </select>
+                    </div>
+
+                </div>
             </div>
 
+
+            <!-- last meida -->
             <div class="col gray h-350 text-center">
-                <a href="#/book?n=meida"><img src="public/papers/meida/{{lastMaida}}/01.jpg" alt="מידע לכל" class="shlager-black paper_size_small"></a>
+                <div class="grid-main">
+                    <div class="header">
+                        <div class="Spoiler-black-title size-25"> גליון אחרון מידע לכל: </div>
+                    </div>
+
+                    <div class="magazine">
+                        <a href="#/book?k=meida&n={{lastMaida}}"><img src="public/papers/meida/{{lastMaida}}/01.jpg" alt="מידע לכל"></a>
+                    </div>
+
+                    <div class="details shlager-black-left size-20">
+                        <div>
+                            גליון מספר:<br>
+                            <span class="size-30">{{lastMaida}}</span><br>בתאריך:<br>{{lastMa.date}}
+                        </div>
+                    </div>
+
+                    <div class="foothead">
+                        <label for="singleSelect" class="Spoiler-black-title size-25"> עיתונים אחרונים מידע לכל:  </label>
+                        <select class="form-control" name="singleSelect" id="singleSelect" ng-model="selectedPaper" ng-change="getSelectedPaper('meida')">
+                                <option class="Spoiler-black-title size-20" value="">-בחר גליון-</option>
+                                <option class="shlager-black size-20" ng-repeat="paper in lastMe" value="{{paper}}">{{paper}}</option>
+                        </select>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
@@ -30,11 +72,60 @@
         <div class="flex-grid-half">
 
             <div class="col gray h-350 text-center">
-                <a href="#/book?n=emtza"><img src="public/papers/emtza/{{lastEmtza}}/01.jpg" alt="אמצע השבוע" class="shlager-black paper_size_small"></a>
+                <div class="grid-main">
+                    <div class="header">
+                        <div class="Spoiler-black-title size-25"> גליון אחרון אמצע השבוע: </div>
+                    </div>
+
+                    <div class="magazine">
+                        <a href="#/book?k=emtza&n={{lastEmtza}}"><img src="public/papers/emtza/{{lastEmtza}}/01.jpg" alt="אמצע השבוע"></a>
+                    </div>
+
+                    <div class="details shlager-black-left size-20">
+                        <div>
+                            גליון מספר:<br>
+                            <span class="size-30">{{lastEmtza}}</span><br>בתאריך:<br>{{lastMa.date}}
+                        </div>
+                    </div>
+
+                    <div class="foothead">
+                        <label for="singleSelect" class="Spoiler-black-title size-25"> עיתונים אחרונים אמצע השבוע:  </label>
+                        <select class="form-control" name="singleSelect" id="singleSelect" ng-model="selectedPaper" ng-change="getSelectedPaper('meida')">
+                                    <option class="Spoiler-black-title size-20" value="">-בחר גליון-</option>
+                                    <option class="shlager-black size-20" ng-repeat="paper in lastEm" value="{{paper}}">{{paper}}</option>
+                        </select>
+                    </div>
+
+                </div>
             </div>
 
             <div class="col gray h-350 text-center">
-                <a href="#/book?n=shavua"><img src="public/papers/shavua/{{lastSt}}/01.jpg" alt="שבוע טוב" class="shlager-black paper_size_small"></a>
+                <div class="grid-main">
+                    <div class="header">
+                        <div class="Spoiler-black-title size-25"> גליון אחרון שבוע טוב: </div>
+                    </div>
+
+                    <div class="magazine">
+                        <a href="#/book?k=shavua&n={{lastSt}}"><img src="public/papers/shavua/{{lastSt}}/01.jpg" alt="שבוע טוב"></a>
+                    </div>
+
+                    <div class="details shlager-black-left size-20">
+                        <div>
+                            גליון מספר:<br>
+                            <span class="size-30">{{lastSt}}</span><br>בתאריך:<br>{{lastSt.date}}
+                        </div>
+                    </div>
+
+                    <div class="foothead">
+                        <label for="singleSelect" class="Spoiler-black-title size-25"> עיתונים אחרונים שבוע טוב:  </label>
+                        <select class="form-control" name="singleSelect" id="singleSelect" ng-model="selectedPaper" ng-change="getSelectedPaper('meida')">
+                            <option class="Spoiler-black-title size-20" value="">-בחר גליון-</option>
+                            <option class="shlager-black size-20" ng-repeat="paper in lastSt2" value="{{paper}}">{{paper}}</option>
+                        </select>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>

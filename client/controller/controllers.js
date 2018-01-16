@@ -11,13 +11,13 @@
 
         function onSuccsess(res) {
             console.log(res);
-        $scope.lastLaintan = res.data[0]['MAX(Id)'];
-        $scope.lastMaida = res.data[1]['MAX(Id)'];
-        $scope.lastSt = res.data[2]['MAX(Id)'];
-        $scope.lastEmtza = res.data[3]['MAX(Id)'];
+            $scope.lastLaintan = res.data[0]['MAX(Id)'];
+            $scope.lastMaida = res.data[1]['MAX(Id)'];
+            $scope.lastSt = res.data[2]['MAX(Id)'];
+            $scope.lastEmtza = res.data[3]['MAX(Id)'];
         }
 
-        function onError(res){
+        function onError(res) {
             console.log(res);
 
         }
@@ -34,7 +34,7 @@
 
     });
 
-    
+
     // papers controller
     App.controller("papers", function($scope, $window, $timeout, UtilSrvc, $routeParams, $location, $sce) {
         $scope.getSelectedPaper = function(folderName) {
@@ -43,10 +43,11 @@
                 $window.location.href = `#/book?k=${folderName}&n=${$scope.selectedPaper}`;
 
             }
-            
+
         }
 
         let num = UtilSrvc.getValuesFromServer('getlastpapers', "/book", onSuccsess, onError);
+
         function onSuccsess(res) {
             console.log(res);
             $scope.lastLaintan = res.data[0]['MAX(Id)'];
@@ -55,22 +56,40 @@
             $scope.lastEmtza = res.data[3]['MAX(Id)'];
 
 
-            $scope.lastPaper = [
-                res.data[0]['MAX(Id)'] -1,
-                res.data[0]['MAX(Id)'] -2,
-                res.data[0]['MAX(Id)'] -3
+            $scope.lastLa = [
+                res.data[0]['MAX(Id)'] - 1,
+                res.data[0]['MAX(Id)'] - 2,
+                res.data[0]['MAX(Id)'] - 3
             ];
 
-           $timeout(function () {
-                $('#singleSelect').selectpicker({
-                    style: 'btn-info',
-                    size: 4
-                });
-            });
+            $scope.lastMe = [
+                res.data[1]['MAX(Id)'] - 1,
+                res.data[1]['MAX(Id)'] - 2,
+                res.data[1]['MAX(Id)'] - 3
+            ];
+            $scope.lastSt2 = [
+                res.data[2]['MAX(Id)'] - 1,
+                res.data[2]['MAX(Id)'] - 2,
+                res.data[2]['MAX(Id)'] - 3
+            ];
+            $scope.lastEm = [
+                res.data[3]['MAX(Id)'] - 1,
+                res.data[3]['MAX(Id)'] - 2,
+                res.data[3]['MAX(Id)'] - 3
+            ];
+
+            ///timeout for select
+            // $timeout(function() {
+            //     $('#singleSelect').selectpicker({
+            //         style: 'btn-default btn-md',
+            //         size: 10
+
+            //     });
+            // });
 
         }
 
-        function onError(res){
+        function onError(res) {
             console.log(res);
 
         }
@@ -78,7 +97,7 @@
 
     });
 
-    
+
 
 
 
