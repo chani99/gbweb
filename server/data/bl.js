@@ -7,13 +7,13 @@ function getlastpapaer(tablename, callback) {
 
 //select last id from a all papers tables
     dal.executeQuery(
-        `SELECT MAX(Id) FROM lainyan 
-            UNION
-            SELECT MAX(Id) FROM meida
-            UNION
-            SELECT MAX(Id) FROM shavua
-            UNION
-            SELECT MAX(Id) FROM emtza`,
+        `(SELECT id, date, hebrew_date FROM lainyan order by id desc limit 1)
+        union
+        (SELECT  id, date, hebrew_date FROM meida order by id desc limit 1)
+        union
+        (SELECT  id, date, hebrew_date FROM shavua order by id desc limit 1)
+        UNION
+        (SELECT  id, date, hebrew_date FROM emtza order by id desc limit 1)`,
             function(err, row) {
                     if (err) {
                         callback(err);

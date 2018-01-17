@@ -10,11 +10,12 @@
         let num = UtilSrvc.getValuesFromServer('getlastpapers', "/book", onSuccsess, onError);
 
         function onSuccsess(res) {
-            // console.log(res);
-            $scope.lastLaintan = res.data[0]['MAX(Id)'];
-            $scope.lastMaida = res.data[1]['MAX(Id)'];
-            $scope.lastSt = res.data[2]['MAX(Id)'];
-            $scope.lastEmtza = res.data[3]['MAX(Id)'];
+            console.log('this is me ' + JSON.stringify(res));
+            $scope.lastLaintan = res.data[0]['id'];
+            $scope.lastMaida = res.data[1]['id'];
+            $scope.lastSt = res.data[2]['id'];
+            $scope.lastEmtza = res.data[3]['id'];
+
         }
 
         function onError(res) {
@@ -37,10 +38,10 @@
 
     // papers controller
     App.controller("papers", function($scope, $window, $timeout, UtilSrvc, $routeParams, $location, $sce) {
-        $scope.getSelectedPaper = function(folderName) {
-            if ($scope.selectedPaper) {
-                console.log($scope.selectedPaper);
-                $window.location.href = `#/book?k=${folderName}&n=${$scope.selectedPaper}`;
+        $scope.getSelectedPaper = function(folderName, selectedPaper) {
+            console.log(selectedPaper);
+            if (selectedPaper) {
+                $window.location.href = `#/book?k=${folderName}&n=${selectedPaper}`;
 
             }
 
@@ -51,77 +52,53 @@
         function onSuccsess(res) {
             // console.log(res);
             $scope.data = [{
-                lastpaper: res.data[0]['MAX(Id)'],
-                date: "some date",
+                lastpaper: res.data[0]['id'],
+                date: res.data[0]['date'],
+                hewd: res.data[0]['hebrew_date'],
                 name: "lainyan",
                 nameHe: "לעניין",
                 lastpapers: [
-                    res.data[0]['MAX(Id)'] - 1,
-                    res.data[0]['MAX(Id)'] - 2,
-                    res.data[0]['MAX(Id)'] - 3
+                    res.data[0]['id'] - 1,
+                    res.data[0]['id'] - 2,
+                    res.data[0]['id'] - 3
                 ]
             },
             {
-                lastpaper: res.data[1]['MAX(Id)'],
-                date: "some date",
+                lastpaper: res.data[1]['id'],
+                date: res.data[1]['date'],
+                hewd: res.data[1]['hebrew_date'],
                 name: "meida",
                 nameHe: "מידע לכל",
                 lastpapers: [
-                    res.data[1]['MAX(Id)'] - 1,
-                    res.data[1]['MAX(Id)'] - 2,
-                    res.data[1]['MAX(Id)'] - 3
+                    res.data[1]['id'] - 1,
+                    res.data[1]['id'] - 2,
+                    res.data[1]['id'] - 3
                 ]
             },
             {
-                lastpaper: res.data[2]['MAX(Id)'],
-                date: "some date",
+                lastpaper: res.data[2]['id'],
+                date: res.data[2]['date'],
+                hewd: res.data[2]['hebrew_date'],
                 name: "shavua",
                 nameHe: "שבוע טוב",
                 lastpapers: [
-                    res.data[2]['MAX(Id)'] - 1,
-                    res.data[2]['MAX(Id)'] - 2,
-                    res.data[2]['MAX(Id)'] - 3
+                    res.data[2]['id'] - 1,
+                    res.data[2]['id'] - 2,
+                    res.data[2]['id'] - 3
                 ]
             },
             {
-                lastpaper: res.data[3]['MAX(Id)'],
-                date: "some date",
+                lastpaper: res.data[3]['id'],
+                date: res.data[3]['date'],
+                hewd: res.data[3]['hebrew_date'],
                 name: "emtza",
                 nameHe: "אמצע השבוע",
                 lastpapers: [
-                    res.data[3]['MAX(Id)'] - 1,
-                    res.data[3]['MAX(Id)'] - 2,
-                    res.data[3]['MAX(Id)'] - 3
+                    res.data[3]['id'] - 1,
+                    res.data[3]['id'] - 2,
+                    res.data[3]['id'] - 3
                 ]
             },
-            ];
-
-            $scope.lastLaintan = res.data[0]['MAX(Id)'];
-            $scope.lastMaida = res.data[1]['MAX(Id)'];
-            $scope.lastSt = res.data[2]['MAX(Id)'];
-            $scope.lastEmtza = res.data[3]['MAX(Id)'];
-
-
-            $scope.lastLa = [
-                res.data[0]['MAX(Id)'] - 1,
-                res.data[0]['MAX(Id)'] - 2,
-                res.data[0]['MAX(Id)'] - 3
-            ];
-
-            $scope.lastMe = [
-                res.data[1]['MAX(Id)'] - 1,
-                res.data[1]['MAX(Id)'] - 2,
-                res.data[1]['MAX(Id)'] - 3
-            ];
-            $scope.lastSt2 = [
-                res.data[2]['MAX(Id)'] - 1,
-                res.data[2]['MAX(Id)'] - 2,
-                res.data[2]['MAX(Id)'] - 3
-            ];
-            $scope.lastEm = [
-                res.data[3]['MAX(Id)'] - 1,
-                res.data[3]['MAX(Id)'] - 2,
-                res.data[3]['MAX(Id)'] - 3
             ];
 
             ///timeout for select

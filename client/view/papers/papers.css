@@ -4,8 +4,11 @@
   align-content: stretch;
 }
 .paper-flex-item {
-  width: 40%;
-  padding: 5%;
+   width: 47%;
+    padding: 5%;
+    margin: 1%;
+    box-sizing: border-box;
+
 }
 * {
   box-sizing: border-box;
@@ -54,7 +57,8 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
   grid-gap: 30px 10px;
   margin: 2%;
-  grid-template-areas: "header header header header header header" "details details magazine magazine magazine magazine" "foothead foothead foothead foothead foothead foothead";
+  grid-template-areas: "header header header header header header"
+  "details details magazine magazine magazine magazine" "foothead foothead foothead foothead foothead foothead";
 }
 .header {
   grid-area: header;

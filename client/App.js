@@ -23,7 +23,9 @@
                 templateUrl: 'view/costumer/costumer.html'
             })
             .when('/order', {
-                templateUrl: 'view/order/order.html'
+                templateUrl: 'view/order/order.html',
+               // controller: 'view/order/orderController.js',
+                css: 'view/order/order.css'
             })
             .when('/book', {
                 templateUrl: 'view/flipbook/flipbook.html'

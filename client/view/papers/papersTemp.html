@@ -6,19 +6,20 @@
             </div>
 
             <div class="magazine ">
-                <a href="#/book?k={{data.name}}&n={{data.lastpaper}}"><img src="public/papers/{{data.name}}/{{data.lastpaper}}/01.jpg" alt="לעניין"></a>
+                <a href="#/book?k={{data.name}}&n={{data.lastpaper}}"><img src="public/papers/{{data.name}}/{{data.lastpaper}}/01.jpg" alt="{{data.nameHe}}"></a>
             </div>
 
             <div class="details shlager-black-left size-20">
                 <div>
                     גליון מספר:<br>
-                    <span class="size-30">{{data.lastpaper}}</span><br>בתאריך:<br>{{data.date}}
+                    <span class="size-30 ">{{data.lastpaper}}</span>
+                    <br>בתאריך:<br>{{data.date | date:'dd-MM-yy'}}<br>{{data.hewd}}
                 </div>
             </div>
 
             <div class="foothead">
                 <label for="singleSelect" class="Spoiler-black-title size-20">{{data.nameHe}} עיתונים אחרונים :  </label>
-                <select class="form-control" name="singleSelect" id="singleSelect" ng-model="selectedPaper" ng-change="getSelectedPaper('{{data.name}}')">
+                <select class="form-control" name="singleSelect" id="singleSelect" ng-model="selectedPaper" ng-change="getSelectedPaper('{{data.name}}', selectedPaper)">
                     <option class="Spoiler-black-title size-20" value="">-בחר גליון-</option>
                     <option class="shlager-black size-20" ng-repeat="paper in data.lastpapers" value="{{paper}}">{{paper}}</option>
                 </select>

@@ -3,23 +3,23 @@
   padding: 0;
 }
 .flex-container {
+  display: flex;
+  flex-wrap: wrap;
   padding: 0;
   margin: 0;
   list-style: none;
-  display: flex;
-  flex: wrap;
   justify-content: center;
 }
 .flex-item {
   width: 25%;
 }
-@media screen and (min-width: 500px) {
-  .item {
+@media screen and (max-width: 500px) {
+  .flex-item {
     width: 50%;
   }
 }
-@media screen and (min-width: 350px) {
-  .item {
+@media screen and (max-width: 350px) {
+  .flex-item {
     width: 100%;
   }
 }
