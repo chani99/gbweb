@@ -10,7 +10,7 @@
         let num = UtilSrvc.getValuesFromServer('getlastpapers', "/book", onSuccsess, onError);
 
         function onSuccsess(res) {
-            console.log(res);
+            // console.log(res);
             $scope.lastLaintan = res.data[0]['MAX(Id)'];
             $scope.lastMaida = res.data[1]['MAX(Id)'];
             $scope.lastSt = res.data[2]['MAX(Id)'];
@@ -49,7 +49,53 @@
         let num = UtilSrvc.getValuesFromServer('getlastpapers', "/book", onSuccsess, onError);
 
         function onSuccsess(res) {
-            console.log(res);
+            // console.log(res);
+            $scope.data = [{
+                lastpaper: res.data[0]['MAX(Id)'],
+                date: "some date",
+                name: "lainyan",
+                nameHe: "לעניין",
+                lastpapers: [
+                    res.data[0]['MAX(Id)'] - 1,
+                    res.data[0]['MAX(Id)'] - 2,
+                    res.data[0]['MAX(Id)'] - 3
+                ]
+            },
+            {
+                lastpaper: res.data[1]['MAX(Id)'],
+                date: "some date",
+                name: "meida",
+                nameHe: "מידע לכל",
+                lastpapers: [
+                    res.data[1]['MAX(Id)'] - 1,
+                    res.data[1]['MAX(Id)'] - 2,
+                    res.data[1]['MAX(Id)'] - 3
+                ]
+            },
+            {
+                lastpaper: res.data[2]['MAX(Id)'],
+                date: "some date",
+                name: "shavua",
+                nameHe: "שבוע טוב",
+                lastpapers: [
+                    res.data[2]['MAX(Id)'] - 1,
+                    res.data[2]['MAX(Id)'] - 2,
+                    res.data[2]['MAX(Id)'] - 3
+                ]
+            },
+            {
+                lastpaper: res.data[3]['MAX(Id)'],
+                date: "some date",
+                name: "emtza",
+                nameHe: "אמצע השבוע",
+                lastpapers: [
+                    res.data[3]['MAX(Id)'] - 1,
+                    res.data[3]['MAX(Id)'] - 2,
+                    res.data[3]['MAX(Id)'] - 3
+                ]
+            },
+            ];
+
             $scope.lastLaintan = res.data[0]['MAX(Id)'];
             $scope.lastMaida = res.data[1]['MAX(Id)'];
             $scope.lastSt = res.data[2]['MAX(Id)'];

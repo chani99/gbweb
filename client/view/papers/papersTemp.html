@@ -1,0 +1,29 @@
+<div class="bbbbbb">
+<div class="gray h-350 text-center">
+    <div class="grid-main">
+        <div class="header">
+            <div class="Spoiler-black-title size-25"> גליון אחרון {{data.nameHe}}: </div>
+        </div>
+
+        <div class="magazine ">
+            <a href="#/book?k={{data.name}}&n={{data.lastpaper}}"><img src="public/papers/{{data.name}}/{{data.lastpaper}}/01.jpg" alt="לעניין"></a>
+        </div>
+
+        <div class="details shlager-black-left size-20">
+            <div>
+                גליון מספר:<br>
+                <span class="size-30">{{data.lastpaper}}</span><br>בתאריך:<br>{{data.date}}
+            </div>
+        </div>
+
+        <div class="foothead">
+            <label for="singleSelect" class="Spoiler-black-title size-25">{{data.nameHe}} עיתונים אחרונים :  </label>
+            <select class="form-control" name="singleSelect" id="singleSelect" ng-model="selectedPaper" ng-change="getSelectedPaper('{{data.name}}')">
+                    <option class="Spoiler-black-title size-20" value="">-בחר גליון-</option>
+                    <option class="shlager-black size-20" ng-repeat="paper in data.lastpapers" value="{{paper}}">{{paper}}</option>
+                </select>
+        </div>
+
+    </div>
+</div>
+</div>
