@@ -13,6 +13,12 @@
 .flex-item {
   width: 25%;
 }
+
+.padding20 {
+  padding: 20px;
+  background-color: rgb(228, 228, 228)
+}
+
 @media screen and (max-width: 500px) {
   .flex-item {
     width: 50%;
