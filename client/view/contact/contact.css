@@ -1,0 +1,17 @@
+.contact-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "contact contact adress";
+}
+.contact {
+  grid-area: contact;
+  padding: 5%;
+  background-color: #A4A4A4;
+  height: auto;
+}
+.adress {
+  grid-area: adress;
+  height: auto;
+  padding: 5%;
+  background-color: white;
+}
