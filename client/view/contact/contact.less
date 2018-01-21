@@ -3,9 +3,10 @@
     grid-template-columns: 1fr 1fr 1fr;
     // grid-gap: 30px 10px;
     grid-template-areas:
-    "contact contact adress"
+    "contact contact adress";
     
     }
+
 
 .contact{
     grid-area: contact;
@@ -17,11 +18,39 @@
 .adress{
       grid-area: adress;
       height: auto;
-      padding: 5%;
+      padding: 10%;
+      padding-top: 20%;
       background-color:white;
       
     }
+    .width-50{
+        width: 49.5%;
+    }
+
     
 #contact-button{
     float: left;
 }
+
+h3, h4, h2, h1, h5{
+    margin: 0;
+}
+
+
+.marg-top{
+    margin-top: 15px;
+}
+
+@media screen and (max-width: 500px) {
+    .contact-main {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+        "contact contact contact"
+        "adress adress adress";
+  }
+  .width-50 form{
+    width: 100%;
+}
+}
+

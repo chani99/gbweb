@@ -1,31 +1,60 @@
+<div ng-controller="contactform">
 <div id="contact" class="contact-main Spoiler-Reguler-right">
     <div class="contact">
         <h2>צרו קשר</h2>
         <form class="form-horizontal">
-            <div <label for="exampleInputName2">שם פרטי ומשפחה</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="שם פרטי ומשפחה">
+            <div>
+                <label for="">שם פרטי ומשפחה</label><br>
+                <input type="text"  class="form-control width-50" name="uName" ng-model="contact.fname" placeholder="שם פרטי" required>
+                <input type="text"  class="form-control width-50"  ng-model="contact.lname" placeholder="שם משפחה" required>
+                <br />
+                  
             </div>
             <hr>
             <div>
-                <label for="exampleInputName2">טלפון ליצירת קשר</label>
-                <input type="number" class="form-control" id="exampleInputName2" placeholder="טלפון">
+                <label for="">טלפון ליצירת קשר</label>
+                <input type="number"  class="form-control" ng-model="contact.phone" placeholder="טלפון" required>
+                {{phone}}
             </div>
             <hr>
             <div>
-                <label for="exampleInputEmail2">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="email@gmail.com">
+                <label for="">Email</label>
+                <input type="email"  class="form-control" ng-model="contact.email" placeholder="email@gmail.com" required>
+            
             </div>
             <hr>
             <div>
-                <label for="exampleInputText">ההודעה שלך</label>
-                <textarea class="form-control" placeholder="תוכן ההודעה"></textarea>
+                <label for="">ההודעה שלך</label>
+                <textarea  class="form-control" ng-model="contact.content" placeholder="תוכן ההודעה" required></textarea>
             </div>
             <hr>
-            <button type="submit" class="btn-lg btn btn-danger" id="contact-button">שלח הודעה</button>
+
+            <button type="submit" class="btn-lg btn btn-danger" ng-click="contactSubmit()">שלח הודעה</button>
         </form>
 
     </div>
-    <div class="adress">
-        <h2>הכתובת שלנו</h2>
+ 
+
+    <div class="adress Spoiler-Reguler-right" >
+        <br>
+        <img id="header" src="public/images/GB-logo-black.png" alt="title" style="width:120px">
+        <br>
+        <h2 class="Spoiler-Bold marg-top">משרדי גל ביתר:</h2>
+        <h3>
+            רח' בן זכאי 11/6<br>
+            ביתר עילית<br>
+            <div class="Spoiler-Bold font-s-20 marg-top">טל ראשי:</div>
+            02-5806642<br>
+            <div class="Spoiler-Bold font-s-20 marg-top">פקס:</div>
+            0722-740033<br>
+            <div class="Spoiler-Bold font-s-20 marg-top">אימייל:</div>
+            <div class="ariel font-s-15"> gb@5806642.com </div>
+            <h4 class="marg-top">
+            ישיר 'לעניין': 0000000000 <br>
+            ישיר 'מידע לכל': 0000000000 <br>
+            </h4>
+        </h3>
     </div>
 </div>
+</div>
+

@@ -137,7 +137,26 @@
     
         };
         
+    });
     
+    App.controller("contactform", function($scope, UtilSrvc) {
+
+    
+        $scope.contact = {
+            fname: "",
+            lname: "",
+            phone: "",
+            email: "",
+            content: ""
+        }
+  
+
+        $scope.contactSubmit = function() {
+            console.log($scope.contact);
+            alert($scope.contact.fname + "\nההודעה נשלחה בהצלחה ותטופל בהקדם");
+        }
+
+        
     });
     
     
