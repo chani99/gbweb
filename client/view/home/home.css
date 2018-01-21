@@ -90,6 +90,10 @@ li a:hover {
   font-family: 'Spoiler-Bold';
   color: black;
 }
+.Spoiler-Regular {
+  font-family: 'Spoiler-Regular';
+  color: black;
+}
 .shlager-white {
   font-family: 'Spoiler-Regular';
   color: white;

@@ -1,7 +1,3 @@
-(function() {
-
-    "use strict";
-
     var App = angular.module("App", [
         "App.controllers",
         "App.services",
@@ -10,6 +6,11 @@
         "ngRoute",
         "ngResource"
     ]);
+
+(function() {
+
+    "use strict";
+
 
     App.config(function($routeProvider) {
         $routeProvider
@@ -24,7 +25,8 @@
             })
             .when('/order', {
                 templateUrl : 'view/order/order.html',
-                css : 'view/order/order.css'
+                controller: 'OrderCtrl'
+                // css : 'view/order/order.css'
             })
             .when('/book', {
                 templateUrl: 'view/flipbook/flipbook.html'

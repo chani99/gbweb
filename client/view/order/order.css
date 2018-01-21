@@ -15,27 +15,47 @@
   padding: 5%;
   background-color: #A4A4A4;
   height: auto;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-areas: "p-type p-type p-times p-times" "add-size add-size add-place add-place" "attach-img attach-img attach-img attach-img";
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "p-type p-type" "add-size add-place" "attach-img attach-img";
 }
 .p-type {
   grid-area: p-type;
-  padding: 5%;
   height: auto;
+}
+.hr {
+  height: 1px;
+  background: white;
+  border-top: solid 1px white;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.checkbox-area {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+}
+.choose-p {
+  width: 100%;
+  box-sizing: border-box;
 }
 .p-times {
   grid-area: p-times;
-  padding: 5%;
   height: auto;
 }
 .add-size {
   grid-area: add-size;
-  padding: 5%;
+  padding: 15px;
   height: auto;
 }
 .add-place {
   grid-area: add-place;
+  padding: 15px;
+  height: auto;
+}
+.user-det {
+  grid-area: user-det;
   padding: 5%;
+  background-color: #A4A4A4;
   height: auto;
 }
 .attach-img {
@@ -46,17 +66,38 @@
 .font-s-20 {
   font-size: 20px;
 }
+.font-s-18 {
+  font-size: 18px;
+}
+.font-s-14 {
+  font-size: 14px;
+}
 textarea.form-control {
-  height: 50%;
+  height: 100px;
 }
 .big-checkbox {
   width: 25px;
   height: 25px;
   margin-left: 10px;
+  padding-right: 20px;
+  vertical-align: bottom;
+  position: relative;
 }
-.user-det {
-  grid-area: user-det;
-  padding: 5%;
-  background-color: #A4A4A4;
-  height: auto;
+.big-num {
+  width: 45px;
+  height: 25px;
+  margin-left: 10px;
+  padding-right: 20px;
+  vertical-align: bottom;
+  position: relative;
+}
+.right-line {
+  border-right: 2px solid white;
+}
+.clss-label {
+  padding-left: 15px;
+}
+#Spoiler-Regular {
+  font-family: 'Spoiler-Regular';
+  color: black;
 }

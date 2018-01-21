@@ -1,9 +1,10 @@
-<div ng-controller="orderadds">
+<div>
+    {{chani}}
     <div class="order-main">
         <div class="order-con">
-            <label for="">תוכן הפרסום</label>
+            <h4><label class="Spoiler-Bold marg-top" for="">תוכן הפרסום</label></h4>
             <textarea class="form-control" ng-model="contact.addContent" placeholder="תוכן הפרסום" required></textarea>
-            <label for="">הערות</label>
+           <h4> <label class="Spoiler-Bold marg-top" for="">הערות</label></h4>
             <textarea class="form-control" ng-model="order.remarks" placeholder="הערות"></textarea>
 
         </div>
@@ -13,35 +14,58 @@
                 <h4 class="Spoiler-Bold marg-top">לפרסום בעיתון הקרוב:</h4>
                 <h6 class="Spoiler-Bold marg-top">סמן את העיתון/נים הרצויים:</h6>
 
-                <div class="">
-                    <input class="big-checkbox" type="checkbox" value="emtza">
-                    <label class="Spoiler-Bold font-s-20">אמצע השבוע  </label>
+
+                <div class="checkbox-area">
+                    <div class="choose-p">
+                        <label class="Spoiler-Bold font-s-18 clss-label">
+                        <input class="big-checkbox clss-input" type="checkbox" value="emtza">
+                        אמצע השבוע
+                    </label>
+                        <span class="Spoiler-Regular font-s-18">/ מספר מופעים:</span>
+                        <input class="big-num clss-input big-checkbox" type="number" value="" name="emtza">
+                    </div>
                 </div>
-                <div class="">
-                    <input class="big-checkbox" type="checkbox" value="shavua">
-                    <label class="Spoiler-Bold font-s-20">שבוע טוב  </label>
+<hr class="hr">
+
+                <div class="checkbox-area">
+                    <div class="choose-p">
+                        <label class="Spoiler-Bold font-s-18 clss-label">
+                        <input class="big-checkbox clss-input" type="checkbox" value="emtza">
+                        אמצע השבוע
+                    </label>
+                        <span class="Spoiler-Regular font-s-18">/ מספר מופעים:</span>
+                        <input class="big-num clss-input big-checkbox" type="number" value="" name="emtza">
+                    </div>
                 </div>
-                <div class="">
-                    <input class="big-checkbox" type="checkbox" value="meida">
-                    <label class="Spoiler-Bold font-s-20">מידע לכל  </label>
+<hr class="hr">
+<div class="checkbox-area">
+                    <div class="choose-p">
+                        <label class="Spoiler-Bold font-s-18 clss-label">
+                        <input class="big-checkbox clss-input" type="checkbox" value="emtza">
+                        אמצע השבוע
+                    </label>
+                        <span class="Spoiler-Regular font-s-18">/ מספר מופעים:</span>
+                        <input class="big-num clss-input big-checkbox" type="number" value="" name="emtza">
+                    </div>
                 </div>
-                <div class="">
-                    <input class="big-checkbox" type="checkbox" value="lainyan">
-                    <label class="Spoiler-Bold font-s-20"> לעניין   </label>
+                <hr class="hr">
+
+<div class="checkbox-area">
+                    <div class="choose-p">
+                        <label class="Spoiler-Bold font-s-18 clss-label">
+                        <input class="big-checkbox clss-input" type="checkbox" value="emtza">
+                        אמצע השבוע
+                    </label>
+                        <span class="Spoiler-Regular font-s-18">/ מספר מופעים:</span>
+                        <input class="big-num clss-input big-checkbox" type="number" value="" name="emtza">
+                    </div>
                 </div>
+
+
+
+
             </div>
 
-            <div class="form-group p-times">
-                <h4 class="Spoiler-Bold marg-top">מספר מופעים:</h4>
-                <h6 class="Spoiler-Bold marg-top">בחר מספר מופעים רצוי:</h6>
-
-                <input class="big-checkbox" type="number" value="" name="emtza"><br>
-                <input class="big-checkbox" type="number" value="" name="shavua"><br>
-                <input class="big-checkbox" type="number" value="" name="meida"><br>
-                <input class="big-checkbox" type="number" value="" name="lainyan"><br>
-
-
-            </div>
         </div>
 
 
