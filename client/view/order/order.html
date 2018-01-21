@@ -1,65 +1,38 @@
 <div>
-    {{chani}}
     <div class="order-main">
         <div class="order-con">
-            <h4><label class="Spoiler-Bold marg-top" for="">תוכן הפרסום</label></h4>
-            <textarea class="form-control" ng-model="contact.addContent" placeholder="תוכן הפרסום" required></textarea>
-           <h4> <label class="Spoiler-Bold marg-top" for="">הערות</label></h4>
+
+            <h3><label class="Spoiler-Bold" for="">תוכן הפרסום</label></h3>
+            <h4 class="Spoiler-Regular">מלאו בתיבה זאת את המידע שאתם רוצים שיופיע בפרסום:</h4>
+
+            <textarea class="form-control marg-top" ng-model="contact.addContent" placeholder="תוכן הפרסום" required></textarea>
+            <h4> <label class="Spoiler-Bold marg-top" for="">הערות</label></h4>
             <textarea class="form-control" ng-model="order.remarks" placeholder="הערות"></textarea>
 
         </div>
 
         <div class="order-det">
             <div class="form-group p-type">
-                <h4 class="Spoiler-Bold marg-top">לפרסום בעיתון הקרוב:</h4>
-                <h6 class="Spoiler-Bold marg-top">סמן את העיתון/נים הרצויים:</h6>
+                <h3 class="Spoiler-Bold">לפרסום בעיתון הקרוב:</h3>
+                <h4 class="Spoiler-Regular">סמן את העיתון/נים הרצויים:</h4>
 
+                <!-- checkbox area -->
+                <div class="marg-top">
+                    <div ng-repeat="chek in chek">
+                        <div ng-include="'view/order/checkboxTemo.html'"></div>
+                    </div>
+                </div>
 
+                <!-- size area -->
                 <div class="checkbox-area">
                     <div class="choose-p">
-                        <label class="Spoiler-Bold font-s-18 clss-label">
-                        <input class="big-checkbox clss-input" type="checkbox" value="emtza">
-                        אמצע השבוע
-                    </label>
-                        <span class="Spoiler-Regular font-s-18">/ מספר מופעים:</span>
-                        <input class="big-num clss-input big-checkbox" type="number" value="" name="emtza">
+                        <h4 class="Spoiler-Regular">בחר גודל מודעה:</h4>
+                        <select class="form-control" name="selectsize" id="selectsize" ng-model="selectedsize">
+                        <option class="shlager-black size-20" ng-repeat="size in size" value="{{size}}">{{size}}</option>
+                        </select>
                     </div>
                 </div>
-<hr class="hr">
 
-                <div class="checkbox-area">
-                    <div class="choose-p">
-                        <label class="Spoiler-Bold font-s-18 clss-label">
-                        <input class="big-checkbox clss-input" type="checkbox" value="emtza">
-                        אמצע השבוע
-                    </label>
-                        <span class="Spoiler-Regular font-s-18">/ מספר מופעים:</span>
-                        <input class="big-num clss-input big-checkbox" type="number" value="" name="emtza">
-                    </div>
-                </div>
-<hr class="hr">
-<div class="checkbox-area">
-                    <div class="choose-p">
-                        <label class="Spoiler-Bold font-s-18 clss-label">
-                        <input class="big-checkbox clss-input" type="checkbox" value="emtza">
-                        אמצע השבוע
-                    </label>
-                        <span class="Spoiler-Regular font-s-18">/ מספר מופעים:</span>
-                        <input class="big-num clss-input big-checkbox" type="number" value="" name="emtza">
-                    </div>
-                </div>
-                <hr class="hr">
-
-<div class="checkbox-area">
-                    <div class="choose-p">
-                        <label class="Spoiler-Bold font-s-18 clss-label">
-                        <input class="big-checkbox clss-input" type="checkbox" value="emtza">
-                        אמצע השבוע
-                    </label>
-                        <span class="Spoiler-Regular font-s-18">/ מספר מופעים:</span>
-                        <input class="big-num clss-input big-checkbox" type="number" value="" name="emtza">
-                    </div>
-                </div>
 
 
 

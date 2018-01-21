@@ -16,7 +16,7 @@
   background-color: #A4A4A4;
   height: auto;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas: "p-type p-type" "add-size add-place" "attach-img attach-img";
+  grid-template-areas: "p-type p-type " "add-size add-place" "attach-img attach-img";
 }
 .p-type {
   grid-area: p-type;
@@ -26,8 +26,8 @@
   height: 1px;
   background: white;
   border-top: solid 1px white;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 .checkbox-area {
   display: flex;
@@ -35,7 +35,7 @@
   align-content: stretch;
 }
 .choose-p {
-  width: 100%;
+  width: 55%;
   box-sizing: border-box;
 }
 .p-times {
@@ -46,6 +46,9 @@
   grid-area: add-size;
   padding: 15px;
   height: auto;
+}
+label {
+  margin-bottom: 0;
 }
 .add-place {
   grid-area: add-place;
@@ -84,18 +87,23 @@ textarea.form-control {
   position: relative;
 }
 .big-num {
-  width: 45px;
+  width: 55px;
   height: 25px;
-  margin-left: 10px;
+  background-color: #D2CFCF;
   padding-right: 20px;
-  vertical-align: bottom;
+  vertical-align: center;
   position: relative;
+}
+.float-left {
+  float: left;
+  padding-top: 2px;
 }
 .right-line {
   border-right: 2px solid white;
 }
 .clss-label {
   padding-left: 15px;
+  padding-left: 4em;
 }
 #Spoiler-Regular {
   font-family: 'Spoiler-Regular';
