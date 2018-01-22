@@ -1,24 +1,30 @@
+@gb-lightGray: rgb(196, 196, 196);
+
 .order-main{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
-    "order-con order-con order-det order-det"
-    "user-det user-det user-det user-det";
+    "order-con order-con  order-con order-det order-det"
+    "user-det user-det user-det user-det user-det";
     
     }
 
 .order-con{
     grid-area: order-con;
-    padding: 5%;
-    background-color: #A4A4A4;
+    padding-top: 15px;
+    padding-right: 8%;
+    padding-left: 4%;
+    background-color: @gb-lightGray;
     height: auto;
     }
 
 .order-det{
     display: grid;
         grid-area: order-det;
-        padding: 5%;
-        background-color: #A4A4A4;
+        padding-top: 22px;
+        padding-right: 8%;
+        padding-left: 13%;
+        background-color: @gb-lightGray;
         height: auto;
         grid-template-columns: 1fr 1fr;
         grid-template-areas:
@@ -52,7 +58,7 @@
 
 }
     .choose-p{
-    width: 55%;
+    width: 100%;
     box-sizing: border-box;
     }
 
@@ -62,25 +68,37 @@
     }
     .add-size{
         grid-area: add-size;
-        padding: 15px;
+        padding-top: 15px;
+        padding-right: 2%;
+        padding-left: 2%;
         height: auto;
 
     }
 
 label{
     margin-bottom: 0;
-}
+    font-weight: 10;
 
+}
+.user-det{
+    h2{
+    margin-bottom: -8px;
+    }
+}
 
     .add-place{
         grid-area: add-place;
-        padding: 15px;
+        padding-top: 15px;
+        padding-right: 2%;
+        padding-left: 2%;
         height: auto;
     }
     .user-det{
         grid-area: user-det;
-        padding: 5%;
-        background-color: #A4A4A4;
+        padding-right: 5%;
+        padding-left: 5%;
+        padding-bottom: 2%;
+        background-color: @gb-lightGray;
         height: auto;
     }    
     .attach-img{
@@ -97,8 +115,24 @@ label{
       .font-s-14{
         font-size: 14px;
     }
+
+    .font-s-16{
+        font-size: 16px;
+    }
     textarea.form-control {
-        height:100px;
+        height:17%;
+      }
+      
+      textarea.marg-top {
+        height:60%;
+      }
+
+      input[type=file]{
+          margin-top: 5px;
+          width: 100%;
+          background-color: white;
+          padding: 5px;
+          border-radius: 0px;
       }
 
 .big-checkbox {
@@ -110,6 +144,14 @@ label{
     position: relative;
 
 }
+.form-control {
+    display: inline-flex;
+    border-radius: 0;
+    margin: 0;
+    border: 0;
+    height: 45px;
+  }
+  
 .big-num {
     width: 55px;
     height: 25px;
@@ -140,6 +182,32 @@ label{
     color: black;
 }
 
+
+.width-25{
+    width: 25%;
+    float: right;
+
+
+}
+
+
+@media only screen and (min-width: 320px) {
+
+    .font-s-20 {
+        font-size: 15px;
+      }
+      .font-s-18 {
+        font-size: 13px;
+      }
+      .font-s-14 {
+        font-size: 10px;
+      }
+      .font-s-16 {
+        font-size: 12px;
+      }
+          
+
+}
 
 
     // @media screen and (max-width: 500px) {

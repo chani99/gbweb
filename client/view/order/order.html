@@ -2,7 +2,7 @@
     <div class="order-main">
         <div class="order-con">
 
-            <h3><label class="Spoiler-Bold" for="">תוכן הפרסום</label></h3>
+            <h1><label class="Spoiler-Bold" for="">תוכן הפרסום</label></h1>
             <h4 class="Spoiler-Regular">מלאו בתיבה זאת את המידע שאתם רוצים שיופיע בפרסום:</h4>
 
             <textarea class="form-control marg-top" ng-model="contact.addContent" placeholder="תוכן הפרסום" required></textarea>
@@ -19,19 +19,46 @@
                 <!-- checkbox area -->
                 <div class="marg-top">
                     <div ng-repeat="chek in chek">
-                        <div ng-include="'view/order/checkboxTemo.html'"></div>
+                        <div ng-include="'view/order/checkboxTemp.html'"></div>
                     </div>
                 </div>
 
                 <!-- size area -->
                 <div class="checkbox-area">
                     <div class="choose-p">
-                        <h4 class="Spoiler-Regular">בחר גודל מודעה:</h4>
+                        <h3 class="Spoiler-Bold">בחר גודל מודעה:</h3>
                         <select class="form-control" name="selectsize" id="selectsize" ng-model="selectedsize">
-                        <option class="shlager-black size-20" ng-repeat="size in size" value="{{size}}">{{size}}</option>
+                        <option class="Spoiler-black-title font-s-16" value="">-בחר גודל-</option>
+                        <option class="shlager-black font-s-16" ng-repeat="size in size" value="{{size}}">{{size}}</option>
                         </select>
+                        <hr class="hr">
+
                     </div>
                 </div>
+
+                
+                <!-- size area -->
+                <div class="checkbox-area">
+                    <div class="choose-p">
+                        <h3 class="Spoiler-Bold">בחר מיקום:</h3>
+                        <select class="form-control" name="selectPlace" id="selectPlace" ng-model="selectPlace">
+                        <option class="Spoiler-black-title font-s-16" value="">-בחר מיקום-</option>
+                        <option class="shlager-black font-s-16" ng-repeat="place in place" value="{{place}}">{{place}}</option>
+                        </select>
+                        <hr class="hr">
+                    </div>
+                </div>
+
+                <div class="checkbox-area">
+                        <div class="choose-p">
+                                <h3 class="Spoiler-Bold">צירוף מודעה מוכנה/קבצים לפרסום:</h3>
+                                <h5 class="ariel"> קבצים מסוג: <span class="ariel">jpg, pdf, png. word </span> בלבד</h5>
+                                <input type="file" ng-file-model="files" class="btn-lg shlager-black" multiple />
+                                <!-- <button class="btn" type="button" ng-click="upload()">Upload</button> -->
+                        </div>
+                    </div>
+
+            
 
 
 
@@ -42,7 +69,24 @@
         </div>
 
 
+<div class="user-det">
+        <hr class="hr">
+        <h2 class="Spoiler-Bold">פרטי המפרסם:</h2>
+        <form class="form-horizontal">
+                <div>
+                    <label for="" class="Spoiler-Regular font-s-18">נא למלא את פרטי המפרסם בכל השדות:</label><br>
+                    <input type="text"  class="form-control width-25"  ng-model="order.fname" placeholder="שם פרטי" required>
+                    <input type="text"  class="form-control width-25"  ng-model="order.lname" placeholder="שם משפחה" required>
+                    <input type="number"  class="form-control width-25"  ng-model="order.phone" placeholder="טלפון" required>
+                    <input type="email"  class="form-control width-25"  ng-model="order.email" placeholder="אימייל" required>
+                    <br/>
+                    <button type="submit" class="btn-lg btn btn-danger float-left marg-top" ng-click="ordersummary()">סיכום הזמנה</button>
 
+                      
+                </div>
+        </form>
+    
+</div>
 
 
     </div>

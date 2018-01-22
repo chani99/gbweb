@@ -32,6 +32,21 @@
      ];
 
 
+     $scope.place = [
+         "מיקום רגיל (ללא תוספת תשלום)",
+         "עמוד שער",
+         "עמוד גב",
+         "עמוד עדיף (חצי ראשון)",
+         "שמאל לפני אמצע",
+         "דבל אמצע",
+     ];
+
+     $scope.files = []; 
+     $scope.upload=function(){
+       alert($scope.files.length+" files selected ... Write your Upload Code"); 
+     }
+   
+
 
 
 

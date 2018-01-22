@@ -1,19 +1,23 @@
 .order-main {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-areas: "order-con order-con order-det order-det" "user-det user-det user-det user-det";
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: "order-con order-con  order-con order-det order-det" "user-det user-det user-det user-det user-det";
 }
 .order-con {
   grid-area: order-con;
-  padding: 5%;
-  background-color: #A4A4A4;
+  padding-top: 15px;
+  padding-right: 8%;
+  padding-left: 4%;
+  background-color: #c4c4c4;
   height: auto;
 }
 .order-det {
   display: grid;
   grid-area: order-det;
-  padding: 5%;
-  background-color: #A4A4A4;
+  padding-top: 22px;
+  padding-right: 8%;
+  padding-left: 13%;
+  background-color: #c4c4c4;
   height: auto;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "p-type p-type " "add-size add-place" "attach-img attach-img";
@@ -35,7 +39,7 @@
   align-content: stretch;
 }
 .choose-p {
-  width: 55%;
+  width: 100%;
   box-sizing: border-box;
 }
 .p-times {
@@ -44,21 +48,31 @@
 }
 .add-size {
   grid-area: add-size;
-  padding: 15px;
+  padding-top: 15px;
+  padding-right: 2%;
+  padding-left: 2%;
   height: auto;
 }
 label {
   margin-bottom: 0;
+  font-weight: 10;
+}
+.user-det h2 {
+  margin-bottom: -8px;
 }
 .add-place {
   grid-area: add-place;
-  padding: 15px;
+  padding-top: 15px;
+  padding-right: 2%;
+  padding-left: 2%;
   height: auto;
 }
 .user-det {
   grid-area: user-det;
-  padding: 5%;
-  background-color: #A4A4A4;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-bottom: 2%;
+  background-color: #c4c4c4;
   height: auto;
 }
 .attach-img {
@@ -67,16 +81,29 @@ label {
   height: auto;
 }
 .font-s-20 {
-  font-size: 20px;
+  font-size: 1.250em;
 }
 .font-s-18 {
-  font-size: 18px;
+  font-size: 1.5em;
 }
 .font-s-14 {
-  font-size: 14px;
+  font-size: 0.875em;
+}
+.font-s-16 {
+  font-size: 1.125em;
 }
 textarea.form-control {
-  height: 100px;
+  height: 17%;
+}
+textarea.marg-top {
+  height: 60%;
+}
+input[type=file] {
+  margin-top: 5px;
+  width: 100%;
+  background-color: white;
+  padding: 5px;
+  border-radius: 0px;
 }
 .big-checkbox {
   width: 25px;
@@ -85,6 +112,13 @@ textarea.form-control {
   padding-right: 20px;
   vertical-align: bottom;
   position: relative;
+}
+.form-control {
+  display: inline-flex;
+  border-radius: 0;
+  margin: 0;
+  border: 0;
+  height: 45px;
 }
 .big-num {
   width: 55px;
@@ -108,4 +142,8 @@ textarea.form-control {
 #Spoiler-Regular {
   font-family: 'Spoiler-Regular';
   color: black;
+}
+.width-25 {
+  width: 25%;
+  float: right;
 }
