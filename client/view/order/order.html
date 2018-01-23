@@ -1,9 +1,9 @@
-<div>
+<div class="padd-5 grayOr">
     <div class="order-main">
         <div class="order-con">
 
-            <h1><label class="Spoiler-Bold" for="">תוכן הפרסום</label></h1>
-            <h4 class="Spoiler-Regular">מלאו בתיבה זאת את המידע שאתם רוצים שיופיע בפרסום:</h4>
+            <h2><label class="Spoiler-Bold" for="">תוכן הפרסום</label></h2>
+            <h5 class="Spoiler-Regular">מלאו בתיבה זאת את המידע שאתם רוצים שיופיע בפרסום:</h5>
 
             <textarea class="form-control marg-top" ng-model="contact.addContent" placeholder="תוכן הפרסום" required></textarea>
             <h4> <label class="Spoiler-Bold marg-top" for="">הערות</label></h4>
@@ -13,8 +13,8 @@
 
         <div class="order-det">
             <div class="form-group p-type">
-                <h3 class="Spoiler-Bold">לפרסום בעיתון הקרוב:</h3>
-                <h4 class="Spoiler-Regular">סמן את העיתון/נים הרצויים:</h4>
+                <h4 class="Spoiler-Bold">לפרסום בעיתון הקרוב:</h4>
+                <h5 class="Spoiler-Regular">סמן את העיתון/נים הרצויים:</h5>
 
                 <!-- checkbox area -->
                 <div class="marg-top">
@@ -26,10 +26,10 @@
                 <!-- size area -->
                 <div class="checkbox-area">
                     <div class="choose-p">
-                        <h3 class="Spoiler-Bold">בחר גודל מודעה:</h3>
+                        <h4 class="Spoiler-Bold">בחר גודל מודעה:</h4>
                         <select class="form-control" name="selectsize" id="selectsize" ng-model="selectedsize">
-                        <option class="Spoiler-black-title font-s-16" value="">-בחר גודל-</option>
-                        <option class="shlager-black font-s-16" ng-repeat="size in size" value="{{size}}">{{size}}</option>
+                        <option class="Spoiler-black-title font-s-14" value="">-בחר גודל-</option>
+                        <option class="shlager-black font-s-14" ng-repeat="size in size" value="{{size}}">{{size}}</option>
                         </select>
                         <hr class="hr">
 
@@ -40,10 +40,10 @@
                 <!-- size area -->
                 <div class="checkbox-area">
                     <div class="choose-p">
-                        <h3 class="Spoiler-Bold">בחר מיקום:</h3>
+                        <h4 class="Spoiler-Bold">בחר מיקום:</h4>
                         <select class="form-control" name="selectPlace" id="selectPlace" ng-model="selectPlace">
-                        <option class="Spoiler-black-title font-s-16" value="">-בחר מיקום-</option>
-                        <option class="shlager-black font-s-16" ng-repeat="place in place" value="{{place}}">{{place}}</option>
+                        <option class="Spoiler-black-title font-s-14" value="">-בחר מיקום-</option>
+                        <option class="shlager-black font-s-14" ng-repeat="place in place" value="{{place}}">{{place}}</option>
                         </select>
                         <hr class="hr">
                     </div>
@@ -51,8 +51,9 @@
 
                 <div class="checkbox-area">
                         <div class="choose-p">
-                                <h3 class="Spoiler-Bold">צירוף מודעה מוכנה/קבצים לפרסום:</h3>
-                                <h5 class="ariel"> קבצים מסוג: <span class="ariel">jpg, pdf, png. word </span> בלבד</h5>
+                                <h4 class="Spoiler-Bold">צירוף מודעה מוכנה/קבצים לפרסום:</h4>
+                                <h5 class="arial"> קבצים מסוג: <span class="arial">jpg, pdf, png. word </span> בלבד</h5>
+                                <h5 class="arial"><a href="">להוראות סגירת קובץ לחץ כאן</a></h5>
                                 <input type="file" ng-file-model="files" class="btn-lg shlager-black" multiple />
                                 <!-- <button class="btn" type="button" ng-click="upload()">Upload</button> -->
                         </div>

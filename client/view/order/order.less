@@ -8,7 +8,9 @@
     "user-det user-det user-det user-det user-det";
     
     }
-
+.grayOr{
+    background: @gb-lightGray;
+}
 .order-con{
     grid-area: order-con;
     padding-top: 15px;
@@ -106,19 +108,6 @@ label{
         padding: 5%;
         height: auto;
     }
-    .font-s-20{
-        font-size: 20px;
-    }
-    .font-s-18{
-        font-size: 18px;
-    }
-      .font-s-14{
-        font-size: 14px;
-    }
-
-    .font-s-16{
-        font-size: 16px;
-    }
     textarea.form-control {
         height:17%;
       }
@@ -170,17 +159,10 @@ label{
     }
 
  .clss-label {
-//   display: block;
   padding-left: 15px;
-  padding-left:4em; 
-  
-//   text-indent: -15px;
+  padding-left:4em;
 }
 
-#Spoiler-Regular {
-    font-family: 'Spoiler-Regular';
-    color: black;
-}
 
 
 .width-25{
@@ -189,37 +171,27 @@ label{
 
 
 }
-
-
-@media only screen and (min-width: 320px) {
-
-    .font-s-20 {
-        font-size: 15px;
-      }
-      .font-s-18 {
-        font-size: 13px;
-      }
-      .font-s-14 {
-        font-size: 10px;
-      }
-      .font-s-16 {
-        font-size: 12px;
-      }
-          
-
+.padd-5{
+padding: 5%;
 }
 
+@media screen and (max-width: 500px) {
+    .order-main{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "order-con"
+        "order-det"
+        "user-det";
+        
+        }
+.order-det, .order-con, .user-det{
+    padding: 1%;
 
-    // @media screen and (max-width: 500px) {
-    //     .order-main{
-    //         display: grid;
-    //         grid-template-columns: 1fr 1fr;
-    //         // grid-gap: 30px 10px;
-    //         grid-template-areas:
-    //         "order-con order-con order-con order-con"
-    //         "order-det order-det order-det order-det"
-    //         "user-det user-det user-det user-det";
-            
-    //         }
-    // }
-    
+}
+    .width-25{
+        width: 100%;
+        float: right;
+    }
+
+}

@@ -30,32 +30,6 @@
 .padding-main {
   padding: 2% 7% 7% 7%;
 }
-.shlager-black-left {
-  font-family: 'Spoiler-Bold';
-  color: black;
-  text-align: left;
-  line-height: 110%;
-}
-.Spoiler-black-title {
-  font-family: 'Spoiler-Bold';
-  color: black;
-  text-align: center;
-}
-.size-20 {
-  font-size: 20px;
-}
-.size-25 {
-  font-size: 25px;
-}
-.size-30 {
-  font-size: 30px;
-}
-.size-35 {
-  font-size: 35px;
-}
-.size-55 {
-  font-size: 55px;
-}
 .grid-main {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
@@ -91,10 +65,10 @@
   grid-area: footer;
   height: auto;
 }
-.choose-p .form-control {
+.form-control {
   display: inline-flex;
   border-radius: 0;
   margin: 0;
   border: 0;
-  height: 35px;
+  height: 45px;
 }

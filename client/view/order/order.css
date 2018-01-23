@@ -3,6 +3,9 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas: "order-con order-con  order-con order-det order-det" "user-det user-det user-det user-det user-det";
 }
+.grayOr {
+  background: #c4c4c4;
+}
 .order-con {
   grid-area: order-con;
   padding-top: 15px;
@@ -80,18 +83,6 @@ label {
   padding: 5%;
   height: auto;
 }
-.font-s-20 {
-  font-size: 1.250em;
-}
-.font-s-18 {
-  font-size: 1.5em;
-}
-.font-s-14 {
-  font-size: 0.875em;
-}
-.font-s-16 {
-  font-size: 1.125em;
-}
 textarea.form-control {
   height: 17%;
 }
@@ -139,11 +130,26 @@ input[type=file] {
   padding-left: 15px;
   padding-left: 4em;
 }
-#Spoiler-Regular {
-  font-family: 'Spoiler-Regular';
-  color: black;
-}
 .width-25 {
   width: 25%;
   float: right;
+}
+.padd-5 {
+  padding: 5%;
+}
+@media screen and (max-width: 500px) {
+  .order-main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "order-con" "order-det" "user-det";
+  }
+  .order-det,
+  .order-con,
+  .user-det {
+    padding: 1%;
+  }
+  .width-25 {
+    width: 100%;
+    float: right;
+  }
 }
