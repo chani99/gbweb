@@ -121,23 +121,7 @@
     });
 
 
-    App.controller("orderadds", function($scope, UtilSrvc) {
 
-        let order={
-            firstName: $scope.firstName,
-            lastName: $scope.lastName,
-            phone: $scope.phone,
-            email: $scope.email,
-            size: $scope.size,
-            paper: $scope.paper,
-            date: $scope.date,
-            content: $scope.content,
-            image: $scope.image,
-    
-    
-        };
-        
-    });
     
     App.controller("contactform", function($scope, UtilSrvc) {
 

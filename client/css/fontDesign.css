@@ -6,6 +6,15 @@
   font-family: 'Spoiler-Bold';
   src: url('../../fonts/Spoiler-Bold.woff') format('woff'), url('../fonts/Spoiler-Bold.ttf') format('truetype');
 }
+.white-font {
+  color: white;
+}
+.red-font {
+  color: #ec1f27;
+}
+.black-font {
+  color: black;
+}
 .arial {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -18,7 +27,6 @@
 }
 .Spoiler-Bold {
   font-family: 'Spoiler-Bold';
-  color: black;
 }
 .Spoiler-Regular {
   font-family: 'Spoiler-Regular';
