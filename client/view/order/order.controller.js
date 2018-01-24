@@ -64,7 +64,6 @@
          "דבל אמצע",
      ];
 
-
     
      $scope.order = {
         addContent: "",
