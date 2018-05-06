@@ -48,7 +48,7 @@ function loadPage(page, pageElement) {
 
 	// Load the page
 
-	img.attr('src', 'pages/' +  page + '.jpg');
+	img.attr('src', '../../../papers/'+wantedfolder+'/'+wantedPaper+'/'+ page + '.jpg');
 
 }
 
@@ -68,7 +68,7 @@ function loadLargePage(page, pageElement) {
 
 	// Loadnew page
 	
-	img.attr('src', 'pages/' +  page + '-large.jpg');
+	img.attr('src', '../../../papers/'+wantedfolder+'/'+wantedPaper +'/'+  page + '-large.jpg');
 }
 
 
@@ -81,7 +81,7 @@ function loadSmallPage(page, pageElement) {
 	img.unbind('load');
 	// Loadnew page
 
-	img.attr('src', 'pages/' +  page + '.jpg');
+	img.attr('src', '../../../papers/'+wantedfolder+'/'+wantedPaper+"/" +page + '.jpg');
 }
 
 

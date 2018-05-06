@@ -1,37 +1,38 @@
-<!doctype html>
-<html lang="en">
-<head>
-<title>Using turn.js and the new zoom feature</title>
-<meta name="viewport" content="width = 1050, user-scalable = no" />
-<link rel="icon" type="image/png" href="../../pics/favicon.png" />
-<script type="text/javascript" src="../../extras/jquery.min.1.7.js"></script>
-<script type="text/javascript" src="../../extras/jquery-ui-1.8.20.custom.min.js"></script>
-<script type="text/javascript" src="../../extras/modernizr.2.5.3.min.js"></script>
-<script type="text/javascript" src="../../lib/hash.js"></script>
-</head>
-<body>
+let url =window.location.href;
+let wantedfolder =getParameterByName("folder", url);
+let wantedPaper =getParameterByName("num", url);
 
-<div id="canvas">
 
-<div class="zoom-icon zoom-icon-in"></div>
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 
-<div class="magazine-viewport">
-	<div class="container">
-		<div class="magazine">
-			<!-- Next button -->
-			<div ignore="1" class="next-button"></div>
-			<!-- Previous button -->
-			<div ignore="1" class="previous-button"></div>
-		</div>
-	</div>
-	<div class="bottom">
-		<div id="slider-bar" class="turnjs-slider">
-			<div id="slider"></div>
-		</div>
-	</div>
-</div>
+console.log(wantedfolder);
+console.log(wantedPaper);
 
-<script type="text/javascript">
+
+
+let text = "";
+let paperLength = 16;
+text+='<li class="i" ><img src="../../../papers/'+wantedfolder+'/'+wantedPaper+'/1.jpg" width="76" height="100" class="page-1"><span>1</span></li>';
+
+
+	    for (var i =2;i<paperLength;i=i+2)
+    {
+		text =text +'<li class="b"><img src="../../../papers/'+wantedfolder+'/'+wantedPaper+'/'+(i)+'.jpg" width="76" height="100" class="page-'+i+'"><img src="../../../papers/'+wantedfolder+'/'+wantedPaper+'/'+(i+1)+'.jpg" width="76" height="100" class="page-'+(i+1)+'"><span>'+i+'-'+(i+1)+'</span></li>'
+            //  text = text + "<li class='file'><a href=''>Subfile " + i + "</a></li>";
+
+    }
+text+='<li class="i" ><img src="../../../papers/'+wantedfolder+'/'+wantedPaper+'/'+paperLength +'.jpg" width="76" height="100" class="page-'+paperLength+'"><span>1</span></li>';
+
+document.getElementById('paperlist').innerHTML=text; 
+
 
 function loadApp() {
 
@@ -62,6 +63,10 @@ function loadApp() {
 
 			duration: 1000,
 
+			// Hardware acceleration
+
+			acceleration: !isChrome(),
+
 			// Enables gradients
 
 			gradients: true,
@@ -76,7 +81,7 @@ function loadApp() {
 
 			// The number of pages
 
-			pages: 12,
+			pages: paperLength,
 
 			// Events
 
@@ -94,6 +99,17 @@ function loadApp() {
 					// Show and hide navigation buttons
 
 					disableControls(page);
+					
+
+					$('.thumbnails .page-'+currentPage).
+						parent().
+						removeClass('current');
+
+					$('.thumbnails .page-'+page).
+						parent().
+						addClass('current');
+
+
 
 				},
 
@@ -102,8 +118,6 @@ function loadApp() {
 					disableControls(page);
 
 					$(this).turn('center');
-
-					$('#slider').slider('value', getViewNumber($(this), page));
 
 					if (page==1) { 
 						$(this).turn('peel', 'br');
@@ -135,6 +149,7 @@ function loadApp() {
 		}, 
 
 		when: {
+
 			swipeLeft: function() {
 
 				$(this).zoom('flipbook').turn('next');
@@ -158,7 +173,7 @@ function loadApp() {
 
 			zoomIn: function () {
 
-				$('#slider-bar').hide();
+				$('.thumbnails').hide();
 				$('.made').hide();
 				$('.magazine').removeClass('animated').addClass('zoom-in');
 				$('.zoom-icon').removeClass('zoom-icon-in').addClass('zoom-icon-out');
@@ -178,8 +193,8 @@ function loadApp() {
 
 			zoomOut: function () {
 
-				$('#slider-bar').fadeIn();
 				$('.exit-message').hide();
+				$('.thumbnails').fadeIn();
 				$('.made').fadeIn();
 				$('.zoom-icon').removeClass('zoom-icon-out').addClass('zoom-icon-in');
 
@@ -256,6 +271,56 @@ function loadApp() {
 		resizeViewport();
 	});
 
+	// Events for thumbnails
+
+	$('.thumbnails').click(function(event) {
+		
+		var page;
+
+		if (event.target && (page=/page-([0-9]+)/.exec($(event.target).attr('class'))) ) {
+		
+			$('.magazine').turn('page', page[1]);
+		}
+	});
+
+	$('.thumbnails li').
+		bind($.mouseEvents.over, function() {
+			
+			$(this).addClass('thumb-hover');
+
+		}).bind($.mouseEvents.out, function() {
+			
+			$(this).removeClass('thumb-hover');
+
+		});
+
+	if ($.isTouch) {
+	
+		$('.thumbnails').
+			addClass('thumbanils-touch').
+			bind($.mouseEvents.move, function(event) {
+				event.preventDefault();
+			});
+
+	} else {
+
+		$('.thumbnails ul').mouseover(function() {
+
+			$('.thumbnails').addClass('thumbnails-hover');
+
+		}).mousedown(function() {
+
+			return false;
+
+		}).mouseout(function() {
+
+			$('.thumbnails').removeClass('thumbnails-hover');
+
+		});
+
+	}
+
+
 	// Regions
 
 	if ($.isTouch) {
@@ -313,41 +378,6 @@ function loadApp() {
 	});
 
 
-	// Slider
-
-	$( "#slider" ).slider({
-		min: 1,
-		max: numberOfViews(flipbook),
-
-		start: function(event, ui) {
-
-			if (!window._thumbPreview) {
-				_thumbPreview = $('<div />', {'class': 'thumbnail'}).html('<div></div>');
-				setPreview(ui.value);
-				_thumbPreview.appendTo($(ui.handle));
-			} else
-				setPreview(ui.value);
-
-			moveBar(false);
-
-		},
-
-		slide: function(event, ui) {
-
-			setPreview(ui.value);
-
-		},
-
-		stop: function() {
-
-			if (window._thumbPreview)
-				_thumbPreview.removeClass('show');
-			
-			$('.magazine').turn('page', Math.max(1, $(this).slider('value')*2 - 2));
-
-		}
-	});
-
 	resizeViewport();
 
 	$('.magazine').addClass('animated');
@@ -388,13 +418,8 @@ function loadApp() {
 
 yepnope({
 	test : Modernizr.csstransforms,
-	yep: ['../../lib/turn.min.js'],
-	nope: ['../../lib/turn.html4.min.js', 'css/jquery.ui.html4.css'],
-	both: ['../../lib/zoom.min.js', 'css/jquery.ui.css', 'js/magazine.js', 'css/magazine.css'],
+	yep: ['../../lib/turn.js'],
+	nope: ['../../lib/turn.html4.min.js'],
+	both: ['../../lib/zoom.min.js', 'js/magazine.js', 'css/magazine.css'],
 	complete: loadApp
 });
-
-</script>
-
-</body>
-</html>

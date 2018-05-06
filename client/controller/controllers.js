@@ -32,7 +32,7 @@
         let type = $routeParams.k;
         let num = $routeParams.n;
         // $scope.source = 'http://localhost:8081/public/pdf-flipbook-master/?num=' + num + "&folder=" + type;
-        $scope.source = 'http://localhost:8081/public/turnjs4/samples/magazine';
+        $scope.source = 'http://localhost:8081/public/turnjs4/samples/magazine/?num=' + num + "&folder=" + type;
 
 
     });
