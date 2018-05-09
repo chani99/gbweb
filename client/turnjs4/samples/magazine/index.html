@@ -17,33 +17,32 @@
 </head>
 
 <body>
-	<div id="canvas">
-
-		<div class="zoom-icon zoom-icon-in"></div>
-
-		<div class="magazine-viewport">
-			<div class="container">
-				<div class="magazine">
-					<!-- Next button -->
-					<div ignore="1" class="next-button"></div>
-					<!-- Previous button -->
-					<div ignore="1" class="previous-button"></div>
+	<div class="grid-flip-container">
+		<div class="paper">
+			<div id="canvas">
+				<div class="zoom-icon zoom-icon-in float-right"></div>
+				<div class="magazine-viewport float-left">
+					<div class="container float-left">
+						<div class="magazine float-left">
+							<!-- Next button -->
+							<div ignore="1" class="next-button"></div>
+							<!-- Previous button -->
+							<div ignore="1" class="previous-button"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		
-		<!-- Thumbnails -->
-		<!-- <div class="thumbnails">
-			<div>
-				<ul id="paperlist">
-					<ul>
+
+		<div class="side">
+			<!-- Thumbnails -->
+			<div class="thumbnails">
+				<ul id="paperlist"></ul>
 			</div>
-		</div> -->
+		</div>
 
 
 	</div>
-
-
 
 	<script type="text/javascript" src="js/page-turn.js"></script>
 

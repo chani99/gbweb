@@ -1,34 +1,4 @@
-let url = window.location.href;
-let wantedfolder = getParameterByName("folder", url);
-let wantedPaper = getParameterByName("num", url);
 
-
-function getParameterByName(name, url) {
-	if (!url) url = window.location.href;
-	name = name.replace(/[\[\]]/g, "\\$&");
-	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-		results = regex.exec(url);
-	if (!results) return null;
-	if (!results[2]) return '';
-	return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-
-console.log(wantedfolder);
-console.log(wantedPaper);
-
-
-
-// let text = "";
-let paperLength = 16;
-// text += '<li class="i" ><img src="../../../papers/' + wantedfolder + '/' + wantedPaper + '/1.jpg" width="76" height="100" class="page-1"><span>1</span></li>';
-
-// for (var i = 2; i < paperLength; i = i + 2) {
-// 	text = text + '<li class="d"><img src="../../../papers/' + wantedfolder + '/' + wantedPaper + '/' + (i) + '.jpg" width="76" height="100" class="page-' + i + '"><img src="../../../papers/' + wantedfolder + '/' + wantedPaper + '/' + (i + 1) + '.jpg" width="76" height="100" class="page-' + (i + 1) + '"><span>' + i + '-' + (i + 1) + '</span></li>'
-
-// }
-// text += '<li class="i" ><img src="../../../papers/' + wantedfolder + '/' + wantedPaper + '/' + paperLength + '.jpg" width="76" height="100" class="page-' + paperLength + '"><span>1</span></li>';
-
-// document.getElementById('paperlist').innerHTML = text;
 
 
 function loadApp() {
@@ -414,11 +384,44 @@ $('.zoom-icon').bind('mouseover', function () {
 
 });
 
-$('#canvas').hide();
+// $('#canvas').hide();
+
+
+
+let url = window.location.href;
+let wantedfolder = getParameterByName("folder", url);
+let wantedPaper = getParameterByName("num", url);
+
+
+function getParameterByName(name, url) {
+	if (!url) url = window.location.href;
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+console.log(wantedfolder);
+console.log(wantedPaper);
+
+
+
+let text = "";
+let paperLength = 16;
+text += '<li class="i" ><img src="../../../papers/' + wantedfolder + '/' + wantedPaper + '/1.jpg" width="76" height="100" class="page-1"><span>1</span></li>';
+
+for (var i = 2; i < paperLength; i = i + 2) {
+	text = text + '<li class="d"><img src="../../../papers/' + wantedfolder + '/' + wantedPaper + '/' + (i) + '.jpg" width="76" height="100" class="page-' + i + '"><img src="../../../papers/' + wantedfolder + '/' + wantedPaper + '/' + (i + 1) + '.jpg" width="76" height="100" class="page-' + (i + 1) + '"><span>' + i + '-' + (i + 1) + '</span></li>';
+}
+text += '<li class="i" ><img src="../../../papers/' + wantedfolder + '/' + wantedPaper + '/' + paperLength + '.jpg" width="76" height="100" class="page-' + paperLength + '"><span>1</span></li>';
+
+document.getElementById('paperlist').innerHTML = text;
+
 
 
 // Load the HTML4 version if there's not CSS transform
-
 yepnope({
 	test: Modernizr.csstransforms,
 	yep: ['../../lib/turn.js'],
