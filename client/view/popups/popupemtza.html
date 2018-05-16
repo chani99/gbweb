@@ -1,0 +1,24 @@
+<form class="form-horizontal popup" role="form" ng-submit="submitUser()">
+    <div class="modal-header">
+        <div class="ProductImg">
+            <h3 class="modal-title">Add to Cart</h3>
+
+            <img ng-src="../uploads/{{item.image}}">
+        </div>
+        <hr>
+        <span class="font-18"><b>{{item.name}}</b></span><br>
+        <span>price: <b class="font-16">{{item.price}}</b> $</span><br>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="UserAge" class="col-sm-3 control-label">QTY</label>
+            <div class="col-sm-5">
+                <input type="number" class="form-control" id="QTY" placeholder="QTY" ng-model="item.qty">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-primary" type="submit">Add to Cart</button>
+    </div>
+</form>

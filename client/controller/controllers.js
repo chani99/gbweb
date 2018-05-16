@@ -25,7 +25,7 @@
         //modal product popup function
         $scope.choosePaper = function (paper) {
             var dialogInst = $modal.open({
-                templateUrl: "../view/popup" + paper + ".html",
+                templateUrl: "../view/popups/popup" + paper + ".html",
                 controller: "DialogInstCtrl",
                 size: "lg",
                 resolve: {
