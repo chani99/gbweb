@@ -3,27 +3,31 @@ body {
 	background-color: #fcfcfc;
 	margin: 0;
 	padding: 0;
+		height: 100%;
+	
+
+	
 }
 
 .magazine-viewport .container {
-	position: absolute;
+	position: relative;
 	top: 50%;
 	left: 50%;
-	width: 922px;
-	height: 600px;
+	width: 710.05px;
+	height: 462px;
 	margin: auto;
 }
 
 .magazine-viewport .magazine {
-	width: 922px;
-	height: 600px;
+	width: 710.05px;
+	height: 462px;
 	left: -461px;
 	top: -300px;
 }
 
 .magazine-viewport .page {
 	width: 461px;
-	height: 600px;
+	height: 462px;
 	background-color: white;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
@@ -141,7 +145,7 @@ body {
 .magazine-viewport .next-button,
 .magazine-viewport .previous-button {
 	width: 22px;
-	height: 600px;
+	height: 462px;
 	position: absolute;
 	top: 0;
 }
@@ -178,7 +182,7 @@ body {
 
 .magazine-viewport .previous-button-down,
 .magazine-viewport .next-button-down {
-	background-color: rgba(0, 0, 0, 0.4);
+	background-color: rgba(0, 0, 0, 0.05);
 }
 
 .magazine-viewport .next-button-hover,
@@ -247,13 +251,13 @@ body {
 	transform: none;
 }
 
-.thumbnails-hover ul {
+// .thumbnails-hover ul {
 	// -webkit-transform: scale3d(0.6, 0.6, 1);
 	// -moz-transform: scale3d(0.6, 0.6, 1);
 	// -o-transform: scale3d(0.6, 0.6, 1);
 	// -ms-transform: scale3d(0.6, 0.6, 1);
 	// transform: scale3d(0.6, 0.6, 1);
-}
+// }
 
 .thumbnails li {
 	list-style: none;
@@ -392,16 +396,12 @@ body {
 
 .grid-flip-container {
 	display: grid;
+	margin: 0;
+	padding: 0;
+	height: 100%;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	grid-template-areas: "side paper paper paper paper"
-}
+	grid-template-areas: "side paper paper paper paper";
 
-.paper {
-	grid-area: paper;
-	padding-top: 15px;
-	padding-right: 8%;
-	padding-left: 4%;
-	height: auto;
 }
 
 .side {
@@ -409,6 +409,23 @@ body {
 	padding-top: 22px;
 	padding-right: 8%;
 	padding-left: 13%;
-	height: auto;
+	overflow: scroll;
 	background-color:rgb(212, 212, 212);
+
 }
+
+.paper {
+	grid-area: paper;
+	padding: 2%;
+	height: 100%;
+
+	#canvas{
+		display: inline-block;
+		padding-top: 2%;
+		height: auto;
+		overflow: hidden; 
+		}
+
+}
+
+

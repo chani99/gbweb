@@ -1,11 +1,11 @@
-(function() {
+(function () {
 
     "use strict";
 
     var App = angular.module("App.controllers", []);
 
     //home controller
-    App.controller("home", function($scope, UtilSrvc) {
+    App.controller("home", function ($scope, UtilSrvc) {
 
         let num = UtilSrvc.getValuesFromServer('getlastpapers', "/book", onSuccsess, onError);
 
@@ -22,25 +22,59 @@
             console.log(res);
 
         }
+        //modal product popup function
+        $scope.choosePaper = function (paper) {
+            var dialogInst = $modal.open({
+                templateUrl: "../view/popup" + paper + ".html",
+                controller: "DialogInstCtrl",
+                size: "lg",
+                resolve: {
+                    selectedUsr: function () {
+                        return coosenItem;
+                    }
+                }
+            });
+            // dialogInst.result.then(function(item) {
+            //     if (item.qty > 0) {
+            // alert(JSON.stringify(item));
+            //         appService.updateCart("cart/addToCart", checkIflogedin.member.userName, item, submitSucsses, submitError);
+            //     }
+            // }, function() {
+            //     $log.info("Modal dismissed at: " + new Date());
+            // });
+        };
+
+
 
     });
 
 
+    //dialog popup controller
+    App.controller("DialogInstCtrl", function ($scope, $modalInstance, $log) {
+        $scope.item = selectedUsr;
+        $scope.submitUser = function () {
+            $modalInstance.close($scope.item);
+        };
+        $scope.cancel = function () {
+            $modalInstance.dismiss("cancel");
+        };
+    });
+
 
     // flipbook controller
-    App.controller("flipbook", function($scope, UtilSrvc, $routeParams, $location, $sce) {
+    App.controller("flipbook", function ($scope, UtilSrvc, $routeParams, $location, $sce) {
         let type = $routeParams.k;
         let num = $routeParams.n;
-        // $scope.source = 'http://localhost:8081/public/pdf-flipbook-master/?num=' + num + "&folder=" + type;
-        $scope.source = 'http://localhost:8081/public/turnjs4/samples/magazine/?num=' + num + "&folder=" + type;
+        $scope.source = 'http://localhost:8081/public/pdf-flipbook-master/?num=' + num + "&folder=" + type;
+        // $scope.source = 'http://localhost:8081/public/turnjs4/samples/magazine/?num=' + num + "&folder=" + type;
 
 
     });
 
 
     // papers controller
-    App.controller("papers", function($scope, $window, $timeout, UtilSrvc, $routeParams, $location, $sce) {
-        $scope.getSelectedPaper = function(folderName, selectedPaper) {
+    App.controller("papers", function ($scope, $window, $timeout, UtilSrvc, $routeParams, $location, $sce) {
+        $scope.getSelectedPaper = function (folderName, selectedPaper) {
             console.log(selectedPaper);
             if (selectedPaper) {
                 $window.location.href = `#/book?k=${folderName}&n=${selectedPaper}`;
@@ -125,7 +159,7 @@
 
 
 
-    App.controller("contactform", function($scope, UtilSrvc) {
+    App.controller("contactform", function ($scope, UtilSrvc) {
 
 
         $scope.contact = {
@@ -137,7 +171,7 @@
         }
 
 
-        $scope.contactSubmit = function() {
+        $scope.contactSubmit = function () {
             console.log($scope.contact);
             alert($scope.contact.fname + "\nההודעה נשלחה בהצלחה ותטופל בהקדם");
         }

@@ -20,11 +20,11 @@ function loadApp() {
 
 		// Magazine width
 
-		width: 922,
+		width: 740.05,
 
 		// Magazine height
 
-		height: 600,
+		height: 482,
 
 		// Duration in millisecond
 
@@ -140,7 +140,7 @@ function loadApp() {
 
 			zoomIn: function () {
 
-				$('.thumbnails').hide();
+				// $('.thumbnails').hide();
 				$('.made').hide();
 				$('.magazine').removeClass('animated').addClass('zoom-in');
 				$('.zoom-icon').removeClass('zoom-icon-in').addClass('zoom-icon-out');
@@ -165,13 +165,13 @@ function loadApp() {
 			zoomOut: function () {
 
 				$('.exit-message').hide();
-				$('.thumbnails').fadeIn();
+				// $('.thumbnails').fadeIn();
 				$('.made').fadeIn();
 				$('.zoom-icon').removeClass('zoom-icon-out').addClass('zoom-icon-in');
 
 				setTimeout(function () {
 					$('.magazine').addClass('animated').removeClass('zoom-in');
-					resizeViewport();
+					// resizeViewport();
 				}, 0);
 
 			}
@@ -238,7 +238,7 @@ function loadApp() {
 	});
 
 
-	$(window).resize(function () {
+	$('.paper').resize(function () {
 		resizeViewport();
 	}).bind('orientationchange', function () {
 		resizeViewport();
