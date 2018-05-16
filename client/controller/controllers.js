@@ -2,10 +2,12 @@
 
     "use strict";
 
-    var App = angular.module("App.controllers", []);
+    var App = angular.module("App.controllers", [
+        'ui.bootstrap'
+    ]);
 
     //home controller
-    App.controller("home", function ($scope, UtilSrvc) {
+    App.controller("home", function ($scope, $modal, UtilSrvc) {
 
         let num = UtilSrvc.getValuesFromServer('getlastpapers', "/book", onSuccsess, onError);
 
@@ -30,7 +32,7 @@
                 size: "lg",
                 resolve: {
                     selectedUsr: function () {
-                        return coosenItem;
+                        return paper;
                     }
                 }
             });
@@ -51,9 +53,8 @@
 
     //dialog popup controller
     App.controller("DialogInstCtrl", function ($scope, $modalInstance, $log) {
-        $scope.item = selectedUsr;
         $scope.submitUser = function () {
-            $modalInstance.close($scope.item);
+            $modalInstance.close();
         };
         $scope.cancel = function () {
             $modalInstance.dismiss("cancel");

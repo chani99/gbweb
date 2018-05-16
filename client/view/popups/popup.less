@@ -1,0 +1,30 @@
+
+.popup-flip-container {
+	display: grid;
+	margin: 0;
+	padding: 3%;
+	height: 100%;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-areas: "header header header header " "logo content content content";
+
+}
+.header-popup{
+    grid-area: header;
+
+}
+.logo-popup {
+	grid-area: logo;
+	background-color:rgb(212, 212, 212);
+
+}
+
+.content-popup {
+	grid-area: content;
+    height: 100%;
+    background-color:  red;
+    padding: 2%;
+    p{
+        color:white;
+    }
+
+}

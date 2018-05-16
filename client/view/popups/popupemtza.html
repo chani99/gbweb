@@ -1,24 +1,28 @@
-<form class="form-horizontal popup" role="form" ng-submit="submitUser()">
-    <div class="modal-header">
-        <div class="ProductImg">
-            <h3 class="modal-title">Add to Cart</h3>
+<div class="form-horizontal popup-flip-container" role="form" ng-submit="submitUser()">
+    <div class="header-popup">
+            <button class="btn btn-default" type="button" ng-click="cancel()">x</button>
 
-            <img ng-src="../uploads/{{item.image}}">
-        </div>
-        <hr>
-        <span class="font-18"><b>{{item.name}}</b></span><br>
-        <span>price: <b class="font-16">{{item.price}}</b> $</span><br>
     </div>
-    <div class="modal-body">
-        <div class="form-group">
-            <label for="UserAge" class="col-sm-3 control-label">QTY</label>
-            <div class="col-sm-5">
-                <input type="number" class="form-control" id="QTY" placeholder="QTY" ng-model="item.qty">
-            </div>
-        </div>
+    <div class="logo-popup">
+            <img class="over" src="images/emtza_logo.png" alt="אמצע השבוע" class="Plogos center-block" style="max-height: 80px">
     </div>
-    <div class="modal-footer">
-        <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
-        <button class="btn btn-primary" type="submit">Add to Cart</button>
+    <div class="content-popup">
+        <p>
+                מבשלים בסיר קטן סוכר, דבש, חמאה ושמנת מתוקה עד שהחמאה נמסה והתערובת מגיעה לרתיחה.
+                מנמיכים להבה ומבשלים לעוד 2 דקות תוך בעבוע קל להסמכה קלה. מוסיפים שקדים פרוסים ומערבבים,
+                מצננים לטמפרטורת החדר.
+                מחממים תנור ל-180 מעלות (לא בטורבו). כשהמאפה סיים לתפוח, משטחים עליו בעדינות רבה את ציפוי
+                השקדים שהצטנן- כדאי להעביר מעט מתערובת השקדים בכל פעם, ולשטח בעדינות רבה כדי שהמאפה
+                התפוח לא יאבד מנפחו. (במידה והציפוי הסמיך והתייצב מדי עד לשלב זה אפשר לחמם אותו מעט שוב
+                לריכוך, אבל חשוב שלא יהיה חם למגע בעת הציפוי. במידה ונוצרו בבצק בועות אוויר גדולות מדי, כדאי
+                לשטח אותן בעדינות בכף היד לפני שמניחים על המאפה את ציפוי השקדים, על מנת שחלקה העליון של
+                העוגה יהיה שטוח ולא מלא בבועות).
+                אופים את העוגה 26-22 דקות עד שציפוי השקדים מקבל גוון שזוף ומשגע, בדקות האחרונות לאפייה מומלץ
+                בחום לפטרל ליד התנור כי מרגע שהציפוי מתחיל להזהיב תוך כמה דקות הוא מקבל גוון מקורמל
+                עז. מצננים היטב. שומרים את העוגה בטמפרטורת החדר מכוסה היטב עד להרכבה.
+    
+        </p>
     </div>
-</form>
+
+
+</div>
