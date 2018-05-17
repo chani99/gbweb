@@ -1,10 +1,18 @@
 .order-main {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-areas: "order-con order-con  order-con order-det order-det" "user-det user-det user-det user-det user-det";
+  grid-template-areas: "banner banner banner banner banner" "order-con order-con  order-con order-det order-det" "user-det user-det user-det user-det user-det";
 }
 .grayOr {
   background: #c4c4c4;
+}
+.banner {
+  grid-area: banner;
+  height: auto;
+  width: 100%;
+}
+.banner img {
+  width: 100%;
 }
 .order-con {
   grid-area: order-con;
@@ -89,6 +97,9 @@ textarea.form-control {
 textarea.marg-top {
   height: 60%;
 }
+#luachInput {
+  height: 40%;
+}
 input[type=file] {
   margin-top: 5px;
   width: 100%;
@@ -137,16 +148,16 @@ input[type=file] {
 .padd-5 {
   padding: 5%;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   .order-main {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: "order-con" "order-det" "user-det";
+    grid-template-areas: "banner" "order-con" "order-det" "user-det";
   }
   .order-det,
   .order-con,
   .user-det {
-    padding: 1%;
+    padding: 6%;
   }
   .width-25 {
     width: 100%;

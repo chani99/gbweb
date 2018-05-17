@@ -20,13 +20,12 @@
             .when('/contact', {
                 templateUrl: 'view/contact/contact.html'
             })
-            .when('/user', {
-                templateUrl: 'view/costumer/costumer.html'
+            .when('/about', {
+                templateUrl: 'view/about/about.html'
             })
             .when('/order', {
                 templateUrl : 'view/order/order.html',
                 controller: 'OrderCtrl'
-                // css : 'view/order/order.css'
             })
             .when('/book', {
                 templateUrl: 'view/flipbook/flipbook.html'
@@ -34,6 +33,12 @@
             .when('/magazines', {
                 templateUrl: 'view/papers/papers.html'
             })
+            .when('/luach', {
+                templateUrl: 'view/luach/luach.html',
+                controller: 'luachCtrl'
+            })
+
+
 
         .otherwise({ redirectTo: 'home' });
     });

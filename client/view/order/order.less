@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
+    "banner banner banner banner banner"
     "order-con order-con  order-con order-det order-det"
     "user-det user-det user-det user-det user-det";
     
@@ -11,6 +12,15 @@
 .grayOr{
     background: @gb-lightGray;
 }
+.banner{
+    grid-area: banner;
+    height: auto;
+width: 100%;
+img{
+    width: 100%;
+}
+}
+
 .order-con{
     grid-area: order-con;
     padding-top: 15px;
@@ -116,6 +126,11 @@ label{
         height:60%;
       }
 
+          
+      #luachInput {
+        height:40%;
+      }
+
       input[type=file]{
           margin-top: 5px;
           width: 100%;
@@ -175,18 +190,19 @@ label{
 padding: 5%;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
     .order-main{
         display: grid;
         grid-template-columns: 1fr;
         grid-template-areas:
+        "banner"
         "order-con"
         "order-det"
         "user-det";
         
         }
 .order-det, .order-con, .user-det{
-    padding: 1%;
+    padding: 6%;
 
 }
     .width-25{

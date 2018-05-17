@@ -42,11 +42,21 @@
   font-family: 'Spoiler-Regular';
   color: black;
 }
+.spoiler-regular {
+  font-family: 'Spoiler-Regular';
+  color: black;
+}
 .shlager-black-left {
   font-family: 'Spoiler-Bold';
   color: black;
   text-align: left;
   line-height: 110%;
+}
+.align-right {
+  text-align: right;
+}
+.align-left {
+  text-align: left;
 }
 .Spoiler-black-title {
   font-family: 'Spoiler-Bold';
