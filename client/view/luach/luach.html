@@ -2,7 +2,7 @@
 
     <div class="order-main">
         <div class="banner">
-                <img src="public/images/luach.banner-01.png" alt="title" >
+            <img src="public/images/luach.banner-01.png" alt="title">
 
         </div>
 
@@ -11,19 +11,35 @@
             <h2>
                 <label class="Spoiler-Bold" for="">תוכן מודעת מילים בלוח </label>
             </h2>
-            <h5 class="Spoiler-Regular">מלאו בתיבה זאת את המידע שאתם רוצים שיופיע בפרסום:</h5>
+            <h4 class="Spoiler-Bold">
+                לפרסום ב'לעניין' - עד 12 מילים
+                <br> לפרסום ב'שבוע טוב', 'אמצע השבוע', או 'מידע לכל - עד 10 מילים
+            </h4>
+            <h5 class="Spoiler-Regular">
+                מלאו בתיבה זאת את המידע שאתם רוצים שיופיע בפרסום:
 
-            <textarea class="form-control marg-top"  ng-model="order.addContent" placeholder="תוכן מודעת לוח" vlaue="{{order.addContent}}"
+            </h5>
+
+            <textarea class="form-control marg-top" ng-model="luach.content" placeholder="תוכן מודעת לוח" vlaue="{{luach.content}}"
                 required></textarea>
             <h4>
+                <span ng-hide=validate.content>נא להזין תוכן המודעה</span>
                 <label class="Spoiler-Bold marg-top" for="">הערות</label>
             </h4>
-            <textarea class="form-control" ng-model="order.remarks" vlaue="{{order.remarks}}" placeholder="הערות"></textarea>
+            <textarea class="form-control" ng-model="luach.remarks" vlaue="{{luach.remarks}}" placeholder="הערות"></textarea>
 
         </div>
 
         <div class="order-det">
+
+
             <div class="form-group p-type">
+
+                <a href="#/luachPrices" class="Spoiler-Bold red text-left">
+                    <h4>לצפיה במחירון לוח - הקש כאן</h4>
+                </a>
+                <hr class="hr">
+
                 <h4 class="Spoiler-Bold">לפרסום בעיתון הקרוב:</h4>
                 <h5 class="Spoiler-Regular">סמן את העיתון/נים הרצויים:</h5>
 
@@ -34,30 +50,34 @@
                     </div>
                 </div>
 
-                <!-- type area -->
-                <div class="checkbox-area">
-                    <div class="choose-p">
-                        <h4 class="Spoiler-Bold">בחר מדור:</h4>
-                        <h5 class="Spoiler-Regular">בחר תחת איזו כותרת ברצונך שהמודעה תופיע:</h5>
-                        <select class="form-control" name="selectPlace" id="selectPlace" ng-model="luach.section">
-                            <option class="Spoiler-black-title font-s-14" value="">-בחר מדור למודעה-</option>
-                            <option class="shlager-black font-s-14" ng-repeat="section in section" value="{{section}}">{{section}}</option>
-                        </select>
-                        <hr class="hr">
-                    </div>
-                </div>
 
 
                 <!-- type area -->
                 <div class="checkbox-area">
                     <div class="choose-p">
                         <h4 class="Spoiler-Bold">בחר סוג מודעה:</h4>
-                        <select class="form-control" name="selectPlace" id="selectPlace" ng-model="luach.type">
-                            <option class="Spoiler-black-title font-s-14" value="">-בחר סגנון מודעת לוח-</option>
-                            <option class="shlager-black font-s-14" ng-repeat="type in type" value="{{type}}">{{type}}</option>
+                        <select class="form-control" name="selectPlace"  ng-model="luach.type" ng-change="selectedType()">
+                            <option class="Spoiler-black-title font-s-16" value="">-בחר סגנון מודעת לוח-</option>
+                            <option class="shlager-black font-s-16" ng-repeat="type in type" value="{{type}}">{{type}}</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <!-- section area -->
+                <div class="checkbox-area" ng-show="luach.type">
+                        <hr class="hr">
+
+                    <div class="choose-p">
+                        <h4 class="Spoiler-Bold">בחר מדור:</h4>
+                        <h5 class="Spoiler-Regular">בחר תחת איזו כותרת ברצונך שהמודעה תופיע:</h5>
+                        <select class="form-control" name="selectSection" ng-model="luach.section">
+                            <option class="Spoiler-black-title font-s-16" value="">-בחר מדור למודעה-</option>
+                            <option class="shlager-black font-s-16" ng-repeat="section in section" value="{{section}}">{{section}}</option>
                         </select>
                     </div>
                 </div>
+
 
             </div>
 
@@ -71,10 +91,10 @@
                 <div>
                     <label for="" class="Spoiler-Regular font-s-18">נא למלא את פרטי המפרסם בכל השדות:</label>
                     <br>
-                    <input type="text" class="form-control width-25" ng-model="order.fname" placeholder="שם פרטי" required>
-                    <input type="text" class="form-control width-25" ng-model="order.lname" placeholder="שם משפחה" required>
-                    <input type="number" class="form-control width-25" ng-model="order.phone" placeholder="טלפון" required>
-                    <input type="email" class="form-control width-25" ng-model="order.email" placeholder="אימייל" required>
+                    <input type="text" class="form-control width-25" ng-model="luach.fname" maxlength="32" pattern="[A-Zא-תa-z ]{1,32}" placeholder="שם פרטי" required>
+                    <input type="text" class="form-control width-25" ng-model="luach.lname" maxlength="32" pattern="[A-Zא-תa-z ]{1,32}" placeholder="שם משפחה" required>
+                    <input type="number" class="form-control width-25" ng-model="luach.phone" placeholder="טלפון" required>
+                    <input type="email" class="form-control width-25" ng-model="luach.email" placeholder="אימייל" required>
                     <br/>
                     <button type="submit" class="btn-lg btn btn-danger padd-top-10 float-left marg-top Spoiler-Bold white-font" ng-click="orderSummary(chek)">סיכום הזמנה</button>
 

@@ -80,9 +80,10 @@
     };
 
 
+
     $scope.orderSummary = function(chek) {
         for (var i=0; i<$scope.chek.length; i++) {
-            if (!!chek[i].selected) $scope.order.type.push(chek[i].name);
+            if (!!chek[i].selected) $scope.order.shows.push(chek[i].name);
             if (chek[i].shows !==null & chek[i].shows > 0) $scope.order.shows.push({type: chek[i].name, shows: chek[i].shows});
         }
         let order = new Order($scope.order);  
