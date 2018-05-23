@@ -66,12 +66,12 @@
 
     
      $scope.order = {
-        addContent: "",
-        remarks: "",
-        type: [],
-        shows: [],
+        addContent:"",
+        remarks:"",
+        type:[],
+        shows:[],
         size:"",
-        location: "",
+        location:"",
         files: [],
         fname: "",
         lname: "",
@@ -82,10 +82,12 @@
 
 
     $scope.orderSummary = function(chek) {
+        
         for (var i=0; i<$scope.chek.length; i++) {
             if (!!chek[i].selected) $scope.order.shows.push(chek[i].name);
             if (chek[i].shows !==null & chek[i].shows > 0) $scope.order.shows.push({type: chek[i].name, shows: chek[i].shows});
         }
+
         let order = new Order($scope.order);  
         console.log(order);
         console.log(order.files.length+" files selected ... Write your Upload Code"); 

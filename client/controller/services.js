@@ -33,24 +33,27 @@
     });
 
     App.service("validate", function () {
-        
+
         this.validateForm = function (data) {
             switch (data.type) {
                 case "textarea":
-                if (data.content){
-                    if (/[^a-zA-Z0-9 א-ת$&*"'-_]/.test($(data.content).val())) {
-                        return(true);
+                    if (data.content) {
+                        if (/[^a-zA-Z0-9 א-ת$&*"'-_]/.test($(data.content).val())) {
+                            return (true);
+                        } else {
+                            return (false);
+                        }
                     } else {
-                        return(false);
+                        return (true);
                     }
-                }else{return(true);}
 
                     break;
-                    case "shows":{
-                        if (data.content){
+                case "shows":
+                    {
+                        if (data.content.length >0) {
                             for (var i = 0; i < data.content.length; i++) {
                                 let show = data.content[i];
-                                if (show.shows<1){
+                                if (show.shows < 1) {
                                     return true;
                                 } else {
                                     return false;
@@ -63,10 +66,43 @@
 
                     }
                     break;
-                    case "free":
-                    //todo
-                    return false;
-                    break;            }
+                    case "shows":
+                    {
+                        if (data.content.length >0) {
+                            for (var i = 0; i < data.content.length; i++) {
+                                let show = data.content[i];
+                                if (show.shows < 1) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                        } else {
+                            return true;
+
+                        }
+
+                    }
+                    break;
+
+                case "free":
+                    let searchWords = ["למכירה", "להשכרה", "מחיר", "במחיר סמלי", "בתשלום סמלי","sale","מכירה"];
+                    let test = false;
+                    for (i = 0; i < searchWords.length; i++) {
+                        let word = searchWords[i];
+                        var n = data.content.search(word);
+                        if (n > -1) {
+                            test = true;
+                            break;
+                        }
+                    }
+                    if (test) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                    break;
+            }
 
         }
 

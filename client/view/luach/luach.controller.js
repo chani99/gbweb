@@ -1,4 +1,4 @@
- App.controller("luachCtrl", function ($scope, validate) {
+ App.controller("luachCtrl", function ($scope, validate, UtilSrvc) {
 
      var Luach = function (luach) {
          if (luach.content) this.content = luach.content;
@@ -12,6 +12,7 @@
          if (luach.phone) this.phone = luach.phone;
      };
 
+     $scope.price = {};
 
      $scope.luach = {
          content: "",
@@ -91,28 +92,29 @@
              name: "lainyan",
              nameH: "לעניין",
              selected: "",
-             shows: ""
+             shows: "1"
          },
          {
              name: "meida",
              nameH: "מידע-לכל",
              selected: "",
-             shows: ""
+             shows: "1"
          },
          {
              name: "emtza",
              nameH: "אמצע השבוע",
              selected: "",
-             shows: ""
+             shows: "1"
          },
          {
              name: "shavua",
              nameH: "שבוע טוב",
              selected: "",
-             shows: ""
+             shows: "1"
          },
 
      ];
+
 
      $scope.type = [
          " רגיל (ללא תוספת תשלום)",
@@ -124,6 +126,7 @@
      ];
 
 
+
      $scope.orderSummary = function (chek) {
          for (var i = 0; i < $scope.chek.length; i++) {
              if (!!chek[i].selected) $scope.luach.shows.push(chek[i].name);
@@ -132,17 +135,29 @@
                  shows: chek[i].shows
              });
          }
-         let validate = orderValidate($scope.luach);
-         if (validate === true){
-             alert ("good");
+         let validate = orderValidate($scope.luach); //check validation of all fields
+         if (validate === false) {
              let luachOrder = new Luach($scope.luach);
-             console.log(luachOrder);
-         } else{
-             alert("bad");
+             if ($scope.luach.type === "מדור חינמי (אבידות/מציאות/למסירה-חינם)") {
+                 UtilSrvc.sendLuach(luachOrder, freesuccess, freeerror);
+                 console.log(luachOrder);
+             } else {
+                 //payment screen
+                 $scope.payment = true;
+             }
+         } else {
+             alert("error"); //todo
          }
 
      }
 
+     function freesuccess(res) {
+         alert('המודעה התקבלה במערכת ותפוסם בעז"ה בעיתון הקרוב')
+     }
+
+     function freeerror(res) {
+         alert("ישנה בעיה במודעה ששלחתם:" + res);
+     }
 
      function orderValidate(luach) {
          $scope.validate.content = validate.validateForm({
@@ -163,26 +178,46 @@
          });
 
          if (!luach.type) {
-             $scope.validate.type = true
+             $scope.validate.type = true;
+         } else {
+             $scope.validate.type = false;
          }
+         
+         if (!luach.section) {
+            $scope.validate.section = true;
+        } else {
+            $scope.validate.section = false;
+        }
+
          if (!luach.fname) {
              $scope.validate.fname = true
+         } else {
+             $scope.validate.fname = false;
          }
          if (!luach.lname) {
              $scope.validate.lname = true
+         } else {
+             $scope.validate.lname = false;
          }
          if (!luach.phone) {
              $scope.validate.phone = true
+         } else {
+             $scope.validate.phone = false;
          }
          if (!luach.email) {
              $scope.validate.email = true
+         } else {
+             $scope.validate.email = false;
          }
+
+
          let test = false;
 
          for (var key in $scope.validate) {
              if ($scope.validate.hasOwnProperty(key)) {
                  if ($scope.validate[key] === true) {
                      test = true;
+                     break;
                  };
              }
          }
@@ -193,15 +228,18 @@
                  type: "free",
                  content: luach.content
              });
-             if (freeLuach === true) {
+             if (freeLuach === false) {
                  alert("התוכן של המודעה אינו מתאים למדור חינמי");
                  test = true;
              }
          }
-
          return test;
 
      }
 
- });
 
+     $scope.backToLuach = function () {
+         $scope.payment = false;
+     }
+
+ });
