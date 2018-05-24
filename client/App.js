@@ -4,7 +4,8 @@
         "App.directives",
         "App.filters",
         "ngRoute",
-        "ngResource"
+        "ngResource",
+        "credit-cards"
     ]);
 
 (function() {

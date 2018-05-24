@@ -10,6 +10,12 @@
      }
   });
 
+  //filter for credit card validation
+App.filter("yesNo", function() {
+  return function(boolean) {
+      return boolean ? "Yes" : "No";
+  }
+})
   // just copy paste the example above to add more filters
 
 }());

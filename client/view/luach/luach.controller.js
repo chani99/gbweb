@@ -1,5 +1,6 @@
  App.controller("luachCtrl", function ($scope, validate, UtilSrvc) {
 
+//luach model
      var Luach = function (luach) {
          if (luach.content) this.content = luach.content;
          if (luach.remarks) this.remarks = luach.remarks;
@@ -75,7 +76,7 @@
          "למסירה"
      ];
 
-
+//if selected free kind of advert - so shows only free sections
      $scope.selectedType = function () {
          if ($scope.luach.type !== false) {
              if ($scope.luach.type === "מדור חינמי (אבידות/מציאות/למסירה-חינם)") {
@@ -87,30 +88,41 @@
 
          }
      }
+     
+     //when a papar is checked it ands a value of 1 show and when uncheked - clears shows
+     $scope.addNum = function(num,index) {  
+         if(num){
+            $scope.chek[index].shows = "" ;
+         } else {
+            $scope.chek[index].shows = 1 ;
+
+         }
+      }
+
 
      $scope.chek = [{
              name: "lainyan",
              nameH: "לעניין",
              selected: "",
-             shows: "1"
+             shows: ""
          },
          {
              name: "meida",
              nameH: "מידע-לכל",
              selected: "",
-             shows: "1"
+             shows: ""
          },
          {
              name: "emtza",
              nameH: "אמצע השבוע",
              selected: "",
-             shows: "1"
+             shows: ""
          },
          {
              name: "shavua",
              nameH: "שבוע טוב",
              selected: "",
-             shows: "1"
+             shows: ""
          },
 
      ];

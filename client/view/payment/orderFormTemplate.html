@@ -1,75 +1,45 @@
-
- <h4 class="">Payment:</h4>
-<form name="ccForm">
-    <div class="form-group">
-        <label for="card-number">Card Number</label>
-        <input type="text" class="form-control" id="cardNumber" cc-number cc-eager-type name="ccNumber" ng-model="card.number">
+<form name="ccForm ">
+    <div class="form-group Spoiler-Regular float-right">
+        <label for="card-number">מספר כרטיס</label>
+        <div class="inline-block">
+            <input type="text" class="form-control width-65 " id="cardNumber" cc-number cc-eager-type name="ccNumber" ng-model="card.number">
+            <h2 ng-show="ccForm.ccNumber.$valid" class="grenn-font inline">&#9989 </h2>
+        </div>
     </div>
-    <table class="table">
-        <tr>
-            <th>Valid</th>
-            <th>Eager Type</th>
-            <th>Type</th>
-        </tr>
-        <tr>
-            <td>
-                {{ccForm.ccNumber.$valid | yesNo}}
-            </td>
-            <td>
-                {{ccForm.ccNumber.$ccEagerType || 'Unknown'}}
-            </td>
-            <td>
-                {{ccForm.ccNumber.$ccType || 'Unknown'}}
-            </td>
-        </tr>
-    </table>
+    </br>
+    <span class="inline-block">סוג כרטיס: {{ccForm.ccNumber.$ccType || 'לא ידוע'}} </span>
+    <hr>
+
     <div class="form-group">
         <label for="cvc">CVC</label>
-        <input type="text" class="form-control" id="cvc" cc-cvc cc-type="ccForm.ccNumber.$ccType" name="ccCvc" ng-model="card.cvc">
+        </br>
+        <input type="text" class="form-control width-25" id="cvc" cc-cvc cc-type="ccForm.ccNumber.$ccType" name="ccCvc" ng-model="card.cvc">
+        <h2 ng-show="ccForm.ccCvc.$valid" class="grenn-font inline">&#9989 </h2>
     </div>
-    <table class="table">
-        <tr>
-            <th>Valid</th>
-        </tr>
-        <tr>
-            <td>
-                {{ccForm.ccCvc.$valid | yesNo}}
-            </td>
-        </tr>
-    </table>
+    <!-- <span>חוקי: {{ccForm.ccCvc.$valid | yesNo}}</span> -->
+    <hr>
+
     <div class="form-group">
-        <label for="card-number">Expiration</label>
-        <div class="row" cc-exp>
-            <div class="col-xs-3">
-                <input placeholder="MM" type="text" class="form-control" cc-exp-month name="ccExpMonth" ng-model="card.expiration.month">
-            </div>
-            <div class="col-xs-3">
-                <input placeholder="YY" type="text" class="form-control" cc-exp-year name="ccExpYear" ng-model="card.expiration.year">
+        <label for="card-number">תאריך תפוגה:</label>
+        </br>
+        <div cc-exp>
+            <div>
+
+                <input placeholder="YY" type="text" class="form-control width-25 " cc-exp-year name="ccExpYear" ng-model="card.expiration.year">
+                <input placeholder="MM" type="text" class="form-control width-25" cc-exp-month name="ccExpMonth" ng-model="card.expiration.month">
+                <h2 ng-show="!ccForm.$error.ccExp" class="grenn-font inline">&#9989 </h2>
+
             </div>
         </div>
     </div>
-    <table class="table">
-        <tr>
-            <th>Valid Month</th>
-            <th>Valid Year</th>
-            <th>Valid Pair</th>
-        </tr>
-        <tr>
-            <td>
-                {{ccForm.ccExpMonth.$valid | yesNo}}
-            </td>
-            <td>
-                {{ccForm.ccExpYear.$valid | yesNo}}
-            </td>
-            <td>
-                {{!ccForm.$error.ccExp | yesNo}}
-            </td>
-        </tr>
-    </table>
-    <div class="bg-danger" ng-show="formValidate.credit"> enter a valid credit card </div>
+    </br>
+    <div class="bg-danger" ng-show="formValidate.credit"> נא להזין כרטיס אשראי חוקי </div>
+    </br>
 
+    <hr>
 
-    <button class="btn btn-lg orange float-right" ng-click="orderButton()" ng-disabled="buttonDisabled">ORDER</button>
+    <button class="btn-lg btn btn-danger padd-top-10 float-left marg-top marg-bottom Spoiler-Bold white-font" ng-click="orderButton()"
+        ng-disabled="buttonDisabled">הזמן</button>
     <br>
 
 </form>
