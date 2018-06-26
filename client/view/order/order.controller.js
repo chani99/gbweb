@@ -1,19 +1,4 @@
- App.controller("OrderCtrl", function($scope) {
-
-    var Order = function(order){
-        if(order.addContent) this.addContent = order.addContent;
-        if(order.remarks) this.remarks = order.remarks;
-        if(order.type) this.type = order.type;
-        if(order.shows) this.shows = order.shows;
-        if(order.size) this.size = order.size;
-        if(order.location) this.location = order.location;
-        if(order.files) this.files = order.files;
-        if(order.fname) this.fname = order.fname;
-        if(order.lname) this.lname = order.lname;
-        if(order.email) this.email = order.email;
-        if(order.phone) this.phone = order.phone;
-     };
-     
+ App.controller("OrderCtrl", function ($scope, UtilSrvc, modelService) {
      $scope.chek = [{
              name: "lainyan",
              nameH: "לעניין",
@@ -64,45 +49,67 @@
          "דבל אמצע",
      ];
 
-    
+
      $scope.order = {
-        addContent:"",
-        remarks:"",
-        type:[],
-        shows:[],
-        size:"",
-        location:"",
-        files: [],
-        fname: "",
-        lname: "",
-        email: "",
-        phone: ""
-    };
+         addContent: "",
+         remarks: "",
+         type: [],
+         shows: [],
+         size: "",
+         location: "",
+         files: [],
+         fname: "",
+         lname: "",
+         email: "",
+         phone: ""
+     };
+
+     //when a papar is checked it ands a value of 1 show and when uncheked - clears shows
+     $scope.addNum = function (num, index) {
+         if (num) {
+             $scope.chek[index].shows = "";
+         } else {
+             $scope.chek[index].shows = 1;
+
+         }
+     }
 
 
+     $scope.orderSummary = function (chek) {
 
-    $scope.orderSummary = function(chek) {
-        
-        for (var i=0; i<$scope.chek.length; i++) {
-            if (!!chek[i].selected) $scope.order.shows.push(chek[i].name);
-            if (chek[i].shows !==null & chek[i].shows > 0) $scope.order.shows.push({type: chek[i].name, shows: chek[i].shows});
-        }
-
-        let order = new Order($scope.order);  
-        console.log(order);
-        console.log(order.files.length+" files selected ... Write your Upload Code"); 
-    }
+         for (var i = 0; i < $scope.chek.length; i++) {
+             if (!!chek[i].selected) $scope.order.shows.push(chek[i].name);
+             if (chek[i].shows !== null & chek[i].shows > 0) $scope.order.shows.push({
+                 type: chek[i].name,
+                 shows: chek[i].shows
+             });
+         }
 
 
+         let order = new modelService.OrderModel($scope.order);
+         console.log(order.files.length + " files selected ... Write your Upload Code");
+         console.log(order.fiels);
+         UtilSrvc.uploadOrder(order, order.files, "order", sucsses, error);
+
+     }
 
 
-      $scope.getSize = function(size) {
-          $scope.order.size = size;
-      };
+     function sucsses(res) {
+         alert("ההודעה נקלטה במערכת בהצלחה, ותטופל בהקדם");
+     }
 
-      $scope.getLocation = function(size) {
-        $scope.order.location = location;
-    };
+     function error(res) {
+         alert(res);
+     }
+
+
+     $scope.getSize = function (size) {
+         $scope.order.size = size;
+     };
+
+     $scope.getLocation = function (size) {
+         $scope.order.location = location;
+     };
 
 
 

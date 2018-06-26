@@ -69,3 +69,7 @@ footer {
 .padd-bottom {
   padding-bottom: 20px;
 }
+.submitted .ng-invalid,
+.submitted .ng-pristine {
+  border: 1px solid red;
+}

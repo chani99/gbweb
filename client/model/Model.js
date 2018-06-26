@@ -1,31 +1,34 @@
-(function() {
 
-  "use strict";
+	"use strict";
 
-  var App = angular.module("App.services",[]);
+	App.service('modelService', function () {
 
-  App.service('Model', function() {
-  	this.getLinks = function() {
-  		return [{
-  				id: 1,
-  				title: 'Item A'
-  			}, {
-  				id: 2,
-  				title: 'Item B'
-  			}, {
-  				id: 3,
-  				title: 'Item C'
-  			}, {
-  				id: 4,
-  				title: 'Item D'
-  			}, {
-  				id: 5,
-  				title: 'Item E'
-  			}, {
-  				id: 6,
-  				title: 'Item F'
-  			}
-  	 ]};
-  });
+		this.ContactModel = function (data) {
+			if (data.fname) this.fname = (data.fname);
+			if (data.lname) this.lname = (data.lname);
+			if (data.email) this.email = (data.email);
+			if (data.phone) this.phone = (data.phone);
+			if (data.content) this.content = (data.content);
+		}
 
-}());
+
+		
+		this.OrderModel = function(order){
+			if(order.addContent) this.addContent = order.addContent;
+			if(order.remarks) this.remarks = order.remarks;
+			if(order.type) this.type = order.type;
+			if(order.shows) this.shows = order.shows;
+			if(order.size) this.size = order.size;
+			if(order.location) this.location = order.location;
+			if(order.files) this.files = order.files;
+			if(order.fname) this.fname = order.fname;
+			if(order.lname) this.lname = order.lname;
+			if(order.email) this.email = order.email;
+			if(order.phone) this.phone = order.phone;
+		 };
+		 
+	
+	});
+
+
+

@@ -1,9 +1,9 @@
 body {
-  overflow: hidden;
+  overflow: auto;
   background-color: #fcfcfc;
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: auto;
 }
 .magazine-viewport .container {
   position: relative;
@@ -339,16 +339,16 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-areas: "side paper paper paper paper";
+  grid-template-areas: "paper" "side";
 }
 .side {
   grid-area: side;
   padding-top: 22px;
+  padding-bottom: 22px;
   padding-right: 8%;
-  padding-left: 13%;
-  overflow: scroll;
+  padding-left: 8%;
   background-color: #d4d4d4;
+  overflow: auto;
 }
 .paper {
   grid-area: paper;
@@ -359,5 +359,4 @@ body {
   display: inline-block;
   padding-top: 2%;
   height: auto;
-  overflow: hidden;
 }

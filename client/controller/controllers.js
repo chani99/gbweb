@@ -27,7 +27,7 @@
         //modal product popup function
         $scope.choosePaper = function (paper) {
             var dialogInst = $modal.open({
-                templateUrl: "../view/popups/popup" + paper + ".html",
+                templateUrl: "./public/view/popups/popup" + paper + ".html",
                 controller: "DialogInstCtrl",
                 size: "lg",
                 resolve: {
@@ -36,14 +36,6 @@
                     }
                 }
             });
-            // dialogInst.result.then(function(item) {
-            //     if (item.qty > 0) {
-            // alert(JSON.stringify(item));
-            //         appService.updateCart("cart/addToCart", checkIflogedin.member.userName, item, submitSucsses, submitError);
-            //     }
-            // }, function() {
-            //     $log.info("Modal dismissed at: " + new Date());
-            // });
         };
 
 
@@ -66,6 +58,7 @@
     App.controller("flipbook", function ($scope, UtilSrvc, $routeParams, $location, $sce) {
         let type = $routeParams.k;
         let num = $routeParams.n;
+        
         // $scope.source = 'http://localhost:8081/public/pdf-flipbook-master/?num=' + num + "&folder=" + type;
         $scope.source = 'http://localhost:8081/public/turnjs4/samples/magazine/?num=' + num + "&folder=" + type;
 
@@ -138,16 +131,11 @@
                 },
             ];
 
-            ///timeout for select
-            // $timeout(function() {
-            //     $('#singleSelect').selectpicker({
-            //         style: 'btn-default btn-md',
-            //         size: 10
-
-            //     });
-            // });
 
         }
+
+
+
 
         function onError(res) {
             console.log(res);
@@ -160,7 +148,7 @@
 
 
 
-    App.controller("contactform", function ($scope, UtilSrvc) {
+    App.controller("contactform", function ($scope, UtilSrvc, modelService) {
 
 
         $scope.contact = {
@@ -173,9 +161,19 @@
 
 
         $scope.contactSubmit = function () {
-            console.log($scope.contact);
-            alert($scope.contact.fname + "\nההודעה נשלחה בהצלחה ותטופל בהקדם");
+            let content = new modelService.ContactModel($scope.contact);
+            console.log(content);
+            UtilSrvc.sendData(content, "contact", sucsses, error);
+
         }
+        function sucsses(res){
+            alert("ההודעה נקלטה במערכת בהצלחה, ותטופל בהקדם");
+        }
+
+        function error(res){
+            alert(res);
+        }
+
 
 
     });

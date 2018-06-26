@@ -1,48 +1,49 @@
-var express = require('express');
-var bodyParser = require("body-parser");
-var fs = require('fs');
+var express = require("express"),
+    app = express(),
+    // mongoose = require("mongoose"),
+    path = require("path"),
+    bodyParser = require("body-parser"),
+    port = 8081,
+    favicon = require("serve-favicon"),
+    mainRoute = require("../api/mainApi"),
+    fileUpload = require("express-fileupload"),
+    cookieParser = require("cookie-parser"),
+    // upload = multer({ dest: 'uploads/' }),
+    session = require("express-session");
 
-var paperCtrl = require('../controllers/paperCtrl');
-var app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-// app.use(express.static('../../client'));
-app.use(express.static('./client'));
+// var fs = require('fs');
+
+// ___________________________________________
+
+app.use(express.static('../../client'));
+// app.use(express.static('./gbweb/client'));
 app.use(express.static('../node_modules'));
 // app.use('/public', express.static('../../client'));
-app.use('/public', express.static('./client'));
+app.use('/public', express.static('../../client'));
+app.use(favicon(path.join(__dirname, "../../client/images/favicon.ico")));
+// app.use(express.static(path.join(__dirname, "./app/node_modules")));
+app.use("/public", express.static(path.join(__dirname, "../../client")));
+// app.use("/client", express.static("./client"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(fileUpload());
+app.use(cookieParser());
+app.use(session({
+    secret: "TKRv0IJs=HYqrvagQ#&!F!%V]Ww/4KiVs$s,<<MX",
+    resave: true,
+    saveUninitialized: true
+}));
 
 
-app.get('/', function(req, res) {
-    // fs.readFile('../../client/index.html', 'utf8', function(err, data) {
-    fs.readFile('./client/index.html', 'utf8', function(err, data) {
-        if (err) {
-            console.log(err);
-        }
-        console.log('i am basic');
-        res.end(data)
-    });
-
-});
-
-app.get('/book', function(req, res) {
-    paperCtrl.getlastpaper(req.query.params, function(err, num) {
-        if (err) {
-            console.log(err);
-        }
-        console.log(`last ${req.query.params} is ${JSON.stringify(num)}`);
-        res.end(JSON.stringify(num));
-
-
-
-    });
-
-    console.log('book was enterd');
-
-});
-
-
-// Start the server
-var server = app.listen(8081, function() {
-    console.log('listening to 8081')
+app.listen(port, function () {
+    console.log(`App listening on port ${port}`);
 })
+
+//main router index
+app.use(mainRoute);
+
+// _________________________________________________________________
+
+

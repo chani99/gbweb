@@ -8,6 +8,26 @@
 
     // here is a declaration of simple utility function to know if an given param is a String.
     App.service('UtilSrvc', function ($http) {
+        //build form data function
+        function buildFormData(product, productImage) {
+            var formData = new FormData();
+
+            for (var key in product) {
+                if (product.hasOwnProperty(key)) {
+                    formData.append(key, product[key] === undefined ? "value-from-client-is-undefined" : product[key]);
+                }
+            }
+            // formData.append("userName", userName)
+            if ($.isEmptyObject(productImage) == false) {
+                let images = [];
+                for (var i = 0; i < productImage.length; i++) {
+                    images.push(productImage[i]._file);
+                }
+                formData.append("productImage", images);
+                return formData;
+            }
+
+        }
 
         this.getValuesFromServer = function (params, path, onSuccess, onError) {
             $http({
@@ -30,7 +50,36 @@
                 }
             }).then(onSuccess, onError);
         }
+
+        //send costumers contant mesege to server
+        //http POST
+        this.sendData = function (data, path, onSuccess, onError) {
+            $http({
+                url: "http://localhost:8081/" + path,
+                method: "POST",
+                data: data
+
+
+            }).then(onSuccess, onError);
+        }
+
+        //http POST for inserting data and uploading files
+        this.uploadOrder = function (order, orderImage, path, success, error) { //
+            var formData = buildFormData(order, orderImage);
+            $http.post("http://localhost:8081/" + path, formData, {
+                transformRequest: angular.identity,
+                headers: {
+                    "Content-Type": undefined
+                }
+
+            }).then(success, error);
+
+        }
+
+
     });
+
+
 
     App.service("validate", function () {
 
@@ -50,7 +99,7 @@
                     break;
                 case "shows":
                     {
-                        if (data.content.length >0) {
+                        if (data.content.length > 0) {
                             for (var i = 0; i < data.content.length; i++) {
                                 let show = data.content[i];
                                 if (show.shows < 1) {
@@ -66,9 +115,9 @@
 
                     }
                     break;
-                    case "shows":
+                case "shows":
                     {
-                        if (data.content.length >0) {
+                        if (data.content.length > 0) {
                             for (var i = 0; i < data.content.length; i++) {
                                 let show = data.content[i];
                                 if (show.shows < 1) {
@@ -86,7 +135,7 @@
                     break;
 
                 case "free":
-                    let searchWords = ["למכירה", "להשכרה", "מחיר", "במחיר סמלי", "בתשלום סמלי","sale","מכירה"];
+                    let searchWords = ["למכירה", "להשכרה", "מחיר", "במחיר סמלי", "בתשלום סמלי", "sale", "מכירה"];
                     let test = false;
                     for (i = 0; i < searchWords.length; i++) {
                         let word = searchWords[i];
