@@ -4,7 +4,9 @@ let tableName = "order";
 var nodemailer = require('nodemailer');
 var express = require('express');
 
-
+//////////להכין לולאה שעוברת על הקבצים ושומרת כל אחד בנפרד בתיקיה נפרדת לכל לקוח...
+// ואז לשמור נתונים בSQL
+// ואז לשלוח מייל עם הכל...
 function insertNewOrderToDB(req, callback) {
     if (req.files) { //check if the client sent a file, and if - save it and then update
         saveFile(req.files, function(err, imageNewName) {

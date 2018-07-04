@@ -17,17 +17,29 @@
                     formData.append(key, product[key] === undefined ? "value-from-client-is-undefined" : product[key]);
                 }
             }
-            // formData.append("userName", userName)
             if ($.isEmptyObject(productImage) == false) {
-                let images = [];
                 for (var i = 0; i < productImage.length; i++) {
-                    images.push(productImage[i]._file);
+                    formData.append('files[]', productImage[i]._file, productImage[i].name, );
                 }
-                formData.append("productImage", images);
-                return formData;
             }
+            return formData;
+
 
         }
+
+
+
+        // formData.append("userName", userName)
+        // if ($.isEmptyObject(productImage) == false) {
+        //     let images = [];
+        //     for (var i = 0; i < productImage.length; i++) {
+        //         images.push(productImage[i]._file);
+        //     }
+        //     formData.append("uploads", images);
+        //     return formData;
+        // }
+
+
 
         this.getValuesFromServer = function (params, path, onSuccess, onError) {
             $http({

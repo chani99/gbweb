@@ -2,7 +2,7 @@ let paperCtrl = require('../controllers/paperCtrl');
 
 var express = require("express");
 var router = express.Router();
-let     path = require("path");
+let path = require("path");
 
 
 router.use("/contact", require("./contactApi.js"));

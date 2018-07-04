@@ -1,9 +1,9 @@
 var express = require("express"),
-    app = express(),
     // mongoose = require("mongoose"),
     path = require("path"),
-    bodyParser = require("body-parser"),
+    app = express(),
     port = 8081,
+    bodyParser = require("body-parser"),
     favicon = require("serve-favicon"),
     mainRoute = require("../api/mainApi"),
     fileUpload = require("express-fileupload"),
@@ -24,6 +24,13 @@ app.use(favicon(path.join(__dirname, "../../client/images/favicon.ico")));
 // app.use(express.static(path.join(__dirname, "./app/node_modules")));
 app.use("/public", express.static(path.join(__dirname, "../../client")));
 // app.use("/client", express.static("./client"));
+
+
+
+
+
+ //////////////////// 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
