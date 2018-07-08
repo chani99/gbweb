@@ -3,54 +3,57 @@ let rows = "`fname`, `lname`, `phone`, `date`, `email`, `content`";
 let tableName = "order";
 var nodemailer = require('nodemailer');
 var express = require('express');
+var fs = require('fs');
+var mkdirp = require('mkdirp');
+
 
 //////////להכין לולאה שעוברת על הקבצים ושומרת כל אחד בנפרד בתיקיה נפרדת לכל לקוח...
 // ואז לשמור נתונים בSQL
 // ואז לשלוח מייל עם הכל...
 function insertNewOrderToDB(req, callback) {
     if (req.files) { //check if the client sent a file, and if - save it and then update
-        saveFile(req.files, function(err, imageNewName) {
+        saveFile(req.files['files[]'], function (err, imagesFolder) {
             if (err) {
                 callback(err);
             } else {
                 let order = req.body;
-                order.image = imageNewName;
-                saveOrderInDB(updateProduct, function(err, product) {
+                order.images = imagesFolder;
+                saveOrderInDB(order, function (err, wasdone) {
                     if (err) callback(err);
-                    else callback(null, product)
+                    else callback(null, wasdone)
                 });
             }
         });
 
     } else { //otherwise just update
-        product(req.body, function(err, product) {
+        saveOrderInDB(req.body, function (err, wasdone) {
             if (err) callback(err);
-            else callback(null, product)
+            else callback(null, wasdone)
         });
     }
 }
 
 
 //saves order in db
-function saveInDB(order, callback) {
-    organizeDataForDB(order, function(data) {
+function saveOrderInDB(order, callback) {
+    organizeDataForDB(order, function (data) {
         bl.dataFromCostumer.saveContactData(tableName, rows, values, function (err, done) {
             if (err) {
                 callback(err);
                 console.log(err);
-    
+
             } else {
                 sendAmail(data, date, function (emailerr, emailsuc) {
                     if (emailerr) {
                         callback(emailerr);
                         console.log(emailerr);
-    
+
                     } else {
                         callback(null, emailsuc);
-    
+
                     }
                 })
-    
+
             }
         });
 
@@ -89,26 +92,51 @@ function sendAmail(data, date, callback) {
 
 }
 
-function saveFile(file, callback) {
-    let sampleFile = file.productImage;
-    let filename = sampleFile.name;
-    sampleFile.mv(`client/uploads/${filename}`, function(err) {
-        if (err) {
-            callback("status(500).send(err)");
-        } else {
-            callback(null, filename);
 
-        }
-    })
+function saveFile(file, callback) {
+    let date = Date.now(); //name for a folder for images
+    let error = false; //check if were errors
+
+    var dir = './server/uploads/' + date; 
+    mkdirp(dir , function(err) { 
+
+        // path exists unless there was an error
+    
+    });
+    
+    // sampleFile.mv(`client/uploads/${filename}`, function (err) {
+    for (var i = 0; i < file.length; i++) {
+        let sampleFile = file[i];
+        let filename = sampleFile.name;
+
+        sampleFile.mv(dir+ '/' + filename, function (err) {
+            if (err) error ="status(500).send(err)";
+
+        });
+    }
+    if (error) {
+        callback("status(500).send(err)");
+
+    } else {
+        callback(null, date);
+    }
+
 
 }
 
-let organizeDataForDB = function(data, callback) {
+let organizeDataForDB = function (data, callback) {
     var order = {};
-    if (data.name) order.name = data.name;
-    if (data.category) order.category_id = data.category;
-    if (data.price) order.price = data.price;
-    if (data.image) order.image = data.image;
+    if (data.fname) order.fname = data.fname;
+    if (data.lname) order.lname = data.lname;
+    if (data.email) order.email = data.email;
+    if (data.phone) order.phone = data.phone;
+    if (data.location) order.location = data.location;
+    if (data.addContent) order.content = data.addContent;
+    if (data.remarks) order.remarks = data.remarks;
+    if (data.size) order.size = data.size;
+    if(data.shows) order.shows = data.shows;
+    if(data.type) order.type = data.type;
+    if(data.images) order.images = data.images;
     callback(order);
 
 }
