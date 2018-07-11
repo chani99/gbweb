@@ -1,9 +1,9 @@
 var contactCtrl = require('../controllers/order.controller.js');
 var express = require('express');
-let  multer = require('multer');
+let multer = require('multer');
 let app = express();
 var router = express.Router();
-let     fileUpload = require("express-fileupload");
+let fileUpload = require("express-fileupload");
 let data;
 let path = require("path");
 

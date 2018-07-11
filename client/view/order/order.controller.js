@@ -1,24 +1,24 @@
- App.controller("OrderCtrl", function ($scope, UtilSrvc, modelService) {
+ App.controller("OrderCtrl", function ($scope, UtilSrvc, modelService, $location) {
      $scope.chek = [{
-             name: "lainyan",
+             name: "לעניין",
              nameH: "לעניין",
              selected: "",
              shows: ""
          },
          {
-             name: "meida",
+             name: "מידע לכל",
              nameH: "מידע-לכל",
              selected: "",
              shows: ""
          },
          {
-             name: "emtza",
+             name: "אמצע השבוע",
              nameH: "אמצע השבוע",
              selected: "",
              shows: ""
          },
          {
-             name: "shavua",
+             name: "שבוע טוב",
              nameH: "שבוע טוב",
              selected: "",
              shows: ""
@@ -53,7 +53,6 @@
      $scope.order = {
          addContent: "",
          remarks: "",
-         type: [],
          shows: [],
          size: "",
          location: "",
@@ -76,14 +75,13 @@
 
 
      $scope.orderSummary = function (chek) {
-
          for (var i = 0; i < $scope.chek.length; i++) {
-             if (!!chek[i].selected) $scope.order.shows.push(chek[i].name);
              if (chek[i].shows !== null & chek[i].shows > 0) $scope.order.shows.push({
                  type: chek[i].name,
                  shows: chek[i].shows
              });
          }
+         $scope.order.shows = JSON.stringify($scope.order.shows);
 
 
          let order = new modelService.OrderModel($scope.order);
@@ -95,7 +93,22 @@
 
 
      function sucsses(res) {
+
+         $scope.order = {
+             addContent: "",
+             remarks: "",
+             shows: [],
+             size: "",
+             location: "",
+             files: [],
+             fname: "",
+             lname: "",
+             email: "",
+             phone: ""
+         };
          alert("ההודעה נקלטה במערכת בהצלחה, ותטופל בהקדם");
+
+         $window.location.href = `#/home`;
      }
 
      function error(res) {
