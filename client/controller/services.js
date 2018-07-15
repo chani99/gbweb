@@ -127,20 +127,14 @@
 
                     }
                     break;
-                case "shows":
+                case "files":
                     {
-                        if (data.content.length > 0) {
-                            for (var i = 0; i < data.content.length; i++) {
-                                let show = data.content[i];
-                                if (show.shows < 1) {
-                                    return true;
-                                } else {
-                                    return false;
-                                }
-                            }
-                        } else {
+                        ///todo - validate files attached
+                        if (data.content) {
                             return true;
 
+                        } else {
+                            return false
                         }
 
                     }
