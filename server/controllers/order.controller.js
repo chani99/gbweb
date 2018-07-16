@@ -36,6 +36,7 @@ function insertNewOrderToDB(req, callback) {
 //saves order in db
 function saveOrderInDB(order, files, callback) {
     order.shows = stringShow(order.shows);
+    
 
     organizeDataForDB(order, function (data) {
         // if(!data.images) data.images = "none";
@@ -151,7 +152,6 @@ function saveFile(file, callback) {
     for (var i = 0; i < file.length; i++) {
         let sampleFile = file[i];
         let filename = sampleFile.name;
-
         sampleFile.mv(dir + '/' + filename, function (err) {
             if (err) error = "status(500).send(err)";
 

@@ -129,15 +129,36 @@
                     break;
                 case "files":
                     {
-                        ///todo - validate files attached
-                        if (data.content) {
-                            return true;
 
-                        } else {
-                            return false
+                        //validate for invalid files
+                        var fillesArr = data.content;
+                        var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png", ".pdf", ".doc", ".docx", ".ai", ".eps", ".psd", ".xls"];
+                        let validFile = false;
+                        for (var i = 0; i < fillesArr.length; i++) {
+                            var oneFile = fillesArr[i];
+                            var sFileName = oneFile.name;
+                            let validSFile = false;
+                            if (sFileName.length > 0) {
+                                for (var j = 0; j < _validFileExtensions.length; j++) {
+                                    var sCurExtension = _validFileExtensions[j];
+                                    let fileEnding = sFileName.substr(sFileName.length - sCurExtension.length);
+                                    if (fileEnding.toLowerCase() === sCurExtension.toLowerCase()) {
+                                        validSFile = true;
+                                        break;
+                                    }
+                                }
+
+                            }
+                            if (validSFile !== true){
+                                validFile = true;
+                                break;
+                            }
+
                         }
-
+                        return validFile;
                     }
+
+
                     break;
 
                 case "free":
