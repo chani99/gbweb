@@ -90,6 +90,7 @@
 
 
      $scope.orderSummary = function (chek) {
+        $scope.order.shows=[];
          for (var i = 0; i < $scope.chek.length; i++) {
              if (chek[i].shows !== null & chek[i].shows > 0) $scope.order.shows.push({
                  type: chek[i].name,
@@ -125,7 +126,7 @@
              email: "",
              phone: ""
          };
-         $scope.spinner = false;
+         $scope.spinner = true;
          $window.location.href = `#/home`;
          $window.scrollTo(0, 0);
 
@@ -134,7 +135,9 @@
      }
 
      function error(res) {
-         alert(res);
+        $scope.spinner = true;
+        $scope.checked = false;
+        alert(JSON.stringify(res));
      }
 
 
