@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'Spoiler-Regular';
-  src: url('../../public/fonts/Spoiler-Regular.woff') format('woff'), url('../fonts/Spoiler-Regular.ttf') format('truetype');
+  src: url('../../fonts/Spoiler-Regular.woff') format('woff'), url('../fonts/Spoiler-Regular.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Spoiler-Bold';
-  src: url('../../public/fonts/Spoiler-Bold.woff') format('woff'), url('../fonts/Spoiler-Bold.ttf') format('truetype');
+  src: url('../../fonts/Spoiler-Bold.woff') format('woff'), url('../fonts/Spoiler-Bold.ttf') format('truetype');
 }
 .white-font {
   color: white;
@@ -95,4 +95,13 @@
 }
 .red {
   color: #ec1f27;
+}
+.line-height-70 {
+  line-height: 70%;
+}
+.line-height-50 {
+  line-height: 50%;
+}
+.line-height-150 {
+  line-height: 150%;
 }

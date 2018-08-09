@@ -1,6 +1,6 @@
  App.controller("luachCtrl", function ($scope, validate, UtilSrvc) {
 
-//luach model
+     //luach model
      var Luach = function (luach) {
          if (luach.content) this.content = luach.content;
          if (luach.remarks) this.remarks = luach.remarks;
@@ -24,7 +24,8 @@
          fname: "",
          lname: "",
          email: "",
-         phone: ""
+         phone: "",
+         heShows: ""
      };
 
 
@@ -76,7 +77,7 @@
          "למסירה"
      ];
 
-//if selected free kind of advert - so shows only free sections
+     //if selected free kind of advert - so shows only free sections
      $scope.selectedType = function () {
          if ($scope.luach.type !== false) {
              if ($scope.luach.type === "מדור חינמי (אבידות/מציאות/למסירה-חינם)") {
@@ -88,21 +89,21 @@
 
          }
      }
-     
+
      //when a papar is checked it ands a value of 1 show and when uncheked - clears shows
-     $scope.addNum = function(num,index) {  
-         if(num){
-            $scope.chek[index].shows = "" ;
+     $scope.addNum = function (num, index) {
+         if (num) {
+             $scope.chek[index].shows = "";
          } else {
-            $scope.chek[index].shows = 1 ;
+             $scope.chek[index].shows = 1;
 
          }
-      }
+     }
 
 
      $scope.chek = [{
              name: "lainyan",
-             nameH: "לעניין",
+             nameH: " לעניין ירושלים",
              selected: "",
              shows: ""
          },
@@ -119,11 +120,17 @@
              shows: ""
          },
          {
-             name: "shavua",
-             nameH: "שבוע טוב",
-             selected: "",
-             shows: ""
-         },
+            name: "shavua",
+            nameH: "שבוע טוב",
+            selected: "",
+            shows: ""
+        },        {
+            name: "lainyanBB",
+            nameH: "לעניין בני ברק",
+            selected: "",
+            shows: ""
+        }
+         
 
      ];
 
@@ -132,7 +139,6 @@
          " רגיל (ללא תוספת תשלום)",
          "מודגש",
          "נגטיב",
-         "מדור פרטי (פתיחת מדור אישי שלא קיים)",
          "מדור חינמי (אבידות/מציאות/למסירה-חינם)"
 
      ];
@@ -140,13 +146,26 @@
 
 
      $scope.orderSummary = function (chek) {
+         $scope.luach.shows = [];
+         $scope.luach.heShows ="";
+         //get shows 
+        //  if ($scope.chek.length > 0) $scope.luach.heShows = "<div>";
          for (var i = 0; i < $scope.chek.length; i++) {
-             if (!!chek[i].selected) $scope.luach.shows.push(chek[i].name);
-             if (chek[i].shows !== null & chek[i].shows > 0) $scope.luach.shows.push({
-                 type: chek[i].name,
-                 shows: chek[i].shows
-             });
+             //  if (!!chek[i].selected) $scope.luach.shows.push(chek[i].name);
+             if (chek[i].shows !== null & chek[i].shows > 0) {
+                 $scope.luach.shows.push({
+                     type: chek[i].name,
+                     shows: chek[i].shows
+                 });
+                 $scope.luach.heShows += "<b>שם עיתון: </b>'" + chek[i].nameH +"',  <b> מספר מופעים: </b>" +chek[i].shows+  ".\n" ;
+                 console.log($scope.luach.heShows);
+             }
          }
+        //  if ($scope.chek.length > 0) $scope.luach.heShows += "</div>";
+
+
+
+
          let validate = orderValidate($scope.luach); //check validation of all fields
          if (validate === false) {
              let luachOrder = new Luach($scope.luach);
@@ -194,12 +213,12 @@
          } else {
              $scope.validate.type = false;
          }
-         
+
          if (!luach.section) {
-            $scope.validate.section = true;
-        } else {
-            $scope.validate.section = false;
-        }
+             $scope.validate.section = true;
+         } else {
+             $scope.validate.section = false;
+         }
 
          if (!luach.fname) {
              $scope.validate.fname = true

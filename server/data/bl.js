@@ -12,7 +12,9 @@ function getlastpapaer(tablename, callback) {
         union
         (SELECT  id, date, hebrew_date FROM shavua order by id desc limit 1)
         UNION
-        (SELECT  id, date, hebrew_date FROM emtza order by id desc limit 1)`,
+        (SELECT  id, date, hebrew_date FROM emtza order by id desc limit 1)
+        UNION
+        (SELECT  id, date, hebrew_date FROM bb order by id desc limit 1)`,
         function (err, row) {
             if (err) {
                 callback(err);

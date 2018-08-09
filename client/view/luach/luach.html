@@ -12,12 +12,19 @@
             </h2>
             <h4 class="Spoiler-Bold">
                 לפרסום ב'לעניין' - עד 12 מילים
-                <br> לפרסום ב'שבוע טוב', 'אמצע השבוע', או 'מידע לכל - עד 10 מילים
-            </h4>
-            <h5 class="Spoiler-Regular">
-                מלאו בתיבה זאת את המידע שאתם רוצים שיופיע בפרסום:
+                <br> לפרסום ב'שבוע טוב', 'אמצע השבוע', או 'מידע לכל - עד 10 מילים,
+                <br> כל מילה נוספת - בתוספת תשלום - כפי שמפורט במחירון.
+                <br> _____________________________________________________
 
-            </h5>
+            </h4>
+            <br>
+            <h3 class="Spoiler-Bold red-font height-70">
+                מלאו בתיבה זאת את המידע שאתם רוצים שיופיע בפרסום:
+                <p class="Spoiler-Bold black-font font-s-18 height-70">
+                    שימו לב! יש למלא בתיבה זו גם טלפון וכו' שאתם רוצים שיופיע במודעה,
+                    <br> פרטי המפרסם בהמשך, הם עבור המערכת בלבד, ולא יפורסמו במודעה.
+                </p>
+            </h3>
 
             <textarea class="form-control marg-top" ng-model="luach.content" placeholder="תוכן מודעת לוח" vlaue="{{luach.content}}" required></textarea>
             <h4>
@@ -33,7 +40,10 @@
             <div class="form-group p-type">
 
                 <a href="#/luachPrices" class="Spoiler-Bold red text-left">
-                    <h4>לצפיה במחירון לוח - הקש כאן</h4>
+                    <h4 class="Spoiler-Bold font-s-20 red-font">
+                        <a href="./public/images/luach.pdf">לצפיה במחירון לוח - הקש כאן</a>
+                    </h4>
+
                 </a>
                 <hr class="hr">
 
@@ -88,11 +98,12 @@
                 <div>
                     <label for="" class="Spoiler-Regular font-s-18">נא למלא את פרטי המפרסם בכל השדות:</label>
                     <br>
-                    <input type="text" class="form-control width-25 float-right" ng-model="luach.fname" maxlength="32" pattern="[A-Zא-תa-z ]{1,32}" vlaue="{{luach.fname}}"
-                        placeholder="שם פרטי" required>
+                    <input type="text" class="form-control width-25 float-right" ng-model="luach.fname" maxlength="32" pattern="[A-Zא-תa-z ]{1,32}"
+                        vlaue="{{luach.fname}}" placeholder="שם פרטי" required>
                     <input type=" text " class="form-control width-25 float-right" ng-model="luach.lname " maxlength="32" pattern="[A-Zא-תa-z ]{1,32} "
                         placeholder="שם משפחה " vlaue="{{luach.lname}}" required>
-                    <input type="number" class="form-control width-25 float-right" ng-model="luach.phone" placeholder="טלפון" vlaue="{{luach.phone}}" required>
+                    <input type="number" class="form-control width-25 float-right" ng-model="luach.phone" placeholder="טלפון" vlaue="{{luach.phone}}"
+                        required>
                     <input type=" email " class="form-control width-25 float-right" ng-model="luach.email" placeholder="אימייל" vlaue="{{luach.email}}"
                         required>
                     <br/>
@@ -117,8 +128,8 @@
                     <br>
                     <b>סגנון:</b> {{luach.type}}
                     <br>
-                    <b>מופעים:</b> {{luach.shows}}
-                    <br>
+                    <b>מופעים:</b>
+                    <span class="line-height-150" ng-bind-html="luach.heShows | nl2p"></span>
                     <b>תוכן המודעה:</b> {{luach.content}}
                     <br>
                     <b>הערות:</b> {{luach.remarks}}
@@ -141,7 +152,7 @@
                     <b>טלפון:</b> {{luach.phone}}
                     <br>
                     <b>מייל:</b> {{luach.email}}
-
+                    <hr>
                     <b class="red-font">סיכום מחיר:</b>
                     <br> מספר מילים: {{price.wordCount}}
                     <br> תוספת עבור הדגשה: {{price.extra}}
@@ -149,9 +160,11 @@
                     <br>
                     <b>סיכום: {{price.total}}</b>
 
-                    <a href="#/luachPrices" class="Spoiler-Bold red text-left">
-                        <h4>לצפיה במחירון לוח - הקש כאן</h4>
-                    </a>
+                    <div class="Spoiler-Bold red text-left">
+                        <h4>
+                            <a href="./public/images/luach.pdf">לצפיה במחירון לוח - הקש כאן</a>
+                        </h4>
+                    </div>
 
                 </h4>
                 <button class=" btn btn-danger padd-top-10 float-left marg-top Spoiler-Bold white-font marg-bottom" ng-click="backToLuach()">לחזרה למסך קודם לשינוי/תיקון פרטים</button>
@@ -166,7 +179,7 @@
             <!-- credit card  - payment -->
             <div class="crdit-aria">
                 <h2 class="Spoiler-Bold">פרטי תשלום:</h2>
-                <div ng-include="'./view/payment/orderFormTemplate.html'"></div>
+                <div ng-include="'./public/view/payment/orderFormTemplate.html'"></div>
 
             </div>
         </div>

@@ -17,6 +17,8 @@
             $scope.lastMaida = res.data[1]['id'];
             $scope.lastSt = res.data[2]['id'];
             $scope.lastEmtza = res.data[3]['id'];
+            $scope.lastBB = res.data[4]['id'];
+
 
         }
 
@@ -148,7 +150,7 @@
 
 
 
-    App.controller("contactform", function ($scope, UtilSrvc, modelService) {
+    App.controller("contactform", function ($scope, UtilSrvc, modelService, $location, $window) {
 
 
         $scope.contact = {
@@ -167,7 +169,9 @@
 
         }
         function sucsses(res){
+            $window.location.href = `#/home`;
             alert("ההודעה נקלטה במערכת בהצלחה, ותטופל בהקדם");
+
         }
 
         function error(res){

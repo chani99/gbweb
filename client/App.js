@@ -5,7 +5,8 @@
         "App.filters",
         "ngRoute",
         "ngResource",
-        "credit-cards"
+        "credit-cards",
+        'ngSanitize'
     ]);
 
 (function() {
