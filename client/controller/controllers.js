@@ -18,6 +18,12 @@
             $scope.lastSt = res.data[2]['id'];
             $scope.lastEmtza = res.data[3]['id'];
             $scope.lastBB = res.data[4]['id'];
+            
+            $scope.lastLaintanPages = res.data[0]['number_of_pages'];
+            $scope.lastMeidaPages = res.data[1]['number_of_pages'];
+            $scope.lastSTPages = res.data[2]['number_of_pages'];
+            $scope.lastEmtzaPages = res.data[3]['number_of_pages'];
+            $scope.lastBBPages = res.data[4]['number_of_pages'];
 
 
         }
@@ -60,9 +66,10 @@
     App.controller("flipbook", function ($scope, UtilSrvc, $routeParams, $location, $sce) {
         let type = $routeParams.k;
         let num = $routeParams.n;
+        let pages =$routeParams.p;
         
         // $scope.source = 'http://localhost:8081/public/pdf-flipbook-master/?num=' + num + "&folder=" + type;
-        $scope.source = 'http://localhost:8081/public/turnjs4/samples/magazine/?num=' + num + "&folder=" + type;
+        $scope.source = 'http://localhost:8081/public/turnjs4/samples/magazine/?num=' + num + "&folder=" + type + "&pages=" +pages;
 
 
     });
@@ -70,10 +77,10 @@
 
     // papers controller
     App.controller("papers", function ($scope, $window, $timeout, UtilSrvc, $routeParams, $location, $sce) {
-        $scope.getSelectedPaper = function (folderName, selectedPaper) {
+        $scope.getSelectedPaper = function (folderName, selectedPaper, pages) {
             console.log(selectedPaper);
             if (selectedPaper) {
-                $window.location.href = `#/book?k=${folderName}&n=${selectedPaper}`;
+                $window.location.href = `#/book?k=${folderName}&n=${selectedPaper}&p=${pages}`;
 
             }
 
@@ -131,6 +138,19 @@
                         res.data[3]['id'] - 3
                     ]
                 },
+                {
+                    lastpaper: res.data[4]['id'],
+                    date: res.data[4]['date'],
+                    hewd: res.data[4]['hebrew_date'],
+                    name: "lainyanBB",
+                    nameHe: "לעניין בני ברק",
+                    lastpapers: [
+                        res.data[4]['id'] - 1,
+                        res.data[4]['id'] - 2,
+                        res.data[4]['id'] - 3
+                    ]
+                },
+
             ];
 
 

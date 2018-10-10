@@ -391,6 +391,8 @@ $('.zoom-icon').bind('mouseover', function () {
 let url = window.location.href;
 let wantedfolder = getParameterByName("folder", url);
 let wantedPaper = getParameterByName("num", url);
+let paperLength = getParameterByName("pages", url);
+
 
 
 function getParameterByName(name, url) {
@@ -409,7 +411,6 @@ console.log(wantedPaper);
 
 
 let text = "";
-let paperLength = 24;
 text += '<li class="i" ><img src="../../../papers/' + wantedfolder + '/' + wantedPaper + '/1.jpg" width="76" height="100" class="page-1"><span>1</span></li>';
 
 for (var i = 2; i < paperLength; i = i + 2) {

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2018 at 09:01 AM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Generation Time: Oct 10, 2018 at 06:26 PM
+-- Server version: 10.1.22-MariaDB
+-- PHP Version: 7.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -78,7 +78,9 @@ INSERT INTO `ad_order` (`id`, `date`, `fname`, `lname`, `email`, `phone`, `locat
 (62, 'Tue Jul 17 2018 13:39:20 GMT+0300 (שעון קיץ ירושלי', 'fddfs', 'dfsfds', 'gg@gmail.com', 211111, 'עמוד שער', 'dfsdfs', 'undefined', 'עמוד שלם', 'עיתון: שבוע טוב = 1 מופעים.\r\n', '1531823987195'),
 (63, 'Tue Jul 17 2018 13:41:54 GMT+0300 (שעון קיץ ירושלי', 'fddfs', 'dfsfds', 'gg@gmail.com', 211111, 'עמוד שער', 'dfsdfs', 'undefined', 'עמוד שלם', 'עיתון: שבוע טוב = 1 מופעים.\r\n', '1531824143869'),
 (64, 'Tue Jul 17 2018 13:57:05 GMT+0300 (שעון קיץ ירושלי', 'אילה', 'רבר', 'aa@ga.com', 5802232, 'מיקום רגיל (ללא תוספ', 'אילה הקופה', 'אכלה בננה', 'עמוד שלם', 'עיתון: שבוע טוב = 1 מופעים.\r\n', '1531825040592'),
-(66, 'Tue Jul 17 2018 14:06:32 GMT+0300 (שעון קיץ ירושלי', 'אילה', 'אברהמי', 'gg@ff.co', 5802232, 'דבל אמצע', 'אמא יודעת לעשותך את האתרים הכית טובים', 'לעשות את זה מהממם', 'דבל', 'עיתון: שבוע טוב = 2 מופעים.\r\n', '1531825606900');
+(66, 'Tue Jul 17 2018 14:06:32 GMT+0300 (שעון קיץ ירושלי', 'אילה', 'אברהמי', 'gg@ff.co', 5802232, 'דבל אמצע', 'אמא יודעת לעשותך את האתרים הכית טובים', 'לעשות את זה מהממם', 'דבל', 'עיתון: שבוע טוב = 2 מופעים.\r\n', '1531825606900'),
+(0, 'Wed Oct 10 2018 14:29:59 GMT+0300 (שעון קיץ ירושלי', 'כככ', 'ררקרק', 'click0548450396@gmail.com', 4444, 'מיקום רגיל (ללא תוספ', 'מיאו מיאו', 'האו האו', 'עמוד שלם', 'עיתון: לעניין = 1 מופעים.\r\n', '1539171011849'),
+(0, 'Wed Oct 10 2018 16:24:56 GMT+0300 (שעון קיץ ירושלי', 'כגכג', 'כגכגכג', 'click0548450396@gmail.com', 4343443, 'עמוד שער', 'חני', 'בנני', 'עמוד שלם', 'עיתון: לעניין = 1 מופעים.\r\nעיתון: מידע לכל = 1 מופעים.\r\n', '1539177900575');
 
 -- --------------------------------------------------------
 
@@ -134,7 +136,9 @@ INSERT INTO `contact` (`id`, `fname`, `lname`, `phone`, `date`, `email`, `conten
 (11, 'אילה', 'אברהמי', 5802232, 'Tue Jul 17 2018 14:10:10 GMT+0300 (שעון קיץ ירושלים)', 'chani545454@gmail.com', 'אם אפשר לשלוח לי לאישור'),
 (12, 'היי', 'ביי', 548450396, 'Tue Aug 07 2018 10:17:46 GMT+0300 (שעון קיץ ירושלים)', 'chani@gmail.com', 'רוצה לפרסם בעיתון שלכם מיאו'),
 (13, 'חני', 'אברהמי', 2147483647, 'Tue Aug 07 2018 10:18:25 GMT+0300 (שעון קיץ ירושלים)', 'brachi@gmail.com', 'מגוגל כרום'),
-(14, 'חני', 'אברהמי', 2147483647, 'Tue Aug 07 2018 10:21:26 GMT+0300 (שעון קיץ ירושלים)', 'galb.vip@gmail.com', 'מיאו');
+(14, 'חני', 'אברהמי', 2147483647, 'Tue Aug 07 2018 10:21:26 GMT+0300 (שעון קיץ ירושלים)', 'galb.vip@gmail.com', 'מיאו'),
+(0, '‫קליק', 'גרפיקה‬‎', 975555, 'Wed Oct 10 2018 14:23:57 GMT+0300 (שעון קיץ ירושלים)', 'click0548450396@gmail.com', 'כגשדכגכגד כשדג'),
+(0, '‫קליק', 'גרפיקה‬‎', 555555, 'Wed Oct 10 2018 14:27:50 GMT+0300 (שעון קיץ ירושלים)', 'click0548450396@gmail.com', 'עכעכגעכ עכגעכ');
 
 -- --------------------------------------------------------
 
@@ -145,16 +149,17 @@ INSERT INTO `contact` (`id`, `fname`, `lname`, `phone`, `date`, `email`, `conten
 CREATE TABLE `emtza` (
   `id` int(11) NOT NULL,
   `date` date NOT NULL,
-  `hebrew_date` varchar(25) COLLATE utf8_unicode_ci NOT NULL
+  `hebrew_date` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `number_of_pages` int(3) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `emtza`
 --
 
-INSERT INTO `emtza` (`id`, `date`, `hebrew_date`) VALUES
-(1051, '2018-01-02', 'ט\"ו בטבת תשע\"ח'),
-(1052, '2018-01-09', 'כ\"ב טבת תשע\"ח');
+INSERT INTO `emtza` (`id`, `date`, `hebrew_date`, `number_of_pages`) VALUES
+(1051, '2018-01-02', 'ט\"ו בטבת תשע\"ח', 144),
+(1052, '2018-01-09', 'כ\"ב טבת תשע\"ח', 128);
 
 -- --------------------------------------------------------
 
@@ -165,16 +170,38 @@ INSERT INTO `emtza` (`id`, `date`, `hebrew_date`) VALUES
 CREATE TABLE `lainyan` (
   `id` int(11) NOT NULL,
   `date` date NOT NULL,
-  `hebrew_date` varchar(25) COLLATE utf8_unicode_ci NOT NULL
+  `hebrew_date` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `number_of_pages` int(3) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `lainyan`
 --
 
-INSERT INTO `lainyan` (`id`, `date`, `hebrew_date`) VALUES
-(879, '2018-01-07', 'כ\' בטבת תשע\"ח'),
-(880, '2018-01-14', 'כ\"ז בטבת תשע\"ח');
+INSERT INTO `lainyan` (`id`, `date`, `hebrew_date`, `number_of_pages`) VALUES
+(879, '2018-01-07', 'כ\' בטבת תשע\"ח', 128),
+(880, '2018-01-14', 'כ\"ז בטבת תשע\"ח', 144);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lainyan_bb`
+--
+
+CREATE TABLE `lainyan_bb` (
+  `id` int(5) NOT NULL,
+  `date` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `hebrew_date` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `number_of_pages` int(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `lainyan_bb`
+--
+
+INSERT INTO `lainyan_bb` (`id`, `date`, `hebrew_date`, `number_of_pages`) VALUES
+(408, '2018-10-13', 'כ\"ט תשרי תשע\"ט', 96),
+(409, '19-10-2018', 'ו\' חשוון תשע\"ט', 112);
 
 -- --------------------------------------------------------
 
@@ -185,16 +212,17 @@ INSERT INTO `lainyan` (`id`, `date`, `hebrew_date`) VALUES
 CREATE TABLE `meida` (
   `id` int(11) NOT NULL,
   `date` date NOT NULL,
-  `hebrew_date` varchar(25) COLLATE utf8_unicode_ci NOT NULL
+  `hebrew_date` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `number_of_pages` int(3) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `meida`
 --
 
-INSERT INTO `meida` (`id`, `date`, `hebrew_date`) VALUES
-(1202, '2018-01-01', 'י\"ד בטבת תשע\"ח'),
-(1203, '2018-01-08', 'כ\"א בטבת תשע\"ח');
+INSERT INTO `meida` (`id`, `date`, `hebrew_date`, `number_of_pages`) VALUES
+(1202, '2018-01-01', 'י\"ד בטבת תשע\"ח', 96),
+(1203, '2018-01-08', 'כ\"א בטבת תשע\"ח', 96);
 
 -- --------------------------------------------------------
 
@@ -205,33 +233,22 @@ INSERT INTO `meida` (`id`, `date`, `hebrew_date`) VALUES
 CREATE TABLE `shavua` (
   `id` int(11) NOT NULL,
   `date` date NOT NULL,
-  `hebrew_date` varchar(25) COLLATE utf8_unicode_ci NOT NULL
+  `hebrew_date` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `number_of_pages` int(3) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `shavua`
 --
 
-INSERT INTO `shavua` (`id`, `date`, `hebrew_date`) VALUES
-(814, '2017-12-30', 'י\"ב טבת תשע\"ח'),
-(815, '2018-01-06', 'י\"ט טבת תשע\"ח'),
-(816, '2018-01-13', 'כ\"ו טבת תשע\"ח');
+INSERT INTO `shavua` (`id`, `date`, `hebrew_date`, `number_of_pages`) VALUES
+(814, '2017-12-30', 'י\"ב טבת תשע\"ח', 25),
+(815, '2018-01-06', 'י\"ט טבת תשע\"ח', 96),
+(816, '2018-01-13', 'כ\"ו טבת תשע\"ח', 24);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `ad_order`
---
-ALTER TABLE `ad_order`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `contact`
---
-ALTER TABLE `contact`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `emtza`
@@ -261,16 +278,6 @@ ALTER TABLE `shavua`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `ad_order`
---
-ALTER TABLE `ad_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
---
--- AUTO_INCREMENT for table `contact`
---
-ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `emtza`
 --
