@@ -39,7 +39,7 @@
     <hr>
 
     <button class="btn-lg btn btn-danger padd-top-10 float-left marg-top marg-bottom Spoiler-Bold white-font" ng-click="orderButton()"
-        ng-disabled="buttonDisabled">הזמן</button>
+        ng-disabled="!ccForm.ccCvc.$valid||!ccForm.ccNumber.$valid||ccForm.$error.ccExp">הזמן</button>
     <br>
 
 </form>

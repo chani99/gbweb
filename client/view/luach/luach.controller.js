@@ -455,4 +455,8 @@
          $scope.payment = false;
      }
 
+     $scope.orderButton = function(){
+         alert("עכשיו צריך לחייב את האשראי ולשלוח אישור ומודעה לשרת");
+     }
+
  });

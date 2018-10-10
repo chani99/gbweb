@@ -99,8 +99,9 @@
             switch (data.type) {
                 case "textarea":
                     if (data.content) {
-                        if (/[^a-zA-Z0-9 א-ת$&*"'-_]/.test($(data.content).val())) {
-                            return (true);
+                        
+                        if (/\}|\{|;|<|>/.test(data.content)) {
+                                return (true);
                         } else {
                             return (false);
                         }
