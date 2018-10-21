@@ -4,7 +4,7 @@ var models = require('../models/models');
 function getlastpapaer(tablename, callback) {
 
 
-    //select last id from a all papers tables
+    //select last 4 papers from a all papers tables
     dal.executeQuery(
         `(SELECT id, date, hebrew_date, number_of_pages FROM lainyan order by id desc limit 4)
         union
@@ -25,6 +25,29 @@ function getlastpapaer(tablename, callback) {
         });
 }
 
+function getlastpapaerId(callback) {
+
+
+    //select last id from a all papers tables
+    dal.executeQuery(
+        `(SELECT id FROM lainyan order by id desc limit 1)
+        union
+        (SELECT id FROM meida order by id desc limit 1)
+        union
+        (SELECT id FROM shavua order by id desc limit 1)
+        UNION
+        (SELECT id FROM emtza order by id desc limit 1)
+        UNION
+        (SELECT id FROM lainyan_bb order by id desc limit 1)`,
+        function (err, row) {
+            if (err) {
+                callback(err);
+            }
+            callback(null, row);
+            console.log(row);
+
+        });
+}
 
 function saveContactData(table_name, rows, values, callback) {
     let sql = "INSERT INTO `" + table_name + "` (" + rows + ") VALUES (" + values + ")";
@@ -36,11 +59,22 @@ function saveContactData(table_name, rows, values, callback) {
 }
 
 
+function saveluachData(table_name, rows, values, callback) {
+    let sql = "INSERT INTO `" + table_name + "` (" + rows + ") VALUES (" + values + ")";
+    dal.executeQuery(sql, function (err, result) {
+        if (err) console.log(err);
+        callback(null, result);
+    });
+
+}
+
 
 module.exports.papers = {
-    getlastpapaer: getlastpapaer
+    getlastpapaer: getlastpapaer,
+    getlastpapaerId: getlastpapaerId
 }
 
 module.exports.dataFromCostumer = {
-    saveContactData: saveContactData
+    saveContactData: saveContactData,
+    saveluachData: saveluachData
 }

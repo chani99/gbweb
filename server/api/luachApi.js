@@ -1,4 +1,4 @@
-var contactCtrl = require('../controllers/luach.controller.js');
+var luachCtrl = require('../controllers/luach.controller.js');
 var express = require('express');
 let multer = require('multer');
 let app = express();

@@ -1,38 +1,39 @@
 
 var bl = require('../data/bl');
-let rows = " `date`, `fname`, `lname`, `email`, `phone`, `location`, `content`, `remarks`, `size`, `shows`, `images_folder`";
-let tableName = "ad_order";
+let rows = "`date`, `user_fname`, `user_lname`, `user_email`, `user_phone`, `section`, `content`, `remarks`";
+let showsRows = "`advert_id`, `number`, `shows`"
+let tableName = "luach";
 var nodemailer = require('nodemailer');
 var express = require('express');
 var fs = require('fs');
 var mkdirp = require('mkdirp');
+let lastPapers = [];
 
 
-function insertNewFreeLuach()
 
-function insertNewOrderToDB(req, callback) {
-    organizeDataForDB(req.body, function (order) {
-        let files = null;
-        if (req.files) {
-            files = req.files['files[]'];
-        }
-        sendAmail(order, files, function (emailerr, emailsuc) { //send email to system
-            if (emailerr) {
-                callback("צורף קובץ לא חוקי");
-                console.log(emailerr); // if error stop everything
-            } else { //save files and db
-                if (files) { //check if the client sent a file, and if - save it and then update
-                    saveFile(files, function (fileErr, imagesFolder) {
-                        if (imagesFolder) order.images = imagesFolder;
-                    });
-                }
-                saveOrderInDB(order, function (dbErr, wasdone) {
-                    if (dbErr) callback(dbErr);
-                    else callback(null, wasdone);
+
+function insertNewFreeLuach(req, callback) {
+    organizeluachForDB(req.body, true, function (order) {
+        saveOrderInDB(order, function(err, order){
+            if(err){
+                callback(err);
+                console.log(err);
+            
+            } else {
+                 bl.papers.getlastpapaerId(function(err, res){
+                    if (err){
+                        callback (err)
+                    } else {
+                        lastPapers = res;
+                    }
                 });
+                insertShowsToDb(order);
+
 
             }
-        });
+    
+        })
+    
 
     });
 }
@@ -41,155 +42,47 @@ function insertNewOrderToDB(req, callback) {
 //saves order in db
 function saveOrderInDB(order, callback) {
     let data = order;
-    let values = `'${data.date}', '${data.fname}', '${data.lname}', '${data.email}', ${data.phone}, '${data.location}', '${data.content}', '${data.remarks}', '${data.size}', '${data.shows}', '${data.images}'`;
-    bl.dataFromCostumer.saveContactData(tableName, rows, values, function (err, done) {
+    let values = `'${data.date}', '${data.user_fname}', '${data.user_lname}', '${data.user_email}', ${data.user_phone}, '${data.section}', '${data.content}', '${data.remarks}'`;
+    bl.dataFromCostumer.saveluachData(tableName, rows, values, function (err, done) {
         if (err) {
             callback(err);
             console.log(err);
 
         } else {
-            callback(null, done);
+            callback(null, done.insertId);
         }
 
     });
 }
 
 
-//orgenize shosw from array object to string - to send by mail
-function stringShow(allShows) {
-    let stringShows = "";
-    if (allShows) {
-        let shows = JSON.parse(allShows);
 
-        for (var i = 0; i < shows.length; i++) {
-            stringShows += "עיתון: " + shows[i].type + " = " + shows[i].shows + " מופעים.\r\n"
-        }
-    }
-    return (stringShows);
+//todo
+let insertShowsToDb = function(shows, ad_id, callback){
+    let adShows = {};
+  
+ 
 }
 
-
-//send email with order to galb
-function sendAmail(data, files, callback) {
-    //create attacments
-    let attached_images = [];
-    data.shows = stringShow(data.shows);
-
-    // var dir = './server/uploads/' + data.images;
-
-    if (files) {
-        if (files.length) {
-            for (var i = 0; i < files.length; i++) {
-                attached_images.push({
-                    contentType: files[i].mimetype,
-                    fileName: files[i].name,
-                    content: files[i].data,
-                    encoding: files[i].encoding
-                });
-            }
-        } else {
-            attached_images.push({
-                contentType: files.mimetype,
-                fileName: files.name,
-                content: files.data,
-                encoding: files.encoding
-            });
-        }
-    }
-    //send mail to gb mail
-
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'galb.vip@gmail.com',
-            pass: 'blagblag'
-        }
-    });
-
-    var mailOptions = {
-        from: data.email,
-        to: 'galb.vip@gmail.com',
-        subject: "הודעת 'הזמנת פרסום' חדשה התקבלה מהאתר",
-        text: `\r\nמאת: ${data.fname} ${data.lname}\r\n
-        טלפון: ${data.phone}\r\n
-        מייל: ${data.email}\r\n
-        ___________________________________\r\n
-        תוכן: ${data.content}\r\n
-        הערות: ${data.remarks}\r\n
-        __________________________________\r\n
-        גודל: ${data.size}\r\n
-        מיקום: ${data.location}\r\n
-        מופעים: ${data.shows}\r\n`,
-        attachments: attached_images
-    };
-
-
-
-
-
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            callback(error)
-            console.log(error);
-        } else {
-            callback(null, 'Email sent: ' + info.response);
-            console.log('Email sent: ' + info.response);
-        }
-    });
-
-}
-
-
-function saveFile(file, callback) {
-    let date = Date.now(); //name for a folder for images
-    let error = false; //check if were errors
-
-    var dir = './server/uploads/' + date;
-    mkdirp(dir, function (err) {});
-
-    if (file.length) {
-        for (var i = 0; i < file.length; i++) {
-            let sampleFile = file[i];
-            let filename = sampleFile.name;
-            sampleFile.mv(dir + '/' + filename, function (err) {
-                if (err) error = "status(500).send(err)";
-
-            });
-        }
-
-    } else {
-        let filename = file.name;
-        file.mv(dir + '/' + filename, function (err) {
-            if (err) error = "status(500).send(err)";
-
-        });
-    }
-
-    if (error) {
-        callback("status(500).send(err)");
-
-    } else {
-        callback(null, date);
-    }
-
-
-}
-
-
-let organizeDataForDB = function (data, callback) {
+//orgenize all luach data befor saving in data base
+let organizeluachForDB = function (data, free, callback) {
     var luach = {};
+    let freeSec = free;
+    var shows = shows
+    if(free){
+luach.remarks = ""
+    }
 
-    order.date = new Date;
-    if (data.fname) luach.fname = data.fname;
-    if (data.lname) luach.lname = data.lname;
-    if (data.email) luach.email = data.email;
-    if (data.phone) luach.phone = data.phone;
+    luach.date = new Date;
+    if (data.fname) luach.user_fname = data.fname;
+    if (data.lname) luach.user_lname = data.lname;
+    if (data.email) luach.user_email = data.email;
+    if (data.phone) luach.user_phone = data.phone;
     if (data.section) luach.section = data.section;
     if (data.content) luach.content = data.content;
     if (data.remarks) luach.remarks = data.remarks;
-    if (data.shows) luach.shows = data.shows;
-    callback(order);
+    callback(luach);
 
 }
 
-module.exports.insertNewOrderToDB = insertNewOrderToDB;
+module.exports.insertNewFreeLuach = insertNewFreeLuach;
