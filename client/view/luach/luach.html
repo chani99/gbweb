@@ -27,10 +27,10 @@
             </h3>
 
             <textarea class="form-control marg-top" ng-model="luach.content" placeholder="תוכן מודעת לוח" vlaue="{{luach.content}}" required></textarea>
-            <h4>
+            <h4 ng-hide="freeluach">
                 <label class="Spoiler-Bold marg-top" for="">הערות</label>
             </h4>
-            <textarea class="form-control" ng-model="luach.remarks" vlaue="{{luach.remarks}}" placeholder="הערות"></textarea>
+            <textarea ng-hide="freeluach" class="form-control" ng-model="luach.remarks" vlaue="{{luach.remarks}}" placeholder="הערות"></textarea>
 
         </div>
 

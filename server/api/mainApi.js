@@ -7,6 +7,8 @@ let path = require("path");
 
 router.use("/contact", require("./contactApi.js"));
 router.use("/order", require("./orderApi.js"));
+router.use("/luach", require("./luachApi.js"));
+
 
 
 router.get("/", function (req, res) {

@@ -12,7 +12,7 @@
          if (luach.email) this.email = luach.email;
          if (luach.phone) this.phone = luach.phone;
      };
-
+     $scope.freeluach = false;
      $scope.price = {};
 
      $scope.luach = {
@@ -82,9 +82,12 @@
          if ($scope.luach.type !== false) {
              if ($scope.luach.type === "מדור חינמי (אבידות/מציאות/למסירה-חינם)") {
                  $scope.section = chinam;
+                 $scope.freeluach = true;
 
              } else {
                  $scope.section = madorim;
+                 $scope.freeluach = false;
+
              }
 
          }
@@ -169,16 +172,13 @@
 
 
 
-         //  if ($scope.chek.length > 0) $scope.luach.heShows += "</div>";
-
-
 
 
          let validate = orderValidate($scope.luach); //check validation of all fields
          if (validate === false) {
              let luachOrder = new Luach($scope.luach);
              if ($scope.luach.type === "מדור חינמי (אבידות/מציאות/למסירה-חינם)") {
-                 UtilSrvc.sendLuach(luachOrder, freesuccess, freeerror);
+                 UtilSrvc.sendData(luachOrder, 'luach/free', freesuccess, freeerror);
                  console.log(luachOrder);
              } else {
                  //payment screen
@@ -189,6 +189,15 @@
          }
 
      }
+
+     function freesuccess(res){
+         alert("הודעתך נקלטה במערכת ותפורסם בעיתון המבוקש במידת האפשר");
+     }
+     
+     function freesuccess(freeerror){
+        alert("תקלה");
+    }
+
      //count words in a string
      function wordCount(str) {
          let tooShort = 0;
