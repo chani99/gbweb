@@ -4,15 +4,17 @@ function executeQuery(query, callback) {
     const con = mysql.createConnection(
         // connection details
         {
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'gal_beitar'
+            host: "node6533-galbeitar.j.box.co.il",
+            user: "root",
+            password: "POFybb21565",
+            database: "gal_beitar"
         }
     );
+    // host: 'localhost',
+    // password: '',
 
     // 3.cconnect
-    con.connect(function(err) {
+    con.connect(function (err) {
         if (err) {
             console.log('Error connecting to DB:' + err);
             return;
@@ -21,15 +23,11 @@ function executeQuery(query, callback) {
     });
 
     // 4. crud : insert
-    // use backtick `` for free text
-    con.query(query, function(err, rows) {
+    con.query(query, function (err, rows) {
         if (err) {
             callback(err);
         } else {
             callback(null, rows)
-                /*rows.forEach(function (row) {
-                    arr.push(row);
-                });*/
         }
     });
     con.end();

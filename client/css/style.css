@@ -13,14 +13,28 @@
 .flex-item {
   width: 20%;
 }
+.flex-item2 {
+  width: 20%;
+}
 @media screen and (max-width: 500px) {
   .flex-item {
-    width: 50%;
-  }
-}
-@media screen and (max-width: 350px) {
-  .flex-item {
     width: 100%;
+  }
+  .Plogos {
+    max-height: 30px;
+    height: 30px;
+  }
+  .over-logo {
+    min-height: 60px;
+    font-size: 15px;
+  }
+  .hover-red {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    min-height: 60px;
+  }
+  .hover-red:hover {
+    min-height: 60px;
   }
 }
 .float-right {

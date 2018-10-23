@@ -30,7 +30,7 @@ var url = new URL(location.href);
 var num = url.searchParams.get("num");
 var folder = url.searchParams.get("folder");
 
-// http://localhost:8081/public/papers/lainyan/880/880.pdf
+// http://localhost:8080/public/papers/lainyan/880/880.pdf
 var DEFAULT_URL = "/public/papers/" + folder + "/" + num + '/' + num + '.pdf';
 console.log("hi" + DEFAULT_URL);
 var url = "";

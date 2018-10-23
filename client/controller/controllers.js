@@ -9,7 +9,7 @@
     //home controller
     App.controller("home", function ($scope, $modal, UtilSrvc) {
 
-        let num = UtilSrvc.getValuesFromServer('getlastpapers', "/book", onSuccsess, onError);
+        let num = UtilSrvc.getValuesFromServer('getlastpapers', "book", onSuccsess, onError);
 
         function onSuccsess(res) {
             console.log('this is me ' + JSON.stringify(res));
@@ -68,9 +68,9 @@
         let num = $routeParams.n;
         let pages = $routeParams.p;
 
-        // $scope.source = 'http://localhost:8081/public/pdf-flipbook-master/?num=' + num + "&folder=" + type;
-        $scope.source = 'http://localhost:8081/public/turnjs4/samples/magazine/?num=' + num + "&folder=" + type + "&pages=" + pages;
-
+        // $scope.source = 'http://localhost:8080/public/pdf-flipbook-master/?num=' + num + "&folder=" + type;
+        // $scope.source = 'http://localhost:8080/public/turnjs4/samples/magazine/?num=' + num + "&folder=" + type + "&pages=" + pages;
+        $scope.source = 'http://galbeitar.j.box.co.il/public/turnjs4/samples/magazine/?num=' + num + "&folder=" + type + "&pages=" + pages;
 
     });
 
@@ -102,7 +102,7 @@
             return (pages);
         }
 
-        let num = UtilSrvc.getValuesFromServer('getlastpapers', "/book", onSuccsess, onError);
+        let num = UtilSrvc.getValuesFromServer('getlastpapers', "book", onSuccsess, onError);
 
         function onSuccsess(res) {
             respond = res.data;

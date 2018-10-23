@@ -43,7 +43,7 @@
 
         this.getValuesFromServer = function (params, path, onSuccess, onError) {
             $http({
-                url: 'http://localhost:8081' + path,
+                url: "http://galbeitar.j.box.co.il/" + path,
                 method: 'GET',
                 params: {
                     params: params
@@ -54,7 +54,7 @@
 
         this.setNorthwind = function (data, onSuccess, onError) {
             $http({
-                url: 'http://localhost:8081',
+                url: "http://galbeitar.j.box.co.il/",
                 method: 'POST',
                 params: {
                     tableName: data.tableName,
@@ -67,7 +67,7 @@
         //http POST
         this.sendData = function (data, path, onSuccess, onError) {
             $http({
-                url: "http://localhost:8081/" + path,
+                url: "http://galbeitar.j.box.co.il/" + path,
                 method: "POST",
                 data: data
 
@@ -78,7 +78,9 @@
         //http POST for inserting data and uploading files
         this.uploadOrder = function (order, orderImage, path, success, error) { //
             var formData = buildFormData(order, orderImage);
-            $http.post("http://localhost:8081/" + path, formData, {
+            // $http.post("http://localhost:8080/" + path, formData, {
+
+            $http.post("http://galbeitar.j.box.co.il/" + path, formData, {
                 transformRequest: angular.identity,
                 headers: {
                     "Content-Type": undefined
