@@ -118,6 +118,23 @@
   .creditCardForm #credit_cards {
     text-align: left;
   }
+  .payment-main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "pay-details" "pay-credit";
+  }
+  .crdit-aria {
+    border-right: none;
+    padding-bottom: 10px;
+    padding-right: 0;
+  }
+  .pay-credit {
+    padding-right: 8%;
+    padding-left: 8%;
+  }
+  .pay-details {
+    padding-left: 8%;
+  }
 }
 /*  Examples Section */
 .examples {

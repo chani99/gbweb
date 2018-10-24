@@ -159,7 +159,7 @@
                      type: chek[i].name,
                      shows: chek[i].shows
                  });
-                 $scope.luach.heShows += "<b>שם עיתון: </b>'" + chek[i].nameH + "',  <b> מספר מופעים: </b>" + chek[i].shows + ".\n";
+                 $scope.luach.heShows += "<b>שם עיתון: </b>'" + chek[i].nameH + "'.\n  <b> מספר מופעים: </b>" + chek[i].shows + ".\n";
                  console.log($scope.luach.heShows);
              }
          }

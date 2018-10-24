@@ -1,55 +1,93 @@
-
 var bl = require('../data/bl');
-let rows = "`date`, `user_fname`, `user_lname`, `user_email`, `user_phone`, `section`, `content`, `remarks`";
-let showsRows = "`advert_id`, `number`, `shows`"
-let tableName = "luach";
+
+let luachTableRows = "`user_phone`, `id`, `user_fname`, `user_lname`, `user_email`, `section`, `content`, `date`, `remarks`";
+let showsTableRows = "`paper_name`, `paper_number`, `advert_id`"
+let luachTableName = "luach";
+let rowsTableName = "shows";
 var nodemailer = require('nodemailer');
 var express = require('express');
 var fs = require('fs');
 var mkdirp = require('mkdirp');
 let lastPapers = [];
-
-
+const uuidv1 = require('uuid/v1');
+let idForLuach = ""
 
 
 function insertNewFreeLuach(req, callback) {
-    organizeluachForDB(req.body, true, function (order) {
-        saveOrderInDB(order, function(err, order){
-            if(err){
-                callback(err);
-                console.log(err);
-            
-            } else {
-                 bl.papers.getlastpapaerId(function(err, res){
-                    if (err){
-                        callback (err)
-                    } else {
-                        lastPapers = res;
-                    }
-                });
-                insertShowsToDb(order);
+    let luachData = {};
+    let luachShows = [];
+    idForLuach = uuidv1();
 
 
-            }
-    
-        })
-    
+    bl.papers.getlastpapaerId(function (err, res) {
+        if (err) {
+            callback('error getting last papers');
+        } else {
+            lastPapers = {
+                lainyan: res[0].id,
+                maida: res[1].id,
+                shavua: res[2].id,
+                emtza: res[3].id,
+                lainyanBB: res[4].id
+            };
 
+            organizeluachForDB(req.body, true, function (order) {
+                luachData = order;
+            });
+        
+            organizeShowsForDB(req.body.shows, function (shows) {
+                luachShows = shows;
+            });
+
+            saveLuachInDB(luachData, luachShows, function(err, done){
+                if(err){
+                    callback('free luach error: '+ err);
+                }
+                else{
+                    callback(done);
+                }
+
+            })
+        
+        }
     });
+
 }
 
 
+// saveOrderInDB(order, function (err, order) {
+//     if (err) {
+//         callback(err);
+//         console.log(err);
+
+//     } else {
+//         insertShowsToDb(order);
+
+
+
+
 //saves order in db
-function saveOrderInDB(order, callback) {
-    let data = order;
-    let values = `'${data.date}', '${data.user_fname}', '${data.user_lname}', '${data.user_email}', ${data.user_phone}, '${data.section}', '${data.content}', '${data.remarks}'`;
-    bl.dataFromCostumer.saveluachData(tableName, rows, values, function (err, done) {
+function saveLuachInDB(luach, shows, callback) {
+
+    let luachValues = `${luach.user_phone}, '${luach.id}', '${luach.user_fname}', '${luach.user_lname}', '${luach.user_email}', '${luach.section}', '${luach.content}', '${luach.date}', '${luach.remarks}'`;
+    let showsValues =""
+
+    for (i = 0; i < shows.length; i++) {
+        let show = shows[i];
+        showsValues += `('${show.paper_name}', ${show.paper_number}, '${show.advert_id}'), `
+    }
+    showsValues = showsValues.slice(0, -2);
+
+
+
+
+    bl.dataFromCostumer.saveInto2Tables(luachTableName, rowsTableName ,luachTableRows, showsTableRows, luachValues, showsValues, function (err, done) {
         if (err) {
             callback(err);
             console.log(err);
 
         } else {
-            callback(null, done.insertId);
+            callback(null, true);
         }
 
     });
@@ -57,23 +95,36 @@ function saveOrderInDB(order, callback) {
 
 
 
-//todo
-let insertShowsToDb = function(shows, ad_id, callback){
-    let adShows = {};
-  
- 
+//prepers shows for shows table
+let organizeShowsForDB = function (shows, callback) {
+    let adShows = [];
+    let countShows = 0; //to add a number to each show in loop
+
+    for (i = 0; i < shows.length; i++) {
+        let showsPerPaper = shows[i].shows;
+        let paperName = shows[i].type;
+        let paperNumber = lastPapers[paperName];
+
+        for (x = 0; x < showsPerPaper; x++) { //c
+            adShows.push({
+                paper_name: paperName,
+                paper_number: (paperNumber + countShows),
+                advert_id: idForLuach
+            });
+            countShows += 1;
+        }
+    }
+
+    callback(adShows);
+
 }
 
 //orgenize all luach data befor saving in data base
 let organizeluachForDB = function (data, free, callback) {
     var luach = {};
     let freeSec = free;
-    var shows = shows
-    if(free){
-luach.remarks = ""
-    }
-
     luach.date = new Date;
+    luach.id = idForLuach;
     if (data.fname) luach.user_fname = data.fname;
     if (data.lname) luach.user_lname = data.lname;
     if (data.email) luach.user_email = data.email;
@@ -81,8 +132,14 @@ luach.remarks = ""
     if (data.section) luach.section = data.section;
     if (data.content) luach.content = data.content;
     if (data.remarks) luach.remarks = data.remarks;
+
+    if (free) {
+        luach.remarks = ""
+    }
+
     callback(luach);
 
 }
+
 
 module.exports.insertNewFreeLuach = insertNewFreeLuach;

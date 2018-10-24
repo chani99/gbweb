@@ -58,15 +58,30 @@ function saveContactData(table_name, rows, values, callback) {
 
 }
 
-
-function saveluachData(table_name, rows, values, callback) {
-    let sql = "INSERT INTO `" + table_name + "` (" + rows + ") VALUES (" + values + ")";
+function saveInto2Tables(table1, table2, rows1, rows2, values1, values2, callback) {
+    let sql = "BEGIN; INSERT INTO `" + table1 + "` (" + rows1 + ") VALUES (" + values1 + "); INSERT INTO `" + table2 + "` (" + rows2 + ") VALUES " + values2 + "; COMMIT;"
+    console.log(sql);
     dal.executeQuery(sql, function (err, result) {
-        if (err) console.log(err);
-        callback(null, result);
+        if (err) {
+            console.log(err);
+            callback(err);
+        } else {
+            callback(null, result);
+        }
     });
 
 }
+
+
+
+// function saveluachData(table_name, rows, values, callback) {
+//     let sql = "INSERT INTO `" + table_name + "` (" + rows + ") VALUES (" + values + ")";
+//     dal.executeQuery(sql, function (err, result) {
+//         if (err) console.log(err);
+//         callback(null, result);
+//     });
+
+// }
 
 
 module.exports.papers = {
@@ -76,5 +91,5 @@ module.exports.papers = {
 
 module.exports.dataFromCostumer = {
     saveContactData: saveContactData,
-    saveluachData: saveluachData
+    saveInto2Tables: saveInto2Tables
 }

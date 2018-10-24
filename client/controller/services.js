@@ -43,7 +43,8 @@
 
         this.getValuesFromServer = function (params, path, onSuccess, onError) {
             $http({
-                url: "http://galbeitar.j.box.co.il/" + path,
+                url: "http://localhost:8080/" + path,
+                // url: "http://galbeitar.j.box.co.il/" + path,
                 method: 'GET',
                 params: {
                     params: params
@@ -54,7 +55,8 @@
 
         this.setNorthwind = function (data, onSuccess, onError) {
             $http({
-                url: "http://galbeitar.j.box.co.il/",
+                url: "http://localhost:8080/",
+                // url: "http://galbeitar.j.box.co.il/",
                 method: 'POST',
                 params: {
                     tableName: data.tableName,
@@ -67,7 +69,8 @@
         //http POST
         this.sendData = function (data, path, onSuccess, onError) {
             $http({
-                url: "http://galbeitar.j.box.co.il/" + path,
+                // url: "http://galbeitar.j.box.co.il/" + path,
+                url: "http://localhost:8080/" + path,
                 method: "POST",
                 data: data
 

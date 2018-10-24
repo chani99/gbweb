@@ -91,7 +91,6 @@
 
         </div>
 
-
         <div class="user-det" ng-hide="payment">
             <hr class="hr">
             <h2 class="Spoiler-Bold">פרטי המפרסם:</h2>
@@ -120,7 +119,7 @@
 
     <div class="payment-main marg-bottom">
 
-        <div class="pay-details spoiler-regular" ng-show="payment">
+        <div class="pay-details spoiler-regular order-con" ng-show="payment">
             <div>
                 <h4>
                     <b class="red-font">סיכום הזמנה:</b>
@@ -156,7 +155,7 @@
                     <hr>
                     <b class="red-font">סיכום מחיר:</b>
                     <br> מספר מילים: {{price.wordCount}}.
-                    <br> תוספת עבור הדגשה: {{price.extra}} ש"ח.
+                    <br> תוספות עבור הדגשה/תוספת מילים: {{price.extra}} ש"ח.
                     <br> הנחה עבור חבילה: {{price.discount}} ש"ח.
                     <br>
                     <b>סיכום: {{price.total}} ש"ח.</b>

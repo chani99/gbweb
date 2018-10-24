@@ -4,14 +4,15 @@ function executeQuery(query, callback) {
     const con = mysql.createConnection(
         // connection details
         {
-            host: "node6533-galbeitar.j.box.co.il",
+            // host: "node6533-galbeitar.j.box.co.il",
+            host: 'localhost',
             user: "root",
-            password: "POFybb21565",
+            password: '',
+            // password: "POFybb21565",
             database: "gal_beitar"
         }
     );
-    // host: 'localhost',
-    // password: '',
+ 
 
     // 3.cconnect
     con.connect(function (err) {
