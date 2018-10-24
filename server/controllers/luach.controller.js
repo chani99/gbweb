@@ -3,7 +3,7 @@ var bl = require('../data/bl');
 let luachTableRows = "`user_phone`, `id`, `user_fname`, `user_lname`, `user_email`, `section`, `content`, `date`, `remarks`";
 let showsTableRows = "`paper_name`, `paper_number`, `advert_id`"
 let luachTableName = "luach";
-let rowsTableName = "shows";
+let shoesTableName = "shows";
 var nodemailer = require('nodemailer');
 var express = require('express');
 var fs = require('fs');
@@ -25,7 +25,7 @@ function insertNewFreeLuach(req, callback) {
         } else {
             lastPapers = {
                 lainyan: res[0].id,
-                maida: res[1].id,
+                meida: res[1].id,
                 shavua: res[2].id,
                 emtza: res[3].id,
                 lainyanBB: res[4].id
@@ -34,60 +34,47 @@ function insertNewFreeLuach(req, callback) {
             organizeluachForDB(req.body, true, function (order) {
                 luachData = order;
             });
-        
+
             organizeShowsForDB(req.body.shows, function (shows) {
                 luachShows = shows;
             });
 
-            saveLuachInDB(luachData, luachShows, function(err, done){
-                if(err){
-                    callback('free luach error: '+ err);
-                }
-                else{
+            saveLuachInDB(luachData, luachShows, function (err, done) {
+                if (err) {
+                    callback('free luach error: ' + err);
+                } else {
                     callback(done);
                 }
 
-            })
-        
+            });
+
         }
     });
 
 }
 
-
-// saveOrderInDB(order, function (err, order) {
-//     if (err) {
-//         callback(err);
-//         console.log(err);
-
-//     } else {
-//         insertShowsToDb(order);
-
-
-
-
-//saves order in db
+//saves luach in db
 function saveLuachInDB(luach, shows, callback) {
 
     let luachValues = `${luach.user_phone}, '${luach.id}', '${luach.user_fname}', '${luach.user_lname}', '${luach.user_email}', '${luach.section}', '${luach.content}', '${luach.date}', '${luach.remarks}'`;
-    let showsValues =""
+    let showsValues = "";
 
-    for (i = 0; i < shows.length; i++) {
+    for (i = 0; i < shows.length; i++) {//prepar shows for saving + advert id
         let show = shows[i];
         showsValues += `('${show.paper_name}', ${show.paper_number}, '${show.advert_id}'), `
     }
     showsValues = showsValues.slice(0, -2);
 
-
-
-
-    bl.dataFromCostumer.saveInto2Tables(luachTableName, rowsTableName ,luachTableRows, showsTableRows, luachValues, showsValues, function (err, done) {
+//save in db step 1 in luach table
+    bl.dataFromCostumer.saveContactData(luachTableName, luachTableRows, luachValues, function (err, done) {
         if (err) {
             callback(err);
-            console.log(err);
 
         } else {
-            callback(null, true);
+            //save in db step 2 in shows table
+            bl.dataFromCostumer.saveContactDataMultiple(shoesTableName, showsTableRows, showsValues, function (err, done2) {
+                callback(null, done);
+            });
         }
 
     });
@@ -134,7 +121,7 @@ let organizeluachForDB = function (data, free, callback) {
     if (data.remarks) luach.remarks = data.remarks;
 
     if (free) {
-        luach.remarks = ""
+        luach.remarks = "ריק";
     }
 
     callback(luach);

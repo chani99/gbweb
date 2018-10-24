@@ -33,7 +33,6 @@ router.post('/free',function(req,res){
 console.log(luachfree);
 luachCtrl.insertNewFreeLuach(req, function (err, done) {
     if (err) {
-        console.log(err);
         res.end(JSON.stringify({
             done: false,
             why: err

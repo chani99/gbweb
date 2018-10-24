@@ -44,7 +44,6 @@ function getlastpapaerId(callback) {
                 callback(err);
             }
             callback(null, row);
-            console.log(row);
 
         });
 }
@@ -53,24 +52,35 @@ function saveContactData(table_name, rows, values, callback) {
     let sql = "INSERT INTO `" + table_name + "` (" + rows + ") VALUES (" + values + ")";
     dal.executeQuery(sql, function (err, result) {
         if (err) console.log(err);
-        callback(null, "1 record inserted");
+        callback(null, "record inserted");
     });
 
 }
 
-function saveInto2Tables(table1, table2, rows1, rows2, values1, values2, callback) {
-    let sql = "BEGIN; INSERT INTO `" + table1 + "` (" + rows1 + ") VALUES (" + values1 + "); INSERT INTO `" + table2 + "` (" + rows2 + ") VALUES " + values2 + "; COMMIT;"
-    console.log(sql);
+function saveContactDataMultiple(table_name, rows, values, callback) {
+    let sql = "INSERT INTO `" + table_name + "` (" + rows + ") VALUES " + values;
     dal.executeQuery(sql, function (err, result) {
-        if (err) {
-            console.log(err);
-            callback(err);
-        } else {
-            callback(null, result);
-        }
+        if (err) console.log(err);
+        callback(null, "record inserted");
     });
 
 }
+
+// function saveInto2Tables(table1, table2, rows1, rows2, values1, values2, callback) {
+//     let sql1 = "INSERT INTO `" + table1 + "` (" + rows1 + ") VALUES (" + values1 + ");"
+//     console.log(sql1);
+//     dal.executeQuery(sql, function (err, result) {
+//         if (err) {
+//             console.log(err);
+//             callback(err);
+//         } else {
+//             let sql2 = "INSERT INTO `" + table2 + "` (" + rows2 + ") VALUES " + values2 + "; "
+
+//             callback(null, result);
+//         }
+//     });
+
+// }
 
 
 
@@ -91,5 +101,5 @@ module.exports.papers = {
 
 module.exports.dataFromCostumer = {
     saveContactData: saveContactData,
-    saveInto2Tables: saveInto2Tables
+    saveContactDataMultiple: saveContactDataMultiple
 }

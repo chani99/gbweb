@@ -1,4 +1,4 @@
- App.controller("luachCtrl", function ($scope, validate, UtilSrvc) {
+ App.controller("luachCtrl", function ($scope, validate, UtilSrvc, $location, $window) {
 
      //luach model
      var Luach = function (luach) {
@@ -163,12 +163,7 @@
                  console.log($scope.luach.heShows);
              }
          }
-         let calcPrice = coculatePrice($scope.luach.shows, $scope.price.wordCount, $scope.luach.type);
-         if (calcPrice) {
-             $scope.price.total = calcPrice[0];
-             $scope.price.discount = calcPrice[1];
-             $scope.price.extra = calcPrice[2];
-         }
+
 
 
 
@@ -182,6 +177,12 @@
                  console.log(luachOrder);
              } else {
                  //payment screen
+                 let calcPrice = coculatePrice($scope.luach.shows, $scope.price.wordCount, $scope.luach.type);
+                 if (calcPrice) {
+                     $scope.price.total = calcPrice[0];
+                     $scope.price.discount = calcPrice[1];
+                     $scope.price.extra = calcPrice[2];
+                 }
                  $scope.payment = true;
              }
          } else {
@@ -372,7 +373,9 @@
 
 
      function freesuccess(res) {
-         alert('המודעה התקבלה במערכת ותפוסם בעז"ה בעיתון הקרוב')
+         alert('המודעה התקבלה במערכת ותפוסם בעז"ה בעיתון הקרוב');
+         $window.location.href = `#/home`;
+         $window.scrollTo(0, 0);
      }
 
 
