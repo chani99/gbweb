@@ -27,6 +27,10 @@
 
 
         }
+$scope.openTab = function(){
+    $scope.url = 'www.google.com';
+
+}
 
         function onError(res) {
             console.log(res);
@@ -69,8 +73,8 @@
         let pages = $routeParams.p;
 
         // $scope.source = 'http://localhost:8080/public/pdf-flipbook-master/?num=' + num + "&folder=" + type;
-        // $scope.source = 'http://localhost:8080/public/turnjs4/samples/magazine/?num=' + num + "&folder=" + type + "&pages=" + pages;
-        $scope.source = 'http://galbeitar.j.box.co.il/public/turnjs4/samples/magazine/?num=' + num + "&folder=" + type + "&pages=" + pages;
+        $scope.source = 'http://localhost:8080/public/turnjs4/samples/magazine/?num=' + num + "&folder=" + type + "&pages=" + pages;
+        // $scope.source = 'http://galbeitar.j.box.co.il/public/turnjs4/samples/magazine/?num=' + num + "&folder=" + type + "&pages=" + pages;
 
     });
 

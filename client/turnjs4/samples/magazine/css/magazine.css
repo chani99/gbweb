@@ -334,15 +334,7 @@ body {
   margin-bottom: 25px;
   padding-bottom: 55px;
 }
-.grid-flip-container {
-  display: grid;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  grid-template-areas: "paper" "side";
-}
 .side {
-  grid-area: side;
   padding-top: 22px;
   padding-bottom: 22px;
   padding-right: 8%;
@@ -351,12 +343,12 @@ body {
   overflow: auto;
 }
 .paper {
-  grid-area: paper;
   padding: 2%;
   height: 100%;
 }
 .paper #canvas {
   display: inline-block;
   padding-top: 2%;
+  padding-bottom: 2%;
   height: auto;
 }
